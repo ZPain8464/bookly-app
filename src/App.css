@@ -1,38 +1,432 @@
+* {
+  box-sizing: border-box;
+  font-family: sans-serif;
+  margin: 0;
+}
+
 .App {
   text-align: center;
+  margin: 0;
+  padding: 0;
+  height: 100%;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
+/* Nav Bar - Public Route / Landing Page */
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.nav-home {
+  border: grey solid 2px;
+  background-color: grey;
+  padding: 15px;
+  font-size: 30px;
+  width: 100%;
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+nav h1 {
+  font-size: 35px;
+}
+
+.nav-links a {
+  margin: 10px;
+  font-size: 25px;
+}
+
+nav h1,
+nav a {
+  text-decoration: none;
+}
+
+nav a:hover {
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
+nav a:visited {
+  color: black;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+/* Dashboard Nav / Logged In */
+
+.dashboard-menu {
+  color: white;
+  height: 100%;
+  width: 160px;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: #111;
+  overflow-x: hidden;
+  padding-top: 20px;
+}
+
+.dashboard-menu h2 {
+  padding: 6px 8px 6px 16px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #818181;
+  display: block;
+}
+
+.dashboard-menu ul {
+  list-style-type: none;
+  padding: 0;
+  text-align: left;
+  padding-left: 5px;
+}
+
+.dashboard-menu a:visited {
+  color: #818181;
+}
+
+@media screen and (min-width: 320px) and (max-width: 768px) {
+  .dashboard-menu {
+    width: 100%;
+    position: unset;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
   }
-  to {
-    transform: rotate(360deg);
+
+  .dashboard-menu ul {
+    display: flex;
+    flex-wrap: wrap;
   }
+}
+
+/* About page */
+
+.about-ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+/* Header / Landing Page */
+
+header {
+  display: flex;
+  justify-content: center;
+  margin: 100px auto;
+  flex-direction: row;
+  max-width: 1200px;
+}
+
+.hero {
+  border: 2px solid grey;
+  margin: 15px 2.5%;
+  padding: 150px;
+  flex-basis: 45%;
+  box-sizing: border-box;
+  background-color: #e5e5e5;
+}
+
+/* Features / Landing Page */
+
+.features {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  background-color: #e5e5e5;
+  padding: 250px;
+}
+
+.feature-1,
+.feature-2,
+.feature-3 {
+  border: grey 2px solid;
+  padding: 85px;
+}
+
+@media screen and (min-width: 320px) and (max-width: 768px) {
+  header {
+    flex-direction: column;
+    margin: 35px auto;
+  }
+
+  .hero {
+    padding: 80px;
+  }
+
+  .features {
+    padding: 150px;
+  }
+}
+
+/* WhyBookly / Landing Page*/
+
+.why-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 300px;
+}
+
+@media screen and (min-width: 320px) and (max-width: 768px) {
+  .why-section {
+    padding: 150px;
+  }
+}
+
+/* Footer */
+
+.footer {
+  border: grey 2px solid;
+  background-color: grey;
+  color: #3d405b;
+  height: 25px;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
+
+/* Login Page */
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.login-section {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Register */
+
+.register-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.register-form {
+  display: flex;
+  flex-direction: column;
+  width: 15%;
+  border: grey 2px solid;
+  padding: 10px;
+}
+
+@media screen and (min-width: 320px) and (max-width: 768px) {
+  .register-form {
+    display: flex;
+    flex-direction: column;
+    width: 60%;
+  }
+}
+
+/* Main Dashboard */
+
+/* ProfilePic */
+
+.profile-pic {
+  margin-top: 60px;
+}
+
+img {
+  width: 350px;
+  border-radius: 50%;
+  border: grey solid 2px;
+}
+
+@media screen and (min-width: 320px) and (max-width: 768px) {
+  img {
+    width: 250px;
+  }
+}
+
+.profile-details {
+  margin-top: 25;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.profile-details h3 {
+  width: 50%;
+}
+
+/* Events Main */
+
+.main-events {
+  display: flex;
+  margin-left: 13%;
+}
+
+/* EventList */
+
+.event-sidebar {
+  flex: 1;
+}
+
+.event-sidebar ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.event-sidebar h3 {
+  border: solid grey 2px;
+  padding: 20px;
+  margin: 15px;
+}
+
+/* Modal */
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(6, 5, 5, 0.056);
+}
+
+.modal-main {
+  position: fixed;
+  background: #f8f8f8;
+  width: 80%;
+  height: 75%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.modal-main h2 {
+  margin-top: 25px;
+}
+
+.display-block {
+  display: block;
+}
+
+.display-none {
+  display: none;
+}
+
+.view-modal-button {
+  padding: 7px;
+  margin: 5px;
+  background: none;
+  border: none;
+  font-size: 20px;
+}
+
+.modal-photo {
+  margin: 20px;
+  object-fit: cover;
+  border: grey solid 2px;
+  width: 200px;
+  height: 200px;
+}
+
+@media screen and (min-width: 769px) {
+  .view-modal {
+    display: none;
+  }
+}
+
+/* Event */
+
+.event-view {
+  flex: 3;
+  display: flex;
+  justify-content: center;
+}
+
+.event-view-selected {
+  border: solid grey 2px;
+  width: 95%;
+  margin-top: 20px;
+  background: #e0e0e0;
+  height: 100%;
+}
+
+/* Events Mobile View */
+
+@media screen and (min-width: 320px) and (max-width: 768px) {
+  .main-events {
+    display: block;
+    margin: 0 auto;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .events-desktop {
+    display: none;
+  }
+
+  .event-view {
+    display: none;
+  }
+}
+
+/* Main Team */
+.main-team {
+  display: flex;
+  margin-left: 13%;
+}
+
+/* Team Sidebar */
+
+.team-sidebar {
+  flex: 1;
+}
+
+.team-sidebar h3 {
+  border: solid grey 2px;
+  padding: 20px;
+  margin: 15px;
+}
+
+.team-sidebar ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+/* Team Member */
+
+.team-view {
+  flex: 3;
+  display: flex;
+  justify-content: center;
+}
+
+/* Team View Mobile */
+
+@media screen and (max-width: 768px) {
+  .team-view,
+  .team-desktop {
+    display: none;
+  }
+
+  .main-team {
+    display: block;
+    margin: 0 auto;
+  }
+}
+
+.team-member-selected {
+  border: solid grey 2px;
+  width: 95%;
+  margin-top: 20px;
+  background: #e0e0e0;
+}
+
+.member-photo {
+  width: 300px;
+  height: 300px;
+  margin: 20px;
+  object-fit: cover;
+  border: grey solid 2px;
+}
+
+/* CalendarView */
+
+.main-calendar {
+  width: 70%;
+  margin: 0 auto;
+  height: 50%;
 }
