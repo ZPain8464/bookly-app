@@ -1,4 +1,4 @@
-export default {
+const DummyStore = {
   users: [
     {
       id: 1,
@@ -68,3 +68,5 @@ export default {
     },
   ],
 };
+
+export default DummyStore;

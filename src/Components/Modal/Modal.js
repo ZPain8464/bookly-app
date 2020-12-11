@@ -1,5 +1,4 @@
 import React from "react";
-import DummyStore from "../../DummyStore/DummyStore";
 
 function Modal(props) {
   const showHideClassName = props.show
