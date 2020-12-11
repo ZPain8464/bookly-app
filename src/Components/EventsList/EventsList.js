@@ -29,10 +29,16 @@ export default class EventsList extends React.Component {
       : "";
 
     return (
-      <aside className="event-sidebar">
+      <aside
+        className={
+          this.props.match.url === "/add-event"
+            ? "event-sidebar-hidden"
+            : "event-sidebar"
+        }
+      >
         <ul>
-          {eventsList.map((events) => (
-            <li>
+          {eventsList.map((events, i) => (
+            <li key={i}>
               <div className="events-desktop">
                 <Link to={`/events/${events.id}`}>
                   <h3>{events.name}</h3>
@@ -55,7 +61,9 @@ export default class EventsList extends React.Component {
           ))}
         </ul>
         <div>
-          <button>+ Event</button>
+          <Link to="/add-event">
+            <button>+ Event</button>
+          </Link>
         </div>
       </aside>
     );

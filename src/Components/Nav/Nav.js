@@ -53,7 +53,7 @@ export default class Nav extends React.Component {
                 </h2>
               </li>
               <li>
-                <Link to="#">+ Event</Link>
+                <Link to="/add-event">+ Event</Link>
               </li>
 
               <li>

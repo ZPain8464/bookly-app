@@ -17,6 +17,7 @@ import Event from "./Components/Event/Event";
 import TeamList from "./Components/TeamList/TeamList";
 import TeamMember from "./Components/TeamMember/TeamMember";
 import CalendarView from "./Components/Calendar/Calendar";
+import AddEvent from "./Components/AddEvent/AddEvent";
 // Cal events
 // TokenService
 
@@ -66,10 +67,11 @@ export default class App extends React.Component {
           <section className="main-events">
             <Route
               exact
-              path={["/events", "/events/:id"]}
+              path={["/events", "/events/:id", "/add-event"]}
               component={EventsList}
             />
             <Route exact path={["/events", "/events/:id"]} component={Event} />
+            <Route exact path="/add-event" component={AddEvent} />
           </section>
           <section className="main-team">
             <Route exact path={["/teams", "/teams/:id"]} component={TeamList} />
@@ -82,6 +84,7 @@ export default class App extends React.Component {
           <section className="main-calendar">
             <Route exact path="/calendar" component={CalendarView} />
           </section>
+
           <Route exact path="/" component={Features} />
           <Route exact path="/" component={WhyBookly} />
           <Route path="/" component={Footer} />
