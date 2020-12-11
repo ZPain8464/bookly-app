@@ -26,7 +26,11 @@ function Modal(props) {
         {props.match.url === `/teams/${id}` ? (
           <>
             <h2>{`${props.teamMember.first_name} ${props.teamMember.last_name}`}</h2>
-            <img className="modal-photo" src={props.teamMember.profile_image} />
+            <img
+              className="modal-photo"
+              alt=""
+              src={props.teamMember.profile_image}
+            />
             <h3>Email: {props.teamMember.email}</h3>
             <h3>Phone Number: {props.teamMember.phone_number}</h3>
           </>

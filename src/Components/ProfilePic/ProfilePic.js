@@ -8,7 +8,7 @@ export default class ProfilePic extends React.Component {
     return (
       <div className="profile-pic">
         <span className="profile-image">
-          <img src={imageSrc} />
+          <img src={imageSrc} alt="" />
         </span>
       </div>
     );
