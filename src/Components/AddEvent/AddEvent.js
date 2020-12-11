@@ -27,9 +27,9 @@ export default class AddEvent extends React.Component {
           </form>
 
           <button onClick={this.handleAddCal}>Add to Calendar</button>
-        </div>
-        <div>
-          <button onClick={this.handleCancel}>Cancel</button>
+          <div>
+            <button onClick={this.handleCancel}>Cancel</button>
+          </div>
         </div>
       </>
     );
