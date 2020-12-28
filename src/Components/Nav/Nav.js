@@ -1,4 +1,5 @@
 import React from "react";
+import TokenService from "../../Services/TokenService";
 import { Link } from "react-router-dom";
 
 export default class Nav extends React.Component {
@@ -11,7 +12,7 @@ export default class Nav extends React.Component {
   render() {
     return (
       <nav>
-        {!this.props.isLoggedIn ? (
+        {!TokenService.hasAuthToken() ? (
           <>
             <div className="nav-home">
               <div className="nav-logo">
