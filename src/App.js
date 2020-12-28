@@ -18,8 +18,8 @@ import TeamList from "./Components/TeamList/TeamList";
 import TeamMember from "./Components/TeamMember/TeamMember";
 import CalendarView from "./Components/Calendar/Calendar";
 import AddEvent from "./Components/AddEvent/AddEvent";
+import TokenService from "./Services/TokenService";
 // Cal events
-// TokenService
 
 export default class App extends React.Component {
   state = {
@@ -33,9 +33,7 @@ export default class App extends React.Component {
   };
 
   handleLogout = () => {
-    this.setState({
-      isLoggedIn: false,
-    });
+    TokenService.clearAuthToken();
   };
 
   render() {
