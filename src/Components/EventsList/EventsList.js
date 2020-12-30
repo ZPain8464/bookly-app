@@ -1,6 +1,5 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import DummyStore from "../../DummyStore/DummyStore";
 import Modal from "../Modal/Modal";
 
 export default class EventsList extends React.Component {
@@ -21,9 +20,9 @@ export default class EventsList extends React.Component {
   };
 
   render() {
-    const eventsList = DummyStore.events;
+    const eventsList = this.props.events;
     const event = this.props.match.params.id
-      ? DummyStore.events.find(
+      ? this.props.events.find(
           (e) => e.id === Number(this.props.match.params.id)
         )
       : "";
@@ -41,7 +40,7 @@ export default class EventsList extends React.Component {
             <li key={i}>
               <div className="events-desktop">
                 <Link to={`/events/${events.id}`}>
-                  <h3>{events.name}</h3>
+                  <h3>{events.title}</h3>
                 </Link>
               </div>
               <div className="view-modal">

@@ -1,7 +1,21 @@
 import React from "react";
 import DummyStore from "../../DummyStore/DummyStore";
+import config from "../../Config/config";
+import TokenService from "../../Services/TokenService";
 
 export default class ProfileContactInfo extends React.Component {
+  componentDidMount() {
+    fetch(`${config.REACT_APP_API_BASE_URL}/events`, {
+      headers: {
+        "content-type": "application/json",
+        Authorization: `Bearer ${TokenService.getAuthToken()}`,
+      },
+    })
+      .then((res) => res.json())
+      .then((events) => {
+        this.props.setUserEvents(events);
+      });
+  }
   render() {
     const firstName = DummyStore.users[0].first_name;
     const lastName = DummyStore.users[0].last_name;

@@ -1,8 +1,41 @@
 import React from "react";
+import config from "../../Config/config";
+import TokenService from "../../Services/TokenService";
 
 export default class AddEvent extends React.Component {
-  handleAddCal = () => {
-    this.props.history.push("/events");
+  handleAddEvent = (e) => {
+    e.preventDefault();
+    const title = e.target.title.value;
+    const time_start = e.target.time_start.value;
+    const time_end = e.target.time_end.value;
+    const location = e.target.location.value;
+    const description = e.target.description.value;
+    const date = e.target.date.value;
+    fetch(`${config.REACT_APP_API_BASE_URL}/events`, {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+        Authorization: `Bearer ${TokenService.getAuthToken()}`,
+      },
+      body: JSON.stringify({
+        title: title,
+        time_start: time_start,
+        time_end: time_end,
+        location: location,
+        description: description,
+        date: date,
+      }),
+    })
+      .then((res) => {
+        if (!res.ok) {
+          throw new Error(res.status);
+        }
+        return res.json();
+      })
+      .then((event) => {
+        this.props.createEvent(event);
+        this.props.history.push("/events");
+      });
   };
 
   handleCancel = () => {
@@ -14,19 +47,24 @@ export default class AddEvent extends React.Component {
       <>
         <div className="add-event-view">
           <h2>Add a New Event</h2>
-          <form className="add-event-form">
-            <label>What time is your event?</label>
-            <p>My event starts at:</p>
-            <input type="time" name="start_time" />
-            <p>My event ends at:</p>
-            <input type="time" name="end_time" />
+          <form
+            onSubmit={(e) => this.handleAddEvent(e)}
+            className="add-event-form"
+          >
+            <label>Name your event:</label>
+            <input type="text" name="title" />
+            <label>Your event starts at:</label>
+            <input type="time" name="time_start" />
+            <label>Your event ends at:</label>
+            <input type="time" name="time_end" />
+            <label>Pick a date:</label>
+            <input type="date" name="date" />
             <label>Add an address:</label>
-            <input type="text" />
+            <input type="text" name="location" />
             <label>Add a description:</label>
-            <input type="text" />
+            <input type="text" name="description" />
+            <button typ="submit">Add Event</button>
           </form>
-
-          <button onClick={this.handleAddCal}>Add to Calendar</button>
           <div>
             <button onClick={this.handleCancel}>Cancel</button>
           </div>

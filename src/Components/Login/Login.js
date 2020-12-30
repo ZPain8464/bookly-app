@@ -1,7 +1,6 @@
 import React from "react";
 import AuthAPIService from "../../Services/AuthAPIService";
 import TokenService from "../../Services/TokenService";
-import { REACT_APP_BASE_URL } from "../../Config/config";
 import { Link } from "react-router-dom";
 
 export default class Login extends React.Component {

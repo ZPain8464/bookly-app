@@ -19,11 +19,21 @@ import TeamMember from "./Components/TeamMember/TeamMember";
 import CalendarView from "./Components/Calendar/Calendar";
 import AddEvent from "./Components/AddEvent/AddEvent";
 import TokenService from "./Services/TokenService";
-// Cal events
 
 export default class App extends React.Component {
   state = {
     isLoggedIn: false,
+    events: [],
+  };
+
+  createEvent = (event) => {
+    console.log(event);
+  };
+
+  setUserEvents = (events) => {
+    this.setState({
+      events: events,
+    });
   };
 
   handleLogin = () => {
@@ -60,16 +70,36 @@ export default class App extends React.Component {
         <main>
           <section className="main-dashboard">
             <Route exact path="/dashboard" component={ProfilePic} />
-            <Route exact path="/dashboard" component={ProfileContactInfo} />
+            <Route
+              exact
+              path="/dashboard"
+              render={(props) => (
+                <ProfileContactInfo
+                  {...props}
+                  {...this.state}
+                  setUserEvents={this.setUserEvents}
+                />
+              )}
+            />
           </section>
           <section className="main-events">
             <Route
               exact
               path={["/events", "/events/:id", "/add-event"]}
-              component={EventsList}
+              render={(props) => <EventsList {...props} {...this.state} />}
             />
-            <Route exact path={["/events", "/events/:id"]} component={Event} />
-            <Route exact path="/add-event" component={AddEvent} />
+            <Route
+              exact
+              path={["/events", "/events/:id"]}
+              render={(props) => <Event {...props} {...this.state} />}
+            />
+            <Route
+              exact
+              path="/add-event"
+              render={(props) => (
+                <AddEvent createEvet={this.createEvent} {...props} />
+              )}
+            />
           </section>
           <section className="main-team">
             <Route exact path={["/teams", "/teams/:id"]} component={TeamList} />
@@ -80,7 +110,11 @@ export default class App extends React.Component {
             />
           </section>
           <section className="main-calendar">
-            <Route exact path="/calendar" component={CalendarView} />
+            <Route
+              exact
+              path="/calendar"
+              render={(props) => <CalendarView {...props} {...this.state} />}
+            />
           </section>
 
           <Route exact path="/" component={Features} />

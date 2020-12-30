@@ -19,7 +19,7 @@ function Modal(props) {
       <section className="modal-main">
         {props.match.url === `/events/${id}` ? (
           <>
-            <h2>{props.event.name}</h2>
+            <h2>{props.event.title}</h2>
             <h3>{`${props.event.time_start} ${props.event.time_end}`}</h3>
             <h3>{props.event.location}</h3>
             <h3>{props.event.description}</h3>

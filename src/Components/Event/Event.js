@@ -10,7 +10,7 @@ export default class Event extends React.Component {
   };
 
   render() {
-    const event = DummyStore.events;
+    const event = this.props.events;
 
     return (
       <section className="event-view">
@@ -18,7 +18,7 @@ export default class Event extends React.Component {
           {event.map((e, i) =>
             e.id === Number(this.props.match.params.id) ? (
               <React.Fragment key={i}>
-                <h2 key={i}>{e.name}</h2>
+                <h2 key={i}>{e.title}</h2>
                 <h3>{e.location}</h3>
                 <p>{e.description}</p>
                 <div>
