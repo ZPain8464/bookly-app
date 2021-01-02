@@ -66,7 +66,7 @@ export default class AddEvent extends React.Component {
             <input type="text" name="location" />
             <label>Add a description:</label>
             <input type="text" name="description" />
-            <button typ="submit">Add Event</button>
+            <button type="submit">Add Event</button>
           </form>
           <div>
             <button onClick={this.handleCancel}>Cancel</button>

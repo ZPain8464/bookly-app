@@ -14,6 +14,7 @@ import ProfilePic from "./Components/ProfilePic/ProfilePic";
 import ProfileContactInfo from "./Components/ProfileContactInfo/ProfileContactInfo";
 import EventsList from "./Components/EventsList/EventsList";
 import Event from "./Components/Event/Event";
+import EditEvent from "./Components/EditEvent/EditEvent";
 import TeamList from "./Components/TeamList/TeamList";
 import TeamMember from "./Components/TeamMember/TeamMember";
 import CalendarView from "./Components/Calendar/Calendar";
@@ -42,15 +43,23 @@ export default class App extends React.Component {
     });
   };
 
+  setUserTeams = (teams) => {
+    this.setState({
+      teams: teams,
+    });
+  };
+
   createEvent = (event) => {
     this.setState({
       events: [...this.state.events, event],
     });
   };
 
-  setUserTeams = (teams) => {
+  updateEvent = (updatedEvent) => {
     this.setState({
-      teams: teams,
+      events: this.state.events.map((e) =>
+        e.id !== updatedEvent.id ? e : updatedEvent
+      ),
     });
   };
 
@@ -132,6 +141,13 @@ export default class App extends React.Component {
                   createEvent={this.createEvent}
                   {...props}
                 />
+              )}
+            />
+            <Route
+              exact
+              path="/edit-event/:id"
+              render={(props) => (
+                <EditEvent {...props} updateEvent={this.updateEvent} />
               )}
             />
           </section>

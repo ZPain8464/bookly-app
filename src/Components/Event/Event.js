@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 import DummyStore from "../../DummyStore/DummyStore";
 
@@ -7,6 +8,10 @@ export default class Event extends React.Component {
     alert(
       `Email invites were sent to ${DummyStore.team[0].first_name} and ${DummyStore.team[1].first_name}!`
     );
+  };
+
+  handleUpdateEvent = (newEvent) => {
+    console.log("handle event worked");
   };
 
   render() {
@@ -25,6 +30,11 @@ export default class Event extends React.Component {
                   <button onClick={this.handleInvites}>
                     + Invite Team Members
                   </button>
+                </div>
+                <div>
+                  <Link to={`/edit-event/${e.id}`}>
+                    <button>Edit Event</button>
+                  </Link>
                 </div>
               </React.Fragment>
             ) : (

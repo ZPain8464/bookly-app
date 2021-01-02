@@ -384,6 +384,17 @@ img {
   display: none;
 }
 
+/* Edit Event View */
+
+.edit-event-view {
+  margin: 0 auto;
+}
+
+.edit-event-form {
+  display: flex;
+  flex-direction: column;
+}
+
 /* Main Team */
 .main-team {
   display: flex;
