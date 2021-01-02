@@ -27,6 +27,7 @@ export default class App extends React.Component {
     events: [],
     user: { user_id: "" },
     teams: [],
+    teamMembers: [],
   };
 
   setUser = (user) => {
@@ -49,6 +50,12 @@ export default class App extends React.Component {
     });
   };
 
+  setUserTeamMembers = (tmembers) => {
+    this.setState({
+      teamMembers: tmembers,
+    });
+  };
+
   createEvent = (event) => {
     this.setState({
       events: [...this.state.events, event],
@@ -60,13 +67,6 @@ export default class App extends React.Component {
       events: this.state.events.map((e) =>
         e.id !== updatedEvent.id ? e : updatedEvent
       ),
-    });
-  };
-
-  deleteEvent = (eventId) => {
-    const newEvents = this.state.events.filter((eid) => eid.id !== eventId);
-    this.setState({
-      events: newEvents,
     });
   };
 
@@ -124,6 +124,7 @@ export default class App extends React.Component {
                   setUserEvents={this.setUserEvents}
                   setUser={this.setUser}
                   setUserTeams={this.setUserTeams}
+                  setUserTeamMembers={this.setUserTeamMembers}
                 />
               )}
             />
@@ -137,13 +138,7 @@ export default class App extends React.Component {
             <Route
               exact
               path={["/events", "/events/:id"]}
-              render={(props) => (
-                <Event
-                  {...props}
-                  deleteEvent={this.deleteEvent}
-                  {...this.state}
-                />
-              )}
+              render={(props) => <Event {...props} {...this.state} />}
             />
             <Route
               exact
@@ -167,13 +162,13 @@ export default class App extends React.Component {
           <section className="main-team">
             <Route
               exact
-              path={["/teams", "/teams/:id"]}
-              render={(props) => <TeamList {...props} {...this.state.teams} />}
+              path={["/teams", "/teams/team-member/:id"]}
+              render={(props) => <TeamList {...props} {...this.state} />}
             />
             <Route
               exact
-              path={["/teams", "/teams/:id"]}
-              component={TeamMember}
+              path={["/teams", "/teams/team-member/:id"]}
+              render={(props) => <TeamMember {...props} {...this.state} />}
             />
           </section>
           <section className="main-calendar">

@@ -1,9 +1,8 @@
 import React from "react";
-import DummyStore from "../../DummyStore/DummyStore";
 
 export default class TeamMember extends React.Component {
   render() {
-    const team = DummyStore.team;
+    const team = this.props.teamMembers.teamMemberData;
     return (
       <section className="team-view">
         <div className="team-member-selected">

@@ -20,17 +20,19 @@ export default class TeamList extends React.Component {
     });
   };
   render() {
-    const teamList = DummyStore.team;
+    const teamMembers = this.props.teamMembers.teamMemberData;
+    console.log(teamMembers);
+
     const teamMember = this.props.match.params.id
       ? DummyStore.team.find((t) => t.id === Number(this.props.match.params.id))
       : "";
     return (
       <aside className="team-sidebar">
         <ul>
-          {teamList.map((team, i) => (
+          {teamMembers.map((team, i) => (
             <li key={i}>
               <div className="team-desktop">
-                <Link to={`/teams/${team.id}`}>
+                <Link to={`/teams/team-member/${team.id}`}>
                   <h3>{`${team.first_name} ${team.last_name}`}</h3>
                 </Link>
               </div>
@@ -42,7 +44,7 @@ export default class TeamList extends React.Component {
                   handleClose={this.hideModal}
                 />
                 <button onClick={this.showModal} className="view-modal-button">
-                  <Link to={`/teams/${team.id}`}>
+                  <Link to={`/teams/team-member/${team.id}`}>
                     <h2>{`${team.first_name} ${team.last_name}`}</h2>
                   </Link>
                 </button>

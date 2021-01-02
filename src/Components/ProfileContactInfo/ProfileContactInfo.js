@@ -35,6 +35,16 @@ export default class ProfileContactInfo extends React.Component {
       .then((teams) => {
         this.props.setUserTeams(teams);
       });
+    fetch(`${config.REACT_APP_API_BASE_URL}/team-members`, {
+      headers: {
+        "content-type": "application/json",
+        Authorization: `Bearer ${TokenService.getAuthToken()}`,
+      },
+    })
+      .then((res) => res.json())
+      .then((tmembers) => {
+        this.props.setUserTeamMembers(tmembers);
+      });
   }
   render() {
     const firstName = DummyStore.users[0].first_name;
