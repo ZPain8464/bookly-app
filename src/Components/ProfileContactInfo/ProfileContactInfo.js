@@ -13,7 +13,6 @@ export default class ProfileContactInfo extends React.Component {
     })
       .then((res) => res.json())
       .then((events) => {
-        console.log(events);
         this.props.setUserEvents(events);
       });
     fetch(`${config.REACT_APP_API_BASE_URL}/users`, {

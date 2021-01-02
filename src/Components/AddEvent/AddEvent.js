@@ -3,10 +3,6 @@ import config from "../../Config/config";
 import TokenService from "../../Services/TokenService";
 
 export default class AddEvent extends React.Component {
-  state = {
-    error: null,
-  };
-
   handleAddEvent = (e) => {
     e.preventDefault();
     const title = e.target.title.value;
@@ -15,6 +11,8 @@ export default class AddEvent extends React.Component {
     const location = e.target.location.value;
     const description = e.target.description.value;
     const date = e.target.date.value;
+    const team_id = this.props.teams[0].id;
+
     fetch(`${config.REACT_APP_API_BASE_URL}/events`, {
       method: "POST",
       headers: {
@@ -28,6 +26,7 @@ export default class AddEvent extends React.Component {
         location: location,
         description: description,
         date: date,
+        team_id: team_id,
       }),
     })
       .then((res) => {
@@ -39,9 +38,6 @@ export default class AddEvent extends React.Component {
       .then((event) => {
         this.props.createEvent(event);
         this.props.history.push("/events");
-      })
-      .catch((res) => {
-        this.setState({ error: res.error });
       });
   };
 
@@ -58,7 +54,6 @@ export default class AddEvent extends React.Component {
             onSubmit={(e) => this.handleAddEvent(e)}
             className="add-event-form"
           >
-            {this.state.error && <p className="error">{this.state.error}</p>}
             <label>Name your event:</label>
             <input type="text" name="title" />
             <label>Your event starts at:</label>

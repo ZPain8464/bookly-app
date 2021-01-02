@@ -43,8 +43,9 @@ export default class App extends React.Component {
   };
 
   createEvent = (event) => {
-    // need to establish createTeam first
-    console.log(event);
+    this.setState({
+      events: [...this.state.events, event],
+    });
   };
 
   setUserTeams = (teams) => {
@@ -126,7 +127,11 @@ export default class App extends React.Component {
               exact
               path="/add-event"
               render={(props) => (
-                <AddEvent createEvet={this.createEvent} {...props} />
+                <AddEvent
+                  {...this.state}
+                  createEvent={this.createEvent}
+                  {...props}
+                />
               )}
             />
           </section>
