@@ -24,10 +24,33 @@ export default class App extends React.Component {
   state = {
     isLoggedIn: false,
     events: [],
+    user: { user_id: "" },
+    teams: [],
+  };
+
+  setUser = (user) => {
+    this.setState({
+      user: {
+        user_id: user.id,
+      },
+    });
+  };
+
+  createTeam = (newTeam) => {
+    this.setState({
+      teams: newTeam,
+    });
   };
 
   createEvent = (event) => {
+    // need to establish createTeam first
     console.log(event);
+  };
+
+  setUserTeams = (teams) => {
+    this.setState({
+      teams: teams,
+    });
   };
 
   setUserEvents = (events) => {
@@ -44,6 +67,10 @@ export default class App extends React.Component {
 
   handleLogout = () => {
     TokenService.clearAuthToken();
+    this.setState({
+      events: [],
+      team: [],
+    });
   };
 
   render() {
@@ -78,6 +105,8 @@ export default class App extends React.Component {
                   {...props}
                   {...this.state}
                   setUserEvents={this.setUserEvents}
+                  setUser={this.setUser}
+                  setUserTeams={this.setUserTeams}
                 />
               )}
             />
@@ -102,7 +131,11 @@ export default class App extends React.Component {
             />
           </section>
           <section className="main-team">
-            <Route exact path={["/teams", "/teams/:id"]} component={TeamList} />
+            <Route
+              exact
+              path={["/teams", "/teams/:id"]}
+              render={(props) => <TeamList {...props} {...this.state.teams} />}
+            />
             <Route
               exact
               path={["/teams", "/teams/:id"]}

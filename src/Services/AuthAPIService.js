@@ -2,7 +2,7 @@ import config from "../Config/config";
 
 export default {
   postUser(user) {
-    return fetch(`${config.REACT_APP_API_BASE_URL}/api/users`, {
+    return fetch(`${config.REACT_APP_API_BASE_URL}/users`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -13,7 +13,7 @@ export default {
     );
   },
   loginUser(user) {
-    return fetch(`${config.REACT_APP_API_BASE_URL}/api/auth/login`, {
+    return fetch(`${config.REACT_APP_API_BASE_URL}/auth/login`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

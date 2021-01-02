@@ -390,6 +390,16 @@ img {
   margin-left: 13%;
 }
 
+/* Add Team*/
+.add-team {
+  margin: 0 auto;
+}
+
+.add-team-form {
+  display: flex;
+  flex-direction: column;
+}
+
 /* Team Sidebar */
 
 .team-sidebar {
