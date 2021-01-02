@@ -63,6 +63,13 @@ export default class App extends React.Component {
     });
   };
 
+  deleteEvent = (eventId) => {
+    const newEvents = this.state.events.filter((eid) => eid.id !== eventId);
+    this.setState({
+      events: newEvents,
+    });
+  };
+
   setUserEvents = (events) => {
     this.setState({
       events: events,
@@ -130,7 +137,13 @@ export default class App extends React.Component {
             <Route
               exact
               path={["/events", "/events/:id"]}
-              render={(props) => <Event {...props} {...this.state} />}
+              render={(props) => (
+                <Event
+                  {...props}
+                  deleteEvent={this.deleteEvent}
+                  {...this.state}
+                />
+              )}
             />
             <Route
               exact

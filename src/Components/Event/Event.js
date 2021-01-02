@@ -1,5 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import config from "../../Config/config";
+import TokenService from "../../Services/TokenService";
 
 import DummyStore from "../../DummyStore/DummyStore";
 
@@ -10,8 +12,27 @@ export default class Event extends React.Component {
     );
   };
 
-  handleUpdateEvent = (newEvent) => {
-    console.log("handle event worked");
+  handleDelete = (eventId, cb) => {
+    fetch(`${config.REACT_APP_API_BASE_URL}/events/${eventId}`, {
+      method: "DELETE",
+      headers: {
+        "content-type": "application/json",
+        Authorization: `Bearer ${TokenService.getAuthToken()}`,
+      },
+    })
+      .then((res) => {
+        if (!res.ok) {
+          return res.json().then((error) => Promise.reject(error));
+        }
+        return res;
+      })
+      .then(() => {
+        cb(eventId);
+        this.props.history.push("/events");
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
 
   render() {
@@ -35,6 +56,18 @@ export default class Event extends React.Component {
                   <Link to={`/edit-event/${e.id}`}>
                     <button>Edit Event</button>
                   </Link>
+                </div>
+                <div>
+                  <button
+                    onClick={(e) =>
+                      this.handleDelete(
+                        Number(this.props.match.params.id),
+                        this.props.deleteEvent
+                      )
+                    }
+                  >
+                    Delete Event
+                  </button>
                 </div>
               </React.Fragment>
             ) : (
