@@ -20,7 +20,6 @@ export default class AddTeamMember extends React.Component {
     });
   }
 
-  /* Need to add some kind of confirmation if email is successfully sent */
   handleAddTeamMember = (e) => {
     e.preventDefault();
     // const recipient = this.state.recipient;
@@ -28,10 +27,6 @@ export default class AddTeamMember extends React.Component {
     const sender = this.state.sender;
     const name = this.state.senderName;
     const email = { recipient, sender, name };
-    this.setState({
-      inviteSentMessage: `Invite to ${recipient} sent!`,
-      sent: true,
-    });
 
     fetch(`${config.REACT_APP_API_BASE_URL}/emails`, {
       method: "POST",
@@ -40,6 +35,13 @@ export default class AddTeamMember extends React.Component {
         Authorization: `Bearer ${TokenService.getAuthToken()}`,
       },
       body: JSON.stringify(email),
+    }).then((res) => {
+      if (res.ok) {
+        this.setState({
+          inviteSentMessage: `Your invite to ${recipient} was sent successfully!`,
+          sent: true,
+        });
+      }
     });
   };
 
