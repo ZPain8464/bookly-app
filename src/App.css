@@ -436,6 +436,17 @@ img {
   justify-content: center;
 }
 
+/* Add Team Member */
+
+.add-team-member-view {
+  margin: 0 auto;
+}
+
+.add-team-member-form {
+  display: flex;
+  flex-direction: column;
+}
+
 /* Team View Mobile */
 
 @media screen and (max-width: 768px) {

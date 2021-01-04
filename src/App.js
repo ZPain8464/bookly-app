@@ -17,6 +17,7 @@ import Event from "./Components/Event/Event";
 import EditEvent from "./Components/EditEvent/EditEvent";
 import TeamList from "./Components/TeamList/TeamList";
 import TeamMember from "./Components/TeamMember/TeamMember";
+import AddTeamMember from "./Components/AddTeamMember/AddTeamMember";
 import CalendarView from "./Components/Calendar/Calendar";
 import AddEvent from "./Components/AddEvent/AddEvent";
 import TokenService from "./Services/TokenService";
@@ -25,7 +26,11 @@ export default class App extends React.Component {
   state = {
     isLoggedIn: false,
     events: [],
-    user: { user_id: "" },
+    user: {
+      user_id: "",
+      email: "",
+      firstName: "",
+    },
     teams: [],
     teamMembers: [],
   };
@@ -34,6 +39,8 @@ export default class App extends React.Component {
     this.setState({
       user: {
         user_id: user.id,
+        email: user.email,
+        firstName: user.first_name,
       },
     });
   };
@@ -169,6 +176,11 @@ export default class App extends React.Component {
               exact
               path={["/teams", "/teams/team-member/:id"]}
               render={(props) => <TeamMember {...props} {...this.state} />}
+            />
+            <Route
+              exact
+              path="/add-team-member"
+              render={(props) => <AddTeamMember {...props} {...this.state} />}
             />
           </section>
           <section className="main-calendar">
