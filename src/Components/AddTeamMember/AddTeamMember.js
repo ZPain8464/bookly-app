@@ -2,14 +2,22 @@ import React from "react";
 import { Link } from "react-router-dom";
 import config from "../../Config/config";
 import TokenService from "../../Services/TokenService";
+import AuthAPIService from "../../Services/AuthAPIService";
 
 export default class AddTeamMember extends React.Component {
   state = {
+    // sender's name
     senderName: "",
     recipient: "",
+    // sender email address
     sender: "",
     inviteSentMessage: "",
     sent: false,
+    // new team member's info
+    teamMember: {
+      firstName: "",
+      lastName: "",
+    },
   };
 
   componentDidMount() {
@@ -27,6 +35,10 @@ export default class AddTeamMember extends React.Component {
     const sender = this.state.sender;
     const name = this.state.senderName;
     const email = { recipient, sender, name };
+    const firstName = this.state.teamMember.firstName;
+    const lastName = this.state.teamMember.lastName;
+    const teamMemberName = { firstName, lastName };
+    console.log(teamMemberName);
 
     fetch(`${config.REACT_APP_API_BASE_URL}/emails`, {
       method: "POST",
@@ -35,13 +47,50 @@ export default class AddTeamMember extends React.Component {
         Authorization: `Bearer ${TokenService.getAuthToken()}`,
       },
       body: JSON.stringify(email),
+      // Send POST req. to /users to create user; have InviteLandingPage
+      // Send a PATCH request to update the user's password when they register
     }).then((res) => {
       if (res.ok) {
         this.setState({
           inviteSentMessage: `Your invite to ${recipient} was sent successfully!`,
           sent: true,
         });
+        // Create if statement where if(emailExists), then don't create new user
+        // in InviteLandingPage, if(emailExists), show no option for Log in
+        const tempPassword = "TempPass#3";
+        const user = {
+          first_name: firstName,
+          last_name: lastName,
+          password: tempPassword,
+          confirmPassword: tempPassword,
+          email: email.recipient,
+        };
+        AuthAPIService.postUser({
+          first_name: firstName,
+          last_name: lastName,
+          password: tempPassword,
+          confirmPassword: tempPassword,
+          email: email.recipient,
+        });
       }
+    });
+  };
+
+  getFirstName = (e) => {
+    this.setState({
+      teamMember: {
+        ...this.state.teamMember,
+        firstName: e.target.value,
+      },
+    });
+  };
+
+  getLastName = (e) => {
+    this.setState({
+      teamMember: {
+        ...this.state.teamMember,
+        lastName: e.target.value,
+      },
     });
   };
 
@@ -80,7 +129,19 @@ export default class AddTeamMember extends React.Component {
             onSubmit={(e) => this.handleAddTeamMember(e)}
             className="add-team-member-form"
           >
-            <label>Email address</label>
+            <label>First name:</label>
+            <input
+              onChange={(e) => this.getFirstName(e)}
+              type="text"
+              name="first_name"
+            />
+            <label>Last name:</label>
+            <input
+              onChange={(e) => this.getLastName(e)}
+              type="text"
+              name="last_name"
+            />
+            <label>Email address:</label>
             <input
               onChange={(e) => this.getTeamMemberEmail(e)}
               type="text"

@@ -8,7 +8,6 @@ export default class Register extends React.Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    let user_type = "admin";
     const {
       first_name,
       last_name,
@@ -23,7 +22,6 @@ export default class Register extends React.Component {
       password: password.value,
       email: email.value,
       confirmPassword: confirmPassword.value,
-      user_type: user_type,
     })
       .then((user) => {
         this.props.history.push("/login");

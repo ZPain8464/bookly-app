@@ -447,6 +447,22 @@ img {
   flex-direction: column;
 }
 
+/* Invite Landing Page*/
+
+.invite-page {
+  margin: 0 auto;
+}
+
+.invite-login-register {
+  border: grey 2px solid;
+  padding: 30px;
+}
+
+.unregistered-user-form {
+  display: flex;
+  flex-direction: column;
+}
+
 /* Team View Mobile */
 
 @media screen and (max-width: 768px) {

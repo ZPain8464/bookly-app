@@ -63,6 +63,9 @@ export default class Nav extends React.Component {
                 </h2>
               </li>
               <li>
+                <Link to="/invite-page">Invite</Link>
+              </li>
+              <li>
                 <h2>
                   <button onClick={(e) => this.handleLogout(e)}>Log Out</button>
                 </h2>

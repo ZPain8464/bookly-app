@@ -18,6 +18,7 @@ import EditEvent from "./Components/EditEvent/EditEvent";
 import TeamList from "./Components/TeamList/TeamList";
 import TeamMember from "./Components/TeamMember/TeamMember";
 import AddTeamMember from "./Components/AddTeamMember/AddTeamMember";
+import InviteLandingPage from "./Components/InviteLandingPage/InviteLandingPage";
 import CalendarView from "./Components/Calendar/Calendar";
 import AddEvent from "./Components/AddEvent/AddEvent";
 import TokenService from "./Services/TokenService";
@@ -181,6 +182,11 @@ export default class App extends React.Component {
               exact
               path="/add-team-member"
               render={(props) => <AddTeamMember {...props} {...this.state} />}
+            />
+            <Route
+              exact
+              path={["/invite-page", "/invite-page/:id"]}
+              component={InviteLandingPage}
             />
           </section>
           <section className="main-calendar">
