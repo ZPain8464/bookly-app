@@ -5,16 +5,6 @@ import TokenService from "../../Services/TokenService";
 
 export default class ProfileContactInfo extends React.Component {
   componentDidMount() {
-    fetch(`${config.REACT_APP_API_BASE_URL}/events`, {
-      headers: {
-        "content-type": "application/json",
-        Authorization: `Bearer ${TokenService.getAuthToken()}`,
-      },
-    })
-      .then((res) => res.json())
-      .then((events) => {
-        this.props.setUserEvents(events);
-      });
     fetch(`${config.REACT_APP_API_BASE_URL}/users`, {
       headers: {
         "content-type": "application/json",
@@ -24,6 +14,16 @@ export default class ProfileContactInfo extends React.Component {
       .then((res) => res.json())
       .then((user) => {
         this.props.setUser(user);
+      });
+    fetch(`${config.REACT_APP_API_BASE_URL}/events`, {
+      headers: {
+        "content-type": "application/json",
+        Authorization: `Bearer ${TokenService.getAuthToken()}`,
+      },
+    })
+      .then((res) => res.json())
+      .then((events) => {
+        this.props.setUserEvents(events);
       });
     fetch(`${config.REACT_APP_API_BASE_URL}/teams`, {
       headers: {

@@ -47,16 +47,12 @@ export default class AddTeamMember extends React.Component {
         Authorization: `Bearer ${TokenService.getAuthToken()}`,
       },
       body: JSON.stringify(email),
-      // Send POST req. to /users to create user; have InviteLandingPage
-      // Send a PATCH request to update the user's password when they register
     }).then((res) => {
       if (res.ok) {
         this.setState({
           inviteSentMessage: `Your invite to ${recipient} was sent successfully!`,
           sent: true,
         });
-        // Create if statement where if(emailExists), then don't create new user
-        // in InviteLandingPage, if(emailExists), show option for Log in
         const tempPassword = "TempPass#3";
         const user = {
           first_name: firstName,
@@ -72,8 +68,6 @@ export default class AddTeamMember extends React.Component {
           confirmPassword: tempPassword,
           email: email.recipient,
         }).then((newUser) => {
-          // You want to send THEIR user_id
-          // Send YOUR team_id this.props.teams.id
           const userId = newUser.user.id;
           const teamId = this.props.teams[0].id;
           console.log(teamId);
