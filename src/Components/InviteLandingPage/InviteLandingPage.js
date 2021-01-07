@@ -6,6 +6,7 @@ export default class InviteLandingPage extends React.Component {
   state = {
     error: null,
     user: {
+      id: "",
       firstName: "",
     },
   };
@@ -27,6 +28,7 @@ export default class InviteLandingPage extends React.Component {
         )
           .then((res) => res.json())
           .then((unregisteredUser) => {
+            console.log(unregisteredUser);
             this.setState({
               user: {
                 ...this.state.user,
@@ -48,17 +50,34 @@ export default class InviteLandingPage extends React.Component {
       password: password.value,
       confirmPassword: confirmPassword.value,
     })
-      .then((user) => {
-        this.props.history.push("/login");
-      })
+      .then(
+        fetch(`${config.REACT_APP_API_BASE_URL}/team-members/${id}`)
+          .then((res) => res.json())
+          .then((data) => {
+            const accepted = data[0].accepted;
+            const team_id = data[0].team_id;
+            const user_id = data[0].user_id;
+            console.log(accepted);
+            fetch(`${config.REACT_APP_API_BASE_URL}/team-members/${id}`, {
+              method: "PATCH",
+              headers: {
+                "content-type": "application/json",
+              },
+              body: JSON.stringify({
+                accepted: !accepted,
+                team_id: team_id,
+                user_id: user_id,
+              }),
+            });
+            this.props.history.push("/login");
+          })
+      )
       .catch((res) => {
         this.setState({ error: res.error });
       });
   };
 
   render() {
-    // add new table to database for cold storage of uuid
-
     // if user has email address, show Log in. If not, just show register
     return (
       <div className="invite-page">

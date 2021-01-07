@@ -56,7 +56,7 @@ export default class AddTeamMember extends React.Component {
           sent: true,
         });
         // Create if statement where if(emailExists), then don't create new user
-        // in InviteLandingPage, if(emailExists), show no option for Log in
+        // in InviteLandingPage, if(emailExists), show option for Log in
         const tempPassword = "TempPass#3";
         const user = {
           first_name: firstName,
@@ -71,6 +71,24 @@ export default class AddTeamMember extends React.Component {
           password: tempPassword,
           confirmPassword: tempPassword,
           email: email.recipient,
+        }).then((newUser) => {
+          // You want to send THEIR user_id
+          // Send YOUR team_id this.props.teams.id
+          const userId = newUser.user.id;
+          const teamId = this.props.teams[0].id;
+          console.log(teamId);
+          fetch(`${config.REACT_APP_API_BASE_URL}/team-members`, {
+            method: "POST",
+            headers: {
+              "content-type": "application/json",
+              Authorization: `Bearer ${TokenService.getAuthToken()}`,
+            },
+            body: JSON.stringify({
+              invite_date: new Date(),
+              user_id: userId,
+              team_id: teamId,
+            }),
+          });
         });
       }
     });
@@ -108,51 +126,53 @@ export default class AddTeamMember extends React.Component {
   render() {
     return (
       <>
-        <div className="add-team-member-view">
-          <h2>Add a Team Member</h2>
-          <p>Team members can only see events they've joined.</p>
-          <p>
-            Once your team member creates an account, you can <br /> send them
-            an invitation to your event.
-          </p>
-          {this.state.sent === true ? (
-            <>
+        {this.state.sent === false ? (
+          <div className="add-team-member-view">
+            <h2>Add a Team Member</h2>
+            <p>Team members can only see events they've joined.</p>
+            <p>
+              Once your team member creates an account, you can <br /> send them
+              an invitation to your event.
+            </p>
+            <form
+              onSubmit={(e) => this.handleAddTeamMember(e)}
+              className="add-team-member-form"
+            >
+              <label>First name:</label>
+              <input
+                onChange={(e) => this.getFirstName(e)}
+                type="text"
+                name="first_name"
+              />
+              <label>Last name:</label>
+              <input
+                onChange={(e) => this.getLastName(e)}
+                type="text"
+                name="last_name"
+              />
+              <label>Email address:</label>
+              <input
+                onChange={(e) => this.getTeamMemberEmail(e)}
+                type="text"
+                name="email"
+              />
+              <button type="submit">Send email invitation</button>
+            </form>
+            <div>
+              <button onClick={this.handleCancel}>Cancel</button>
+            </div>
+          </div>
+        ) : (
+          <>
+            <div className="add-team-member-view">
+              <h2>Invitation sent!</h2>
               <p>{this.state.inviteSentMessage}</p>
               <Link to="/dashboard">
                 <button>Return to dashboard</button>
               </Link>
-            </>
-          ) : (
-            ""
-          )}
-          <form
-            onSubmit={(e) => this.handleAddTeamMember(e)}
-            className="add-team-member-form"
-          >
-            <label>First name:</label>
-            <input
-              onChange={(e) => this.getFirstName(e)}
-              type="text"
-              name="first_name"
-            />
-            <label>Last name:</label>
-            <input
-              onChange={(e) => this.getLastName(e)}
-              type="text"
-              name="last_name"
-            />
-            <label>Email address:</label>
-            <input
-              onChange={(e) => this.getTeamMemberEmail(e)}
-              type="text"
-              name="email"
-            />
-            <button type="submit">Send email invitation</button>
-          </form>
-          <div>
-            <button onClick={this.handleCancel}>Cancel</button>
-          </div>
-        </div>
+            </div>
+          </>
+        )}
       </>
     );
   }
