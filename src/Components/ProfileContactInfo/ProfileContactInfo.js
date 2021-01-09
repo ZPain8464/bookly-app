@@ -25,6 +25,16 @@ export default class ProfileContactInfo extends React.Component {
       .then((events) => {
         this.props.setUserEvents(events);
       });
+    fetch(`${config.REACT_APP_API_BASE_URL}/events/team-members/events`, {
+      headers: {
+        "content-type": "application/json",
+        Authorization: `Bearer ${TokenService.getAuthToken()}`,
+      },
+    })
+      .then((res) => res.json())
+      .then((events) => {
+        this.props.setTeamMemberEvents(events);
+      });
     fetch(`${config.REACT_APP_API_BASE_URL}/teams`, {
       headers: {
         "content-type": "application/json",

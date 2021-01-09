@@ -256,6 +256,10 @@ img {
   margin-left: 13%;
 }
 
+.tm-events {
+  display: none;
+}
+
 /* EventList */
 
 .event-sidebar {

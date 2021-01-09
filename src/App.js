@@ -13,6 +13,7 @@ import Footer from "./Components/Footer/Footer";
 import ProfilePic from "./Components/ProfilePic/ProfilePic";
 import ProfileContactInfo from "./Components/ProfileContactInfo/ProfileContactInfo";
 import EventsList from "./Components/EventsList/EventsList";
+import TeamEventsList from "./Components/TeamEventsList/TeamEventsList";
 import Event from "./Components/Event/Event";
 import EditEvent from "./Components/EditEvent/EditEvent";
 import TeamList from "./Components/TeamList/TeamList";
@@ -78,9 +79,17 @@ export default class App extends React.Component {
     });
   };
 
+  // Gets events created by you
   setUserEvents = (events) => {
     this.setState({
       events: events,
+    });
+  };
+
+  // Gets events for teams you're a team member of
+  setTeamMemberEvents = (events) => {
+    this.setState({
+      events: [...this.state.events, ...events],
     });
   };
 
@@ -130,6 +139,7 @@ export default class App extends React.Component {
                   {...props}
                   {...this.state}
                   setUserEvents={this.setUserEvents}
+                  setTeamMemberEvents={this.setTeamMemberEvents}
                   setUser={this.setUser}
                   setUserTeams={this.setUserTeams}
                   setUserTeamMembers={this.setUserTeamMembers}
@@ -145,7 +155,12 @@ export default class App extends React.Component {
             />
             <Route
               exact
-              path={["/events", "/events/:id"]}
+              path={["/tm-events", "/tm-events/:id"]}
+              render={(props) => <TeamEventsList {...props} {...this.state} />}
+            />
+            <Route
+              exact
+              path={["/events", "/events/:id", "/tm-events", "/tm-events/:id"]}
               render={(props) => <Event {...props} {...this.state} />}
             />
             <Route

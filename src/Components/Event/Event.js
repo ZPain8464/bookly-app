@@ -37,6 +37,7 @@ export default class Event extends React.Component {
 
   render() {
     const event = this.props.events;
+    const teamId = this.props.teams[0].id;
 
     return (
       <section className="event-view">
@@ -47,27 +48,35 @@ export default class Event extends React.Component {
                 <h2 key={i}>{e.title}</h2>
                 <h3>{e.location}</h3>
                 <p>{e.description}</p>
-                <div>
-                  <button onClick={this.handleInvites}>
-                    + Invite Team Members
-                  </button>
-                </div>
-                <div>
-                  <Link to={`/edit-event/${e.id}`}>
-                    <button>Edit Event</button>
-                  </Link>
-                </div>
-                <div>
-                  <button
-                    onClick={(e) =>
-                      this.handleDelete(
-                        Number(this.props.match.params.id),
-                        this.props.deleteEvent
-                      )
-                    }
-                  >
-                    Delete Event
-                  </button>
+                <div
+                  className={
+                    this.props.location.pathname === `/events/${e.id}`
+                      ? "my-events"
+                      : "tm-events"
+                  }
+                >
+                  <div>
+                    <button onClick={this.handleInvites}>
+                      + Invite Team Members
+                    </button>
+                  </div>
+                  <div>
+                    <Link to={`/edit-event/${e.id}`}>
+                      <button>Edit Event</button>
+                    </Link>
+                  </div>
+                  <div>
+                    <button
+                      onClick={(e) =>
+                        this.handleDelete(
+                          Number(this.props.match.params.id),
+                          this.props.deleteEvent
+                        )
+                      }
+                    >
+                      Delete Event
+                    </button>
+                  </div>
                 </div>
               </React.Fragment>
             ) : (

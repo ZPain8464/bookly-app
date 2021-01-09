@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import config from "../../Config/config";
 import Modal from "../Modal/Modal";
 
 export default class EventsList extends React.Component {
@@ -20,7 +21,9 @@ export default class EventsList extends React.Component {
   };
 
   render() {
+    const teamId = this.props.teams[0].id;
     const eventsList = this.props.events;
+    const myEvents = eventsList.filter((e) => e.team_id === teamId);
     const event = this.props.match.params.id
       ? this.props.events.find(
           (e) => e.id === Number(this.props.match.params.id)
@@ -35,8 +38,10 @@ export default class EventsList extends React.Component {
             : "event-sidebar"
         }
       >
+        <h2>My Events</h2>
+        <p>(events you created)</p>
         <ul>
-          {eventsList.map((events, i) => (
+          {myEvents.map((events, i) => (
             <li key={i}>
               <div className="events-desktop">
                 <Link to={`/events/${events.id}`}>
