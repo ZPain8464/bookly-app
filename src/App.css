@@ -348,6 +348,11 @@ img {
   height: 100%;
 }
 
+.event-team-list ul {
+  list-style-type: none;
+  padding: 0;
+}
+
 /* Events Mobile View */
 
 @media screen and (min-width: 320px) and (max-width: 768px) {

@@ -23,15 +23,13 @@ export default class AddTeamMember extends React.Component {
   componentDidMount() {
     this.setState({
       senderName: this.props.user.firstName,
-      sender: "z.painter45@gmail.com",
-      // sender: this.props.user.email,
+      sender: this.props.user.email,
     });
   }
 
   handleAddTeamMember = (e) => {
     e.preventDefault();
-    // const recipient = this.state.recipient;
-    const recipient = "z.painter45@gmail.com";
+    const recipient = this.state.recipient;
     const sender = this.state.sender;
     const name = this.state.senderName;
     const email = { recipient, sender, name };

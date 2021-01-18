@@ -21,6 +21,7 @@ export default class TeamList extends React.Component {
   };
   render() {
     const teamMembers = this.props.teamMembers.teamMemberData;
+    console.log(this.props.teamMembers);
 
     const teamMember = this.props.match.params.id
       ? DummyStore.team.find((t) => t.id === Number(this.props.match.params.id))

@@ -23,17 +23,20 @@ export default class ProfileContactInfo extends React.Component {
     })
       .then((res) => res.json())
       .then((events) => {
-        this.props.setUserEvents(events);
-      });
-    fetch(`${config.REACT_APP_API_BASE_URL}/events/team-members/events`, {
-      headers: {
-        "content-type": "application/json",
-        Authorization: `Bearer ${TokenService.getAuthToken()}`,
-      },
-    })
-      .then((res) => res.json())
-      .then((events) => {
-        this.props.setTeamMemberEvents(events);
+        const myEvents = events;
+
+        fetch(`${config.REACT_APP_API_BASE_URL}/events/team-members/events`, {
+          headers: {
+            "content-type": "application/json",
+            Authorization: `Bearer ${TokenService.getAuthToken()}`,
+          },
+        })
+          .then((res) => res.json())
+          .then((tmEvents) => {
+            const teamEvents = tmEvents;
+            const allEvents = myEvents.concat(teamEvents);
+            this.props.setUserEvents(allEvents);
+          });
       });
     fetch(`${config.REACT_APP_API_BASE_URL}/teams`, {
       headers: {

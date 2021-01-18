@@ -26,8 +26,8 @@ import TokenService from "./Services/TokenService";
 
 export default class App extends React.Component {
   state = {
-    isLoggedIn: false,
     events: [],
+    tmsOnEvent: [],
     user: {
       user_id: "",
       email: "",
@@ -37,12 +37,21 @@ export default class App extends React.Component {
     teamMembers: [],
   };
 
+  getTmsOnEvent = (tms) => {
+    this.setState({
+      tmsOnEvent: tms,
+    });
+  };
+
   setUser = (user) => {
     this.setState({
       user: {
         user_id: user.id,
         email: user.email,
         firstName: user.first_name,
+        lastName: user.last_name,
+        profilePic: user.profile_image,
+        phoneNumber: user.phone_number,
       },
     });
   };
@@ -59,6 +68,7 @@ export default class App extends React.Component {
     });
   };
 
+  // Gets team_members that are on your team roster
   setUserTeamMembers = (tmembers) => {
     this.setState({
       teamMembers: tmembers,
@@ -83,19 +93,6 @@ export default class App extends React.Component {
   setUserEvents = (events) => {
     this.setState({
       events: events,
-    });
-  };
-
-  // Gets events for teams you're a team member of
-  setTeamMemberEvents = (events) => {
-    this.setState({
-      events: [...this.state.events, ...events],
-    });
-  };
-
-  handleLogin = () => {
-    this.setState({
-      isLoggedIn: true,
     });
   };
 
@@ -139,7 +136,6 @@ export default class App extends React.Component {
                   {...props}
                   {...this.state}
                   setUserEvents={this.setUserEvents}
-                  setTeamMemberEvents={this.setTeamMemberEvents}
                   setUser={this.setUser}
                   setUserTeams={this.setUserTeams}
                   setUserTeamMembers={this.setUserTeamMembers}
@@ -151,7 +147,13 @@ export default class App extends React.Component {
             <Route
               exact
               path={["/events", "/events/:id", "/add-event"]}
-              render={(props) => <EventsList {...props} {...this.state} />}
+              render={(props) => (
+                <EventsList
+                  getTmsOnEvent={this.getTmsOnEvent}
+                  {...props}
+                  {...this.state}
+                />
+              )}
             />
             <Route
               exact

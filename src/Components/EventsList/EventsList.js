@@ -7,6 +7,17 @@ export default class EventsList extends React.Component {
   state = {
     show: false,
   };
+  // Gets event Id and passes into App.js state
+  getEventIds = (eId) => {
+    const eventId = eId;
+    fetch(
+      `${config.REACT_APP_API_BASE_URL}/team-members/team-members-events/get-users/${eventId}`
+    )
+      .then((res) => res.json())
+      .then((tms) => {
+        this.props.getTmsOnEvent(tms);
+      });
+  };
 
   showModal = () => {
     this.setState({
@@ -42,7 +53,7 @@ export default class EventsList extends React.Component {
         <p>(events you created)</p>
         <ul>
           {myEvents.map((events, i) => (
-            <li key={i}>
+            <li onClick={(e) => this.getEventIds(events.id)} key={i}>
               <div className="events-desktop">
                 <Link to={`/events/${events.id}`}>
                   <h3>{events.title}</h3>

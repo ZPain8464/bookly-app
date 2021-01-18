@@ -1,12 +1,20 @@
 import React from "react";
 import AuthAPIService from "../../Services/AuthAPIService";
 import TokenService from "../../Services/TokenService";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 
 export default class Login extends React.Component {
   state = {
     error: null,
+    referrerLink: "",
   };
+
+  componentDidMount() {
+    const referrerLink = this.props.location.state;
+    this.setState({
+      referrerLink: referrerLink,
+    });
+  }
 
   handleLogin = (e) => {
     e.preventDefault();
@@ -15,20 +23,38 @@ export default class Login extends React.Component {
       error: null,
     });
     const user = { email: email.value, password: password.value };
-    AuthAPIService.loginUser(user)
-      .then((loginResponse) => {
-        TokenService.saveAuthToken(loginResponse.authToken);
-        this.props.history.push("/dashboard");
-      })
-      .catch((res) => {
-        this.setState({ error: res.error });
-      });
+    if (this.state.referrerLink === undefined) {
+      AuthAPIService.loginUser(user)
+        .then((loginResponse) => {
+          TokenService.saveAuthToken(loginResponse.authToken);
+          this.props.history.push("/dashboard");
+        })
+        .catch((res) => {
+          this.setState({ error: res.error });
+        });
+    } else {
+      const url = this.state.referrerLink.referrer;
+      const newUrlSlug = url.slice(34);
+      AuthAPIService.loginUser(user)
+        .then((loginResponse) => {
+          TokenService.saveAuthToken(loginResponse.authToken);
+          this.props.history.push(`/invite-page/${newUrlSlug}`);
+        })
+        .catch((res) => {
+          this.setState({ error: res.error });
+        });
+    }
   };
 
   render() {
     return (
       <React.Fragment>
         <h1>Login to Your Account</h1>
+        {this.state.referrerLink !== undefined ? (
+          <p>You must log in first to join your event</p>
+        ) : (
+          ""
+        )}
         <div className="login-form">
           <form className="login-form" onSubmit={(e) => this.handleLogin(e)}>
             {this.state.error && <p className="error">{this.state.error}</p>}
