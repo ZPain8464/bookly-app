@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import config from "../../Config/config";
 import TokenService from "../../Services/TokenService";
 import AuthAPIService from "../../Services/AuthAPIService";
+import { v4 as uuidv4 } from "uuid";
 
 export default class AddTeamMember extends React.Component {
   state = {
@@ -29,14 +30,14 @@ export default class AddTeamMember extends React.Component {
 
   handleAddTeamMember = (e) => {
     e.preventDefault();
+    const url = "http://localhost:3000/invite-page/" + uuidv4();
     const recipient = this.state.recipient;
     const sender = this.state.sender;
     const name = this.state.senderName;
-    const email = { recipient, sender, name };
+    const email = { recipient, sender, name, url };
     const firstName = this.state.teamMember.firstName;
     const lastName = this.state.teamMember.lastName;
     const teamMemberName = { firstName, lastName };
-    console.log(teamMemberName);
 
     fetch(`${config.REACT_APP_API_BASE_URL}/emails`, {
       method: "POST",
@@ -68,7 +69,7 @@ export default class AddTeamMember extends React.Component {
         }).then((newUser) => {
           const userId = newUser.user.id;
           const teamId = this.props.teams[0].id;
-          console.log(teamId);
+
           fetch(`${config.REACT_APP_API_BASE_URL}/team-members`, {
             method: "POST",
             headers: {

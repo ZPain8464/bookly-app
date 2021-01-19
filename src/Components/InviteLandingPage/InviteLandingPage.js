@@ -104,7 +104,7 @@ export default class InviteLandingPage extends React.Component {
         const team_member = tm.filter((t) => t.event_id === this.state.eventId);
         const user_id = this.state.user.id;
         const accepted = team_member[0].accepted;
-        console.log(accepted);
+
         fetch(
           `${config.REACT_APP_API_BASE_URL}/team-members/join-event/${user_id}`,
           {
@@ -133,7 +133,6 @@ export default class InviteLandingPage extends React.Component {
   };
 
   render() {
-    // if user has email address, show Log in. If not, just show register
     return (
       <div className="invite-page">
         {this.state.eventId === null ? (

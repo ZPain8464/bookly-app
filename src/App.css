@@ -249,6 +249,22 @@ img {
   width: 50%;
 }
 
+/* Edit Profile Form */
+
+.edit-profile-view {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.edit-profile-form {
+  display: flex;
+  flex-direction: column;
+  width: 30%;
+  border: grey 2px solid;
+  padding: 10px;
+}
+
 /* Events Main */
 
 .main-events {

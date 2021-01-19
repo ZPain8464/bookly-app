@@ -24,7 +24,6 @@ export default {
     );
   },
   updateUserPassword(user) {
-    console.log(user);
     return fetch(
       `${config.REACT_APP_API_BASE_URL}/users/update-password/${user.id}`,
       {

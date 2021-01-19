@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import config from "../../Config/config";
 import TokenService from "../../Services/TokenService";
-import TmsOnEvents from "../TmsOnEvents/TmsOnEvents";
+import { v4 as uuidv4 } from "uuid";
 
 export default class Event extends React.Component {
   state = {
@@ -48,9 +48,7 @@ export default class Event extends React.Component {
         cb(eventId);
         this.props.history.push("/events");
       })
-      .catch((error) => {
-        console.log(error);
-      });
+      .catch((error) => {});
   };
 
   sendInvite = (tm) => {
@@ -65,6 +63,7 @@ export default class Event extends React.Component {
     const teamId = this.props.teams[0].id;
     const inviteDate = new Date();
     const eventId = Number(this.props.match.params.id);
+
     fetch(`${config.REACT_APP_API_BASE_URL}/team-members`, {
       method: "POST",
       headers: {
@@ -111,7 +110,6 @@ export default class Event extends React.Component {
     const event = this.props.events;
     const teamMembersToInvite = this.state.tmUsers;
     const currentTms = this.props.tmsOnEvent;
-    console.log(currentTms);
 
     return (
       <section className="event-view">

@@ -12,6 +12,7 @@ import WhyBookly from "./Components/WhyBookly/WhyBookly";
 import Footer from "./Components/Footer/Footer";
 import ProfilePic from "./Components/ProfilePic/ProfilePic";
 import ProfileContactInfo from "./Components/ProfileContactInfo/ProfileContactInfo";
+import EditProfile from "./Components/EditProfile/EditProfile";
 import EventsList from "./Components/EventsList/EventsList";
 import TeamEventsList from "./Components/TeamEventsList/TeamEventsList";
 import Event from "./Components/Event/Event";
@@ -32,15 +33,12 @@ export default class App extends React.Component {
       user_id: "",
       email: "",
       firstName: "",
+      lastName: "",
+      phoneNumber: "",
+      profilePic: "",
     },
     teams: [],
     teamMembers: [],
-  };
-
-  getTmsOnEvent = (tms) => {
-    this.setState({
-      tmsOnEvent: tms,
-    });
   };
 
   setUser = (user) => {
@@ -56,12 +54,7 @@ export default class App extends React.Component {
     });
   };
 
-  createTeam = (newTeam) => {
-    this.setState({
-      teams: newTeam,
-    });
-  };
-
+  // Sets your team; v1 version each user gets one default team created as they register
   setUserTeams = (teams) => {
     this.setState({
       teams: teams,
@@ -89,10 +82,43 @@ export default class App extends React.Component {
     });
   };
 
-  // Gets events created by you
+  deleteEvent = (eventId) => {
+    const newEvents = this.state.events.filter((eid) => eid.id !== eventId);
+    this.setState({
+      events: newEvents,
+    });
+  };
+
+  // Gets team_members that have accepted event invite
+  getTmsOnEvent = (tms) => {
+    this.setState({
+      tmsOnEvent: tms,
+    });
+  };
+
+  // Merges events you create/d and events you're a team_member of
   setUserEvents = (events) => {
     this.setState({
       events: events,
+    });
+  };
+
+  updateProfile = (uP) => {
+    const fName = uP.first_name;
+    const lName = uP.last_name;
+    const pNum = uP.phone_number;
+    const pPic = uP.profile_image;
+    this.setState({
+      user: {
+        ...this.state.user.firstName,
+        firstName: fName,
+        ...this.state.user.lastName,
+        lastName: lName,
+        ...this.state.user.phoneNumber,
+        phoneNumber: pNum,
+        ...this.state.user.profilePic,
+        profilePic: pPic,
+      },
     });
   };
 
@@ -127,7 +153,12 @@ export default class App extends React.Component {
         <Route exact path="/register" component={Register} />
         <main>
           <section className="main-dashboard">
-            <Route exact path="/dashboard" component={ProfilePic} />
+            <Route
+              exact
+              path="/dashboard"
+              render={(props) => <ProfilePic {...props} {...this.state} />}
+            />
+
             <Route
               exact
               path="/dashboard"
@@ -139,6 +170,17 @@ export default class App extends React.Component {
                   setUser={this.setUser}
                   setUserTeams={this.setUserTeams}
                   setUserTeamMembers={this.setUserTeamMembers}
+                />
+              )}
+            />
+            <Route
+              exact
+              path="/edit-profile"
+              render={(props) => (
+                <EditProfile
+                  {...props}
+                  {...this.state}
+                  updateProfile={this.updateProfile}
                 />
               )}
             />
@@ -163,7 +205,13 @@ export default class App extends React.Component {
             <Route
               exact
               path={["/events", "/events/:id", "/tm-events", "/tm-events/:id"]}
-              render={(props) => <Event {...props} {...this.state} />}
+              render={(props) => (
+                <Event
+                  {...props}
+                  deleteEvent={this.deleteEvent}
+                  {...this.state}
+                />
+              )}
             />
             <Route
               exact

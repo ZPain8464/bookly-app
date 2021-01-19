@@ -1,7 +1,7 @@
 import React from "react";
-import DummyStore from "../../DummyStore/DummyStore";
 import config from "../../Config/config";
 import TokenService from "../../Services/TokenService";
+import { Link } from "react-router-dom";
 
 export default class ProfileContactInfo extends React.Component {
   componentDidMount() {
@@ -60,15 +60,18 @@ export default class ProfileContactInfo extends React.Component {
       });
   }
   render() {
-    const firstName = DummyStore.users[0].first_name;
-    const lastName = DummyStore.users[0].last_name;
-    const email = DummyStore.users[0].email;
-    const phone = DummyStore.users[0].phone_number;
+    const firstName = this.props.user.firstName;
+    const lastName = this.props.user.lastName;
+    const email = this.props.user.email;
+    const phone = this.props.user.phoneNumber;
     return (
       <div className="profile-details">
         <h3>{`${firstName} ${lastName}`}</h3>
         <h3>Email: {email}</h3>
         <h3>Phone number: {phone}</h3>
+        <Link to="/edit-profile">
+          <button>Edit profile information</button>
+        </Link>
       </div>
     );
   }
