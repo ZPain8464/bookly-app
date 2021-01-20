@@ -1,6 +1,8 @@
 import React from "react";
+import Context from "../../Context/Context";
 
 export default class ProfilePic extends React.Component {
+  static contextType = Context;
   render() {
     const imageSrc = this.props.user.profilePic;
 

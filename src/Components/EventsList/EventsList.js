@@ -2,8 +2,11 @@ import React from "react";
 import { Link } from "react-router-dom";
 import config from "../../Config/config";
 import Modal from "../Modal/Modal";
+import Context from "../../Context/Context";
 
 export default class EventsList extends React.Component {
+  static contextType = Context;
+
   state = {
     show: false,
   };
@@ -15,7 +18,7 @@ export default class EventsList extends React.Component {
     )
       .then((res) => res.json())
       .then((tms) => {
-        this.props.getTmsOnEvent(tms);
+        this.context.getTmsOnEvent(tms);
       });
   };
 
@@ -32,11 +35,11 @@ export default class EventsList extends React.Component {
   };
 
   render() {
-    const teamId = this.props.teams[0].id;
-    const eventsList = this.props.events;
+    const teamId = this.context.teams[0].id;
+    const eventsList = this.context.events;
     const myEvents = eventsList.filter((e) => e.team_id === teamId);
     const event = this.props.match.params.id
-      ? this.props.events.find(
+      ? this.context.events.find(
           (e) => e.id === Number(this.props.match.params.id)
         )
       : "";

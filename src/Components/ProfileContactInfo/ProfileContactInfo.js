@@ -2,8 +2,10 @@ import React from "react";
 import config from "../../Config/config";
 import TokenService from "../../Services/TokenService";
 import { Link } from "react-router-dom";
+import Context from "../../Context/Context";
 
 export default class ProfileContactInfo extends React.Component {
+  static contextType = Context;
   componentDidMount() {
     fetch(`${config.REACT_APP_API_BASE_URL}/users`, {
       headers: {
@@ -13,7 +15,7 @@ export default class ProfileContactInfo extends React.Component {
     })
       .then((res) => res.json())
       .then((user) => {
-        this.props.setUser(user);
+        this.context.setUser(user);
       });
     fetch(`${config.REACT_APP_API_BASE_URL}/events`, {
       headers: {
@@ -35,7 +37,7 @@ export default class ProfileContactInfo extends React.Component {
           .then((tmEvents) => {
             const teamEvents = tmEvents;
             const allEvents = myEvents.concat(teamEvents);
-            this.props.setUserEvents(allEvents);
+            this.context.setUserEvents(allEvents);
           });
       });
     fetch(`${config.REACT_APP_API_BASE_URL}/teams`, {
@@ -46,7 +48,7 @@ export default class ProfileContactInfo extends React.Component {
     })
       .then((res) => res.json())
       .then((teams) => {
-        this.props.setUserTeams(teams);
+        this.context.setUserTeams(teams);
       });
     fetch(`${config.REACT_APP_API_BASE_URL}/team-members`, {
       headers: {
@@ -56,14 +58,14 @@ export default class ProfileContactInfo extends React.Component {
     })
       .then((res) => res.json())
       .then((tmembers) => {
-        this.props.setUserTeamMembers(tmembers);
+        this.context.setUserTeamMembers(tmembers);
       });
   }
   render() {
-    const firstName = this.props.user.firstName;
-    const lastName = this.props.user.lastName;
-    const email = this.props.user.email;
-    const phone = this.props.user.phoneNumber;
+    const firstName = this.context.user.firstName;
+    const lastName = this.context.user.lastName;
+    const email = this.context.user.email;
+    const phone = this.context.user.phoneNumber;
     return (
       <div className="profile-details">
         <h3>{`${firstName} ${lastName}`}</h3>

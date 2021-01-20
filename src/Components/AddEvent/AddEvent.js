@@ -1,8 +1,10 @@
 import React from "react";
 import config from "../../Config/config";
 import TokenService from "../../Services/TokenService";
+import Context from "../../Context/Context";
 
 export default class AddEvent extends React.Component {
+  static contextType = Context;
   handleAddEvent = (e) => {
     e.preventDefault();
     const title = e.target.title.value;
@@ -11,7 +13,7 @@ export default class AddEvent extends React.Component {
     const location = e.target.location.value;
     const description = e.target.description.value;
     const date = e.target.date.value;
-    const team_id = this.props.teams[0].id;
+    const team_id = this.context.teams[0].id;
 
     fetch(`${config.REACT_APP_API_BASE_URL}/events`, {
       method: "POST",
@@ -36,7 +38,7 @@ export default class AddEvent extends React.Component {
         return res.json();
       })
       .then((event) => {
-        this.props.createEvent(event);
+        this.context.createEvent(event);
         this.props.history.push("/events");
       });
   };

@@ -1,8 +1,10 @@
 import React from "react";
 import config from "../../Config/config";
 import TokenService from "../../Services/TokenService";
+import Context from "../../Context/Context";
 
 export default class EditEvent extends React.Component {
+  static contextType = Context;
   state = {
     id: "",
     title: "",
@@ -73,7 +75,7 @@ export default class EditEvent extends React.Component {
       body: JSON.stringify(updateEvent),
     }).then((updatedEvent) => {
       this.resetFields();
-      this.props.updateEvent(updateEvent);
+      this.context.updateEvent(updateEvent);
       this.props.history.push(`/events/${this.props.match.params.id}`);
     });
   };

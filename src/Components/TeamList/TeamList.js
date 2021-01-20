@@ -2,8 +2,10 @@ import React from "react";
 import DummyStore from "../../DummyStore/DummyStore";
 import { Link } from "react-router-dom";
 import Modal from "../Modal/Modal";
+import Context from "../../Context/Context";
 
 export default class TeamList extends React.Component {
+  static contextType = Context;
   state = {
     show: false,
   };
@@ -20,7 +22,7 @@ export default class TeamList extends React.Component {
     });
   };
   render() {
-    const teamMembers = this.props.teamMembers.teamMemberData;
+    const teamMembers = this.context.teamMembers.teamMemberData;
 
     const teamMember = this.props.match.params.id
       ? DummyStore.team.find((t) => t.id === Number(this.props.match.params.id))

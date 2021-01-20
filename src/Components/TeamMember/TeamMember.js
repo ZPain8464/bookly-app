@@ -1,8 +1,10 @@
 import React from "react";
+import Context from "../../Context/Context";
 
 export default class TeamMember extends React.Component {
+  static contextType = Context;
   render() {
-    const team = this.props.teamMembers.teamMemberData;
+    const team = this.context.teamMembers.teamMemberData;
     return (
       <section className="team-view">
         <div className="team-member-selected">

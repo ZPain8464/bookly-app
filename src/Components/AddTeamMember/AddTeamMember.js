@@ -4,8 +4,10 @@ import config from "../../Config/config";
 import TokenService from "../../Services/TokenService";
 import AuthAPIService from "../../Services/AuthAPIService";
 import { v4 as uuidv4 } from "uuid";
+import Context from "../../Context/Context";
 
 export default class AddTeamMember extends React.Component {
+  static contextType = Context;
   state = {
     // sender's name
     senderName: "",
@@ -23,8 +25,8 @@ export default class AddTeamMember extends React.Component {
 
   componentDidMount() {
     this.setState({
-      senderName: this.props.user.firstName,
-      sender: this.props.user.email,
+      senderName: this.context.user.firstName,
+      sender: this.context.user.email,
     });
   }
 
@@ -68,7 +70,7 @@ export default class AddTeamMember extends React.Component {
           email: email.recipient,
         }).then((newUser) => {
           const userId = newUser.user.id;
-          const teamId = this.props.teams[0].id;
+          const teamId = this.context.teams[0].id;
 
           fetch(`${config.REACT_APP_API_BASE_URL}/team-members`, {
             method: "POST",

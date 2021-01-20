@@ -1,10 +1,10 @@
 import React from "react";
-import FullCalendar from "@fullcalendar/react";
-import dayGridPlugin from "@fullcalendar/daygrid";
+import Context from "../../Context/Context";
 
 export default class CalendarView extends React.Component {
+  static contextType = Context;
   render() {
-    const allEvents = this.props.events;
+    const allEvents = this.context.events;
     const getDates = allEvents.map((e) => new Date(e.date));
     console.log(allEvents);
     return (
@@ -21,18 +21,3 @@ export default class CalendarView extends React.Component {
     );
   }
 }
-
-// <FullCalendar
-//   events={[
-//     {
-//       title: this.state.title,
-//       date: this.state.date,
-//     },
-//     // {
-//     //   title: this.props.events[1].title,
-//     //   date: this.props.events[1].date,
-//     // },
-//   ]}
-//   plugins={[dayGridPlugin]}
-//   initialView="dayGridMonth"
-// />

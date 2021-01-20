@@ -2,8 +2,11 @@ import React from "react";
 import config from "../../Config/config";
 import TokenService from "../../Services/TokenService";
 import { Link } from "react-router-dom";
+import Context from "../../Context/Context";
 
 export default class EditProfile extends React.Component {
+  static contextType = Context;
+
   state = {
     first_name: "",
     last_name: "",
@@ -12,7 +15,7 @@ export default class EditProfile extends React.Component {
   };
 
   componentDidMount() {
-    const userId = this.props.user.user_id;
+    const userId = this.context.user.user_id;
     fetch(`${config.REACT_APP_API_BASE_URL}/users/${userId}`)
       .then((res) => res.json())
       .then((user) => {
@@ -27,7 +30,7 @@ export default class EditProfile extends React.Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    const userId = this.props.user.user_id;
+    const userId = this.context.user.user_id;
     const { first_name, last_name, phone_number, profile_image } = this.state;
     const updateProfile = {
       first_name,
@@ -44,7 +47,7 @@ export default class EditProfile extends React.Component {
       body: JSON.stringify(updateProfile),
     }).then((updatedProfile) => {
       this.resetFields();
-      this.props.updateProfile(updateProfile);
+      this.context.updateProfile(updateProfile);
       this.props.history.push("/dashboard");
     });
   };

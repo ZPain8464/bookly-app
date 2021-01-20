@@ -1,9 +1,12 @@
 import React from "react";
 import AuthAPIService from "../../Services/AuthAPIService";
 import TokenService from "../../Services/TokenService";
-import { Link, Redirect } from "react-router-dom";
+import { Link } from "react-router-dom";
+import Context from "../../Context/Context";
 
 export default class Login extends React.Component {
+  static contextType = Context;
+
   state = {
     error: null,
     referrerLink: "",

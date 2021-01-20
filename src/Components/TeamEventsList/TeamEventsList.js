@@ -1,11 +1,13 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import Context from "../../Context/Context";
 
 export default class TeamEventsList extends React.Component {
+  static contextType = Context;
   render() {
-    const teamId = this.props.teams[0].id;
-    const eventsList = this.props.events;
-    const teamEventsList = this.props.events.filter(
+    const teamId = this.context.teams[0].id;
+    const eventsList = this.context.events;
+    const teamEventsList = this.context.events.filter(
       (e) => e.team_id !== teamId
     );
 

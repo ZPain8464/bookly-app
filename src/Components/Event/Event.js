@@ -3,8 +3,10 @@ import { Link } from "react-router-dom";
 import config from "../../Config/config";
 import TokenService from "../../Services/TokenService";
 import { v4 as uuidv4 } from "uuid";
+import Context from "../../Context/Context";
 
 export default class Event extends React.Component {
+  static contextType = Context;
   state = {
     error: null,
     teamMembers: [],
@@ -60,7 +62,7 @@ export default class Event extends React.Component {
       },
     });
     const userId = tm.id;
-    const teamId = this.props.teams[0].id;
+    const teamId = this.context.teams[0].id;
     const inviteDate = new Date();
     const eventId = Number(this.props.match.params.id);
 
@@ -79,10 +81,10 @@ export default class Event extends React.Component {
     })
       .then((res) => res.json())
       .then((teamMember) => {
-        const selEvent = this.props.events.filter((e) => e.id === eventId);
+        const selEvent = this.context.events.filter((e) => e.id === eventId);
         const recipient = this.state.teamMember.email;
-        const sender = this.props.user.email;
-        const sender_name = this.props.user.firstName;
+        const sender = this.context.user.email;
+        const sender_name = this.context.user.firstName;
         const event = selEvent[0];
 
         const email = { recipient, sender, event, sender_name };
@@ -107,9 +109,9 @@ export default class Event extends React.Component {
   };
 
   render() {
-    const event = this.props.events;
+    const event = this.context.events;
     const teamMembersToInvite = this.state.tmUsers;
-    const currentTms = this.props.tmsOnEvent;
+    const currentTms = this.context.tmsOnEvent;
 
     return (
       <section className="event-view">
@@ -168,7 +170,7 @@ export default class Event extends React.Component {
                       onClick={(e) =>
                         this.handleDelete(
                           Number(this.props.match.params.id),
-                          this.props.deleteEvent
+                          this.context.deleteEvent
                         )
                       }
                     >

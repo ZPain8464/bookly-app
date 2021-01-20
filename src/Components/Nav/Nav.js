@@ -1,11 +1,13 @@
 import React from "react";
 import TokenService from "../../Services/TokenService";
 import { Link } from "react-router-dom";
+import Context from "../../Context/Context";
 
 export default class Nav extends React.Component {
+  static contextType = Context;
   handleLogout = (e) => {
     e.preventDefault();
-    this.props.handleLogout(e);
+    this.context.handleLogout(e);
     this.props.history.push("/");
   };
 

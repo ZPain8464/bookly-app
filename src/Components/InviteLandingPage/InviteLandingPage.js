@@ -3,8 +3,10 @@ import AuthAPIService from "../../Services/AuthAPIService";
 import TokenService from "../../Services/TokenService";
 import { Redirect } from "react-router-dom";
 import config from "../../Config/config";
+import Context from "../../Context/Context";
 
 export default class InviteLandingPage extends React.Component {
+  static contextType = Context;
   state = {
     error: null,
     eventId: null,

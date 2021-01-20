@@ -13,4 +13,16 @@ const Context = React.createContext({
   },
   teams: [],
   teamMembers: [],
+  setUser: () => {},
+  setUserTeams: () => {},
+  setUserTeamMembers: () => {},
+  createEvent: () => {},
+  updateEvent: () => {},
+  deleteEvent: () => {},
+  getTmsOnEvent: () => {},
+  setUserEvents: () => {},
+  updateProfile: () => {},
+  handleLogout: () => {},
 });
+
+export default Context;
