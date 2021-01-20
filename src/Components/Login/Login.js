@@ -3,6 +3,7 @@ import AuthAPIService from "../../Services/AuthAPIService";
 import TokenService from "../../Services/TokenService";
 import { Link } from "react-router-dom";
 import Context from "../../Context/Context";
+import config from "../../Config/config";
 
 export default class Login extends React.Component {
   static contextType = Context;
@@ -10,6 +11,7 @@ export default class Login extends React.Component {
   state = {
     error: null,
     referrerLink: "",
+    parameter: "",
   };
 
   componentDidMount() {
@@ -17,6 +19,18 @@ export default class Login extends React.Component {
     this.setState({
       referrerLink: referrerLink,
     });
+    if (!this.state.referrerLink === undefined) {
+      fetch(
+        `${config.REACT_APP_API_BASE_URL}/emails/event-invite?url=${referrerLink.referrer}`
+      )
+        .then((res) => res.json())
+        .then((data) => {
+          const param = data[0].parameter;
+          this.setState({
+            parameter: param,
+          });
+        });
+    }
   }
 
   handleLogin = (e) => {
@@ -37,11 +51,12 @@ export default class Login extends React.Component {
         });
     } else {
       const url = this.state.referrerLink.referrer;
-      const newUrlSlug = url.slice(34);
+      const urlSlug = this.state.parameter;
+
       AuthAPIService.loginUser(user)
         .then((loginResponse) => {
           TokenService.saveAuthToken(loginResponse.authToken);
-          this.props.history.push(`/invite-page/${newUrlSlug}`);
+          this.props.history.push(`/invite-page/${urlSlug}`);
         })
         .catch((res) => {
           this.setState({ error: res.error });

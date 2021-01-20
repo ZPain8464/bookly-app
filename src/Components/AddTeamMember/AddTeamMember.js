@@ -14,7 +14,7 @@ export default class AddTeamMember extends React.Component {
     recipient: "",
     // sender email address
     sender: "",
-    inviteSentMessage: "",
+    inviteStatusMessage: "",
     sent: false,
     // new team member's info
     teamMember: {
@@ -51,7 +51,7 @@ export default class AddTeamMember extends React.Component {
     }).then((res) => {
       if (res.ok) {
         this.setState({
-          inviteSentMessage: `Your invite to ${recipient} was sent successfully!`,
+          inviteStatusMessage: `Your invite to ${recipient} was sent successfully!`,
           sent: true,
         });
         const tempPassword = "TempPass#3";
@@ -84,6 +84,11 @@ export default class AddTeamMember extends React.Component {
               team_id: teamId,
             }),
           });
+        });
+      } else {
+        this.setState({
+          inviteStatusMessage:
+            "Please enter a valid email address (e.g. joe@example.com)",
         });
       }
     });
@@ -146,6 +151,9 @@ export default class AddTeamMember extends React.Component {
                 name="last_name"
               />
               <label>Email address:</label>
+              {this.state.inviteStatusMessage && (
+                <p>{this.state.inviteStatusMessage}</p>
+              )}
               <input
                 onChange={(e) => this.getTeamMemberEmail(e)}
                 type="text"
@@ -161,7 +169,7 @@ export default class AddTeamMember extends React.Component {
           <>
             <div className="add-team-member-view">
               <h2>Invitation sent!</h2>
-              <p>{this.state.inviteSentMessage}</p>
+              <p>{this.state.inviteStatusMessage}</p>
               <Link to="/dashboard">
                 <button>Return to dashboard</button>
               </Link>

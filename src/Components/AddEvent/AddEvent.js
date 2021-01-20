@@ -2,9 +2,49 @@ import React from "react";
 import config from "../../Config/config";
 import TokenService from "../../Services/TokenService";
 import Context from "../../Context/Context";
+import ValidationError from "../Validation/ValidationError";
 
 export default class AddEvent extends React.Component {
   static contextType = Context;
+
+  state = {
+    title: {
+      value: "",
+      touched: false,
+    },
+  };
+
+  setTitle = (title) => {
+    this.setState({
+      title: {
+        value: title,
+        touched: true,
+      },
+    });
+  };
+
+  validateEvent = () => {
+    const eventTitle = this.state.title.value.trim();
+    if (eventTitle.title === 0) {
+      return "Give your event a title";
+    } else if (eventTitle.length < 5) {
+      return "Your title must be at least 5 characters long";
+    } else if (eventTitle.length > 25) {
+      return "Your title can't exceed 25 characters";
+    }
+  };
+
+  validateTitle = () => {
+    const eventTitle = this.state.title.value.trim();
+    if (eventTitle.title === 0) {
+      return "Give your event a title";
+    } else if (eventTitle.length < 5) {
+      return "Your title must be at least 5 characters long";
+    } else if (eventTitle.length > 25) {
+      return "Your title can't exceed 25 characters";
+    }
+  };
+
   handleAddEvent = (e) => {
     e.preventDefault();
     const title = e.target.title.value;
@@ -34,6 +74,7 @@ export default class AddEvent extends React.Component {
       .then((res) => {
         if (!res.ok) {
           throw new Error(res.status);
+          return;
         }
         return res.json();
       })
@@ -48,6 +89,7 @@ export default class AddEvent extends React.Component {
   };
 
   render() {
+    const submissionError = this.validateTitle();
     return (
       <>
         <div className="add-event-view">
@@ -57,18 +99,27 @@ export default class AddEvent extends React.Component {
             className="add-event-form"
           >
             <label>Name your event:</label>
-            <input type="text" name="title" />
-            <label>Your event starts at:</label>
-            <input type="time" name="time_start" />
-            <label>Your event ends at:</label>
-            <input type="time" name="time_end" />
-            <label>Pick a date:</label>
-            <input type="date" name="date" />
-            <label>Add an address:</label>
+            <input
+              onChange={(e) => this.setTitle(e.target.value)}
+              type="text"
+              name="title"
+            />
+            <label>Your event starts at: (required)</label>
+            <input type="time" name="time_start" required />
+            <label>Your event ends at: (required)</label>
+            <input type="time" name="time_end" required />
+            <label>Pick a date: (required)</label>
+            <input type="date" name="date" required />
+            <label>Add an address: </label>
             <input type="text" name="location" />
-            <label>Add a description:</label>
+            <label>Add a description: </label>
             <input type="text" name="description" />
-            <button type="submit">Add Event</button>
+            {this.state.title.touched && (
+              <ValidationError message={submissionError} />
+            )}
+            <button disabled={this.validateTitle()} type="submit">
+              Add Event
+            </button>
           </form>
           <div>
             <button onClick={this.handleCancel}>Cancel</button>

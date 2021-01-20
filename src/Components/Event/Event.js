@@ -2,8 +2,8 @@ import React from "react";
 import { Link } from "react-router-dom";
 import config from "../../Config/config";
 import TokenService from "../../Services/TokenService";
-import { v4 as uuidv4 } from "uuid";
 import Context from "../../Context/Context";
+import { v4 as uuidv4 } from "uuid";
 
 export default class Event extends React.Component {
   static contextType = Context;
@@ -86,8 +86,19 @@ export default class Event extends React.Component {
         const sender = this.context.user.email;
         const sender_name = this.context.user.firstName;
         const event = selEvent[0];
+        // creates unique Event invite URL w/ separate URL param
+        // param is saved in DB w/ invite_url and fetched on Login for re-routing back to invite landing page
+        const parameter = uuidv4();
+        const url = "http://localhost:3000/invite-page/" + parameter;
 
-        const email = { recipient, sender, event, sender_name };
+        const email = {
+          recipient,
+          sender,
+          event,
+          sender_name,
+          url,
+          parameter,
+        };
         fetch(`${config.REACT_APP_API_BASE_URL}/emails/event-invite`, {
           method: "POST",
           headers: {
@@ -141,7 +152,13 @@ export default class Event extends React.Component {
                         </li>
                       ))}
                     </ul>
-
+                    {this.state.teamMember.inviteSent === true ? (
+                      <p>
+                        You invited {this.state.teamMember.name} to your event!
+                      </p>
+                    ) : (
+                      ""
+                    )}
                     <div>
                       <h3>Team members on this event:</h3>
                       <ul>
@@ -153,13 +170,6 @@ export default class Event extends React.Component {
                       </ul>
                     </div>
                   </div>
-                  {this.state.teamMember.inviteSent === true ? (
-                    <p>
-                      You invited {this.state.teamMember.name} to your event!
-                    </p>
-                  ) : (
-                    ""
-                  )}
                   <div>
                     <Link to={`/edit-event/${e.id}`}>
                       <button>Edit Event</button>

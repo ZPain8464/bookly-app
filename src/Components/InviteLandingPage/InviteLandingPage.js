@@ -15,6 +15,7 @@ export default class InviteLandingPage extends React.Component {
       id: "",
       firstName: "",
     },
+    parameter: "",
     isLoggedIn: false,
     eventJoined: false,
   };
@@ -24,11 +25,13 @@ export default class InviteLandingPage extends React.Component {
 
     fetch(`${config.REACT_APP_API_BASE_URL}/emails?url=${uniqueUrl}`)
       .then((res) => res.json())
-      .then((userData) => {
-        const userEmail = userData.recipient;
-        const eventId = userData.event_id;
+      .then((data) => {
+        const userEmail = data.recipient;
+        const eventId = data.event_id;
+        const param = data.parameter;
         this.setState({
           eventId: eventId,
+          parameter: param,
         });
         fetch(
           `${config.REACT_APP_API_BASE_URL}/users/unregistered-user/sign-up?email=${userEmail}`,
@@ -96,7 +99,7 @@ export default class InviteLandingPage extends React.Component {
         this.setState({ error: res.error });
       });
   };
-  // PATCH works in BE; now implement in FE
+
   handleJoinEvent = (e) => {
     e.preventDefault();
     fetch(`${config.REACT_APP_API_BASE_URL}/team-members/${this.state.user.id}`)
@@ -192,7 +195,9 @@ export default class InviteLandingPage extends React.Component {
                   <Redirect
                     to={{
                       pathname: "/login",
-                      state: { referrer: window.location.href },
+                      state: {
+                        referrer: window.location.href,
+                      },
                     }}
                   />
                 </>
