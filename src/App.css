@@ -133,12 +133,11 @@ nav a:visited {
     align-items: center;
   }
 
+  /* Dashboard hamburger menu */
+
   .dashboard-menu ul {
     display: none;
     width: 100%;
-    /* original css */
-    /* display: flex;
-    flex-wrap: wrap; */
   }
 
   .dashboard-menu ul.show {
@@ -147,16 +146,6 @@ nav a:visited {
     align-items: center;
     flex-direction: column;
   }
-
-  /* .dashboard-menu ul {
-    display: none;
-    width: 100%;
-  }
-
-  .dashboard-menu ul.show {
-    display: flex;
-    flex-wrap: wrap;
-  } */
 }
 
 /* About page */

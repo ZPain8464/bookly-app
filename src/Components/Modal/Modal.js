@@ -16,7 +16,7 @@ function Modal(props) {
 
   return (
     <div className={showHideClassName}>
-      {/* <section className="modal-main">
+      <section className="modal-main">
         {props.match.url === `/events/${id}` ? (
           <>
             <h2>{props.event.title}</h2>
@@ -52,7 +52,7 @@ function Modal(props) {
         <button className="close-button" onClick={props.handleClose}>
           Close
         </button>
-      </section> */}
+      </section>
     </div>
   );
 }
