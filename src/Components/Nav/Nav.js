@@ -5,6 +5,18 @@ import Context from "../../Context/Context";
 
 export default class Nav extends React.Component {
   static contextType = Context;
+
+  state = {
+    show: false,
+  };
+
+  toggleMenu = () => {
+    const currentState = this.state.show;
+    this.setState({
+      show: !currentState,
+    });
+  };
+
   handleLogout = (e) => {
     e.preventDefault();
     this.context.handleLogout(e);
@@ -23,14 +35,36 @@ export default class Nav extends React.Component {
                 </h1>
               </div>
               <div className="nav-links">
-                <Link to="/">Home</Link>
-                <Link to="/about">About</Link>
-                <Link to="/login">
-                  <button>Login</button>
-                </Link>
-                <Link to="/register">
-                  <button>Register</button>
-                </Link>
+                <button
+                  onClick={this.toggleMenu}
+                  className="hamburger"
+                  id="hamburger"
+                >
+                  <div className="bars" />
+                  <div className="bars" />
+                  <div className="bars" />
+                </button>
+                <ul
+                  className={this.state.show ? "nav-ul show" : "nav-ul"}
+                  id="nav-ul"
+                >
+                  <li>
+                    <Link to="/">Home</Link>
+                  </li>
+                  <li>
+                    <Link to="/about">About</Link>
+                  </li>
+                  <li>
+                    <Link to="/login">
+                      <button>Login</button>
+                    </Link>
+                  </li>
+                  <li>
+                    <Link to="/register">
+                      <button>Register</button>
+                    </Link>
+                  </li>
+                </ul>
               </div>
             </div>
           </>
@@ -39,7 +73,19 @@ export default class Nav extends React.Component {
             <h1>
               <Link to="/dashboard">Bookly</Link>
             </h1>
-            <ul>
+            <button
+              onClick={this.toggleMenu}
+              className="hamburger"
+              id="hamburger"
+            >
+              <div className="bars" />
+              <div className="bars" />
+              <div className="bars" />
+            </button>
+            <ul
+              className={this.state.show ? "nav-ul show" : "nav-ul"}
+              id="nav-ul"
+            >
               <li>
                 <h2>
                   <Link to="/dashboard">Home</Link>

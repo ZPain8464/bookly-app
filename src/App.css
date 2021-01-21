@@ -28,6 +28,12 @@ nav h1 {
   font-size: 35px;
 }
 
+.nav-links ul {
+  list-style-type: none;
+  padding: 0;
+  display: flex;
+}
+
 .nav-links a {
   margin: 10px;
   font-size: 25px;
@@ -44,6 +50,43 @@ nav a:hover {
 
 nav a:visited {
   color: black;
+}
+
+/* Hamburger Menu - Public Path */
+
+.bars {
+  width: 35px;
+  height: 5px;
+  background-color: #4d4dff;
+  margin: 6px 0;
+}
+
+.hamburger {
+  border: 0;
+  background-color: transparent;
+  cursor: pointer;
+  font-size: 20px;
+  display: none;
+}
+.hamburger:focus {
+  outline: none;
+}
+
+@media screen and (min-width: 320px) and (max-width: 768px) {
+  .nav-links ul {
+    display: none;
+    width: 100%;
+    flex-direction: column;
+  }
+
+  .nav-links ul.show {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .hamburger {
+    display: block;
+  }
 }
 
 /* Dashboard Nav / Logged In */
@@ -91,9 +134,29 @@ nav a:visited {
   }
 
   .dashboard-menu ul {
+    display: none;
+    width: 100%;
+    /* original css */
+    /* display: flex;
+    flex-wrap: wrap; */
+  }
+
+  .dashboard-menu ul.show {
+    display: flex;
+
+    align-items: center;
+    flex-direction: column;
+  }
+
+  /* .dashboard-menu ul {
+    display: none;
+    width: 100%;
+  }
+
+  .dashboard-menu ul.show {
     display: flex;
     flex-wrap: wrap;
-  }
+  } */
 }
 
 /* About page */
