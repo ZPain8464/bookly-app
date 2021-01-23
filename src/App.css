@@ -150,9 +150,13 @@ nav a:visited {
 
 /* About page */
 
-.about-ul {
-  list-style-type: none;
-  padding: 0;
+.about-ol {
+  margin: 0 auto;
+  width: 25%;
+}
+
+.about-ol li {
+  text-align: left;
 }
 
 /* Header / Landing Page */
@@ -280,13 +284,15 @@ header {
 
 img {
   width: 350px;
+  height: 350px;
   border-radius: 50%;
   border: grey solid 2px;
 }
 
 @media screen and (min-width: 320px) and (max-width: 768px) {
   img {
-    width: 250px;
+    height: 200px;
+    width: 200px;
   }
 }
 
@@ -345,61 +351,6 @@ img {
   margin: 15px;
 }
 
-/* Modal */
-
-.modal {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(6, 5, 5, 0.056);
-}
-
-.modal-main {
-  position: fixed;
-  background: #f8f8f8;
-  width: 80%;
-  height: 75%;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-
-.modal-main h2 {
-  margin-top: 25px;
-}
-
-.display-block {
-  display: block;
-}
-
-.display-none {
-  display: none;
-}
-
-.view-modal-button {
-  padding: 7px;
-  margin: 5px;
-  background: none;
-  border: none;
-  font-size: 20px;
-}
-
-.modal-photo {
-  margin: 20px;
-  object-fit: cover;
-  border: grey solid 2px;
-  width: 200px;
-  height: 200px;
-}
-
-@media screen and (min-width: 769px) {
-  .view-modal {
-    display: none;
-  }
-}
-
 /* Event */
 
 .event-view {
@@ -421,7 +372,28 @@ img {
   padding: 0;
 }
 
-/* Events Mobile View */
+.event-desc {
+  border: 2px grey solid;
+  width: 50%;
+  margin: 0 auto;
+  text-align: left;
+  padding: 10px;
+}
+
+.uninvited-team ul,
+.current-team ul {
+  border: 2px grey solid;
+  width: 50%;
+  margin: 0 auto;
+  padding: 10px;
+}
+
+.uninvited-team li,
+.current-team li {
+  text-align: left;
+}
+
+/* Eventslist Mobile View */
 
 @media screen and (min-width: 320px) and (max-width: 768px) {
   .main-events {
@@ -429,16 +401,6 @@ img {
     margin: 0 auto;
   }
 }
-
-/* @media screen and (max-width: 768px) {
-  .events-desktop {
-    display: none;
-  }
-
-  .event-view {
-    display: none;
-  }
-} */
 
 /* Add Event View */
 
@@ -457,10 +419,6 @@ img {
   width: 50%;
 }
 
-.event-sidebar-hidden {
-  display: none;
-}
-
 /* Edit Event View */
 
 .edit-event-view {
@@ -476,6 +434,15 @@ img {
 .main-team {
   display: flex;
   margin-left: 13%;
+}
+
+@media screen and (max-width: 768px) {
+  .main-team {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0;
+  }
 }
 
 /* Add Team*/
@@ -540,20 +507,6 @@ img {
   flex-direction: column;
 }
 
-/* Team View Mobile */
-
-@media screen and (max-width: 768px) {
-  .team-view,
-  .team-desktop {
-    display: none;
-  }
-
-  .main-team {
-    display: block;
-    margin: 0 auto;
-  }
-}
-
 .team-member-selected {
   border: solid grey 2px;
   width: 95%;
@@ -569,10 +522,9 @@ img {
   border: grey solid 2px;
 }
 
-/* CalendarView */
-
-.main-calendar {
-  width: 70%;
-  margin: 0 auto;
-  height: 50%;
+@media screen and (max-width: 768px) {
+  .member-photo {
+    width: 150px;
+    height: 150px;
+  }
 }

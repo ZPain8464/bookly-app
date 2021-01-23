@@ -8,6 +8,12 @@ import config from "../../Config/config";
 export default class Login extends React.Component {
   static contextType = Context;
 
+  static defaultProps = {
+    location: {
+      state: "",
+    },
+  };
+
   state = {
     error: null,
     referrerLink: "",
@@ -25,7 +31,8 @@ export default class Login extends React.Component {
       )
         .then((res) => res.json())
         .then((data) => {
-          const param = data[0].parameter;
+          const param = data.parameter;
+          console.log(param);
           this.setState({
             parameter: param,
           });
@@ -44,14 +51,14 @@ export default class Login extends React.Component {
       AuthAPIService.loginUser(user)
         .then((loginResponse) => {
           TokenService.saveAuthToken(loginResponse.authToken);
+          this.context.getData();
           this.props.history.push("/dashboard");
         })
         .catch((res) => {
           this.setState({ error: res.error });
         });
     } else {
-      const url = this.state.referrerLink.referrer;
-      const urlSlug = this.state.parameter;
+      const urlSlug = this.state.referrerLink.parameter;
 
       AuthAPIService.loginUser(user)
         .then((loginResponse) => {
@@ -81,7 +88,7 @@ export default class Login extends React.Component {
               <input
                 type="text"
                 name="email"
-                defaultValue="demo_user1@demo.com"
+                defaultValue="z.painter45@gmail.com"
               />
 
               <label className="password-label">Password</label>

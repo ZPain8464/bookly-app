@@ -8,6 +8,14 @@ import Context from "../../Context/Context";
 
 export default class AddTeamMember extends React.Component {
   static contextType = Context;
+
+  static defaultProps = {
+    user: {
+      firstName: "",
+      email: "",
+    },
+  };
+
   state = {
     // sender's name
     senderName: "",
@@ -25,8 +33,9 @@ export default class AddTeamMember extends React.Component {
 
   componentDidMount() {
     this.setState({
-      senderName: this.context.user.firstName,
-      sender: this.context.user.email,
+      senderName:
+        this.context && this.context.user ? this.context.user.firstName : "",
+      sender: this.context && this.context.user ? this.context.user.email : "",
     });
   }
 
@@ -39,7 +48,6 @@ export default class AddTeamMember extends React.Component {
     const email = { recipient, sender, name, url };
     const firstName = this.state.teamMember.firstName;
     const lastName = this.state.teamMember.lastName;
-    const teamMemberName = { firstName, lastName };
 
     fetch(`${config.REACT_APP_API_BASE_URL}/emails`, {
       method: "POST",
@@ -55,13 +63,7 @@ export default class AddTeamMember extends React.Component {
           sent: true,
         });
         const tempPassword = "TempPass#3";
-        const user = {
-          first_name: firstName,
-          last_name: lastName,
-          password: tempPassword,
-          confirmPassword: tempPassword,
-          email: email.recipient,
-        };
+
         AuthAPIService.postUser({
           first_name: firstName,
           last_name: lastName,

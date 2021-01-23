@@ -3,10 +3,14 @@ import Context from "../../Context/Context";
 
 export default class CalendarView extends React.Component {
   static contextType = Context;
+
+  static defaultProps = {
+    events: [{}],
+  };
   render() {
-    const allEvents = this.context.events;
-    const getDates = allEvents.map((e) => new Date(e.date));
-    console.log(allEvents);
+    const allEvents =
+      this.context && this.context.events.length ? this.context.events : [];
+
     return (
       <div>
         <h2>Events Calendar</h2>

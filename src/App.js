@@ -2,6 +2,8 @@ import React from "react";
 import { Route } from "react-router-dom";
 import "./App.css";
 
+import config from "./Config/config";
+
 import Context from "./Context/Context";
 import ErrorBoundary from "./Components/ErrorBoundary/ErrorBoundary";
 
@@ -42,6 +44,68 @@ export default class App extends React.Component {
     },
     teams: [],
     teamMembers: [],
+  };
+
+  componentDidMount() {
+    if (TokenService.hasAuthToken()) {
+      this.getData();
+    }
+  }
+
+  getData = () => {
+    fetch(`${config.REACT_APP_API_BASE_URL}/users`, {
+      headers: {
+        "content-type": "application/json",
+        Authorization: `Bearer ${TokenService.getAuthToken()}`,
+      },
+    })
+      .then((res) => res.json())
+      .then((user) => {
+        this.setUser(user);
+      });
+    fetch(`${config.REACT_APP_API_BASE_URL}/events`, {
+      headers: {
+        "content-type": "application/json",
+        Authorization: `Bearer ${TokenService.getAuthToken()}`,
+      },
+    })
+      .then((res) => res.json())
+      .then((events) => {
+        const myEvents = events;
+
+        fetch(`${config.REACT_APP_API_BASE_URL}/events/team-members/events`, {
+          headers: {
+            "content-type": "application/json",
+            Authorization: `Bearer ${TokenService.getAuthToken()}`,
+          },
+        })
+          .then((res) => res.json())
+          .then((tmEvents) => {
+            const teamEvents = tmEvents;
+            const allEvents = myEvents.concat(teamEvents);
+            this.setUserEvents(allEvents);
+          });
+      });
+    fetch(`${config.REACT_APP_API_BASE_URL}/teams`, {
+      headers: {
+        "content-type": "application/json",
+        Authorization: `Bearer ${TokenService.getAuthToken()}`,
+      },
+    })
+      .then((res) => res.json())
+      .then((teams) => {
+        this.setUserTeams(teams);
+      });
+    fetch(`${config.REACT_APP_API_BASE_URL}/team-members`, {
+      headers: {
+        "content-type": "application/json",
+        Authorization: `Bearer ${TokenService.getAuthToken()}`,
+      },
+    })
+      .then((res) => res.json())
+      .then((tmembers) => {
+        this.setUserTeamMembers(tmembers);
+      });
   };
 
   setUser = (user) => {
@@ -129,7 +193,17 @@ export default class App extends React.Component {
     TokenService.clearAuthToken();
     this.setState({
       events: [],
-      team: [],
+      tmsOnEvent: [],
+      user: {
+        user_id: "",
+        email: "",
+        firstName: "",
+        lastName: "",
+        phoneNumber: "",
+        profilePic: "",
+      },
+      teams: [],
+      teamMembers: [],
     });
   };
 
@@ -140,6 +214,7 @@ export default class App extends React.Component {
       user: this.state.user,
       teams: this.state.teams,
       teamMembers: this.state.teamMembers,
+
       setUser: this.setUser,
       setUserTeams: this.setUserTeams,
       setUserTeamMembers: this.setUserTeamMembers,
@@ -150,6 +225,7 @@ export default class App extends React.Component {
       setUserEvents: this.setUserEvents,
       updateProfile: this.updateProfile,
       handleLogout: this.handleLogout,
+      getData: this.getData,
     };
     return (
       <Context.Provider value={contextValue}>

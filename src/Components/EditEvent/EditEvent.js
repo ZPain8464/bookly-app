@@ -134,6 +134,10 @@ export default class EditEvent extends React.Component {
     });
   };
 
+  handleCancel = () => {
+    this.props.history.goBack("/events");
+  };
+
   render() {
     const {
       title,
@@ -195,6 +199,9 @@ export default class EditEvent extends React.Component {
             />
             <button type="submit">Update Event</button>
           </form>
+          <div>
+            <button onClick={this.handleCancel}>Cancel</button>
+          </div>
         </div>
       </>
     );

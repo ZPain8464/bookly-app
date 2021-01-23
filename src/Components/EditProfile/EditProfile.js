@@ -7,6 +7,12 @@ import Context from "../../Context/Context";
 export default class EditProfile extends React.Component {
   static contextType = Context;
 
+  static defaultProps = {
+    user: {
+      user_id: 0,
+    },
+  };
+
   state = {
     first_name: "",
     last_name: "",
@@ -15,7 +21,8 @@ export default class EditProfile extends React.Component {
   };
 
   componentDidMount() {
-    const userId = this.context.user.user_id;
+    const userId =
+      this.context && this.context.user ? this.context.user.user_id : "";
     fetch(`${config.REACT_APP_API_BASE_URL}/users/${userId}`)
       .then((res) => res.json())
       .then((user) => {

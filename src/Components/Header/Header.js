@@ -7,7 +7,7 @@ export default class Header extends React.Component {
       <header>
         <div className="hero">
           <h2>Booking Made Easy</h2>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+          <p>Schedule events and get the help you need.</p>
           <div>
             <button>
               <Link to="/login">Start Booking Now</Link>

@@ -7,6 +7,14 @@ import ValidationError from "../Validation/ValidationError";
 export default class AddEvent extends React.Component {
   static contextType = Context;
 
+  static defaultProps = {
+    match: {
+      params: {
+        id: "",
+      },
+    },
+  };
+
   state = {
     title: {
       value: "",
@@ -74,7 +82,6 @@ export default class AddEvent extends React.Component {
       .then((res) => {
         if (!res.ok) {
           throw new Error(res.status);
-          return;
         }
         return res.json();
       })
@@ -90,9 +97,10 @@ export default class AddEvent extends React.Component {
 
   render() {
     const submissionError = this.validateTitle();
+
     return (
-      <>
-        <div className="add-event-view">
+      <React.Fragment>
+        <div className="add-event-view" id="add-event-view">
           <h2>Add a New Event</h2>
           <form
             onSubmit={(e) => this.handleAddEvent(e)}
@@ -113,7 +121,7 @@ export default class AddEvent extends React.Component {
             <label>Add an address: </label>
             <input type="text" name="location" />
             <label>Add a description: </label>
-            <input type="text" name="description" />
+            <input type="textarea" name="description" />
             {this.state.title.touched && (
               <ValidationError message={submissionError} />
             )}
@@ -125,7 +133,7 @@ export default class AddEvent extends React.Component {
             <button onClick={this.handleCancel}>Cancel</button>
           </div>
         </div>
-      </>
+      </React.Fragment>
     );
   }
 }

@@ -120,9 +120,13 @@ export default class Event extends React.Component {
   };
 
   render() {
-    const event = this.context.events;
+    const event =
+      this.context && this.context.events.length ? this.context.events : [];
     const teamMembersToInvite = this.state.tmUsers;
-    const currentTms = this.context.tmsOnEvent;
+    const currentTms =
+      this.context && this.context.tmsOnEvent.length
+        ? this.context.tmsOnEvent
+        : [];
 
     return (
       <section className="event-view">
@@ -131,8 +135,17 @@ export default class Event extends React.Component {
             e.id === Number(this.props.match.params.id) ? (
               <React.Fragment key={i}>
                 <h2 key={i}>{e.title}</h2>
-                <h3>{e.location}</h3>
-                <p>{e.description}</p>
+
+                <p>
+                  This event is scheduled for{" "}
+                  {new Date(e.date).toLocaleDateString()} <br />
+                  from {e.time_start} to {e.time_end}
+                </p>
+                <h3>Address / Location</h3>
+                <p>{e.location}</p>
+                <h3>Event details:</h3>
+                <p className="event-desc">{e.description}</p>
+
                 <div
                   className={
                     this.props.location.pathname === `/events/${e.id}`
@@ -142,30 +155,31 @@ export default class Event extends React.Component {
                 >
                   <h3>Invite team members to your event:</h3>
                   <div className="event-team-list">
-                    <ul>
-                      {teamMembersToInvite.map((tm, i) => (
-                        <li key={i}>
-                          {`${tm.first_name}` + ` ${tm.last_name}`}
-                          <button onClick={(e) => this.sendInvite(tm)}>
-                            + Invite
-                          </button>
-                        </li>
-                      ))}
-                    </ul>
-                    {this.state.teamMember.inviteSent === true ? (
-                      <p>
-                        You invited {this.state.teamMember.name} to your event!
-                      </p>
-                    ) : (
-                      ""
-                    )}
-                    <div>
+                    <div className="uninvited-team">
+                      <ul>
+                        {teamMembersToInvite.map((tm, i) => (
+                          <li key={i}>
+                            {`${tm.first_name} ${tm.last_name}`}
+                            <button onClick={(e) => this.sendInvite(tm)}>
+                              + Invite
+                            </button>
+                          </li>
+                        ))}
+                      </ul>
+                      {this.state.teamMember.inviteSent === true ? (
+                        <p>
+                          You invited {this.state.teamMember.name} to your
+                          event!
+                        </p>
+                      ) : (
+                        ""
+                      )}
+                    </div>
+                    <div className="current-team">
                       <h3>Team members on this event:</h3>
                       <ul>
                         {currentTms.map((tm, i) => (
-                          <li key={i}>
-                            {`${tm.first_name}` + ` ${tm.last_name}`}
-                          </li>
+                          <li key={i}>{`${tm.first_name} ${tm.last_name}`}</li>
                         ))}
                       </ul>
                     </div>

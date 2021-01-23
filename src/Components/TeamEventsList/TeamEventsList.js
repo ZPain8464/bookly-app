@@ -4,12 +4,18 @@ import Context from "../../Context/Context";
 
 export default class TeamEventsList extends React.Component {
   static contextType = Context;
+  static defaultProps = {
+    teams: [{ id: "" }],
+    match: { url: "" },
+  };
   render() {
-    const teamId = this.context.teams[0].id;
-    const eventsList = this.context.events;
-    const teamEventsList = this.context.events.filter(
-      (e) => e.team_id !== teamId
-    );
+    const teamId =
+      this.context && this.context.teams.length ? this.context.teams[0].id : 0;
+
+    const teamEventsList =
+      this.contex && this.context.events.length
+        ? this.context.events.filter((e) => e.team_id !== teamId)
+        : [];
 
     return (
       <aside
@@ -20,7 +26,7 @@ export default class TeamEventsList extends React.Component {
         }
       >
         <h2>Team Events</h2>
-        <p>(events where you're a team member)</p>
+        <p>(events you've joined as a team member)</p>
         <ul>
           {teamEventsList.map((events, i) => (
             <li key={i}>

@@ -26,6 +26,7 @@ export default class InviteLandingPage extends React.Component {
     fetch(`${config.REACT_APP_API_BASE_URL}/emails?url=${uniqueUrl}`)
       .then((res) => res.json())
       .then((data) => {
+        console.log(data);
         const userEmail = data.recipient;
         const eventId = data.event_id;
         const param = data.parameter;
@@ -197,6 +198,7 @@ export default class InviteLandingPage extends React.Component {
                       pathname: "/login",
                       state: {
                         referrer: window.location.href,
+                        parameter: this.state.parameter,
                       },
                     }}
                   />

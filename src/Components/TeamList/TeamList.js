@@ -1,32 +1,20 @@
 import React from "react";
-import DummyStore from "../../DummyStore/DummyStore";
 import { Link } from "react-router-dom";
-import Modal from "../Modal/Modal";
 import Context from "../../Context/Context";
 
 export default class TeamList extends React.Component {
   static contextType = Context;
-  state = {
-    show: false,
+
+  static defaultProps = {
+    match: { params: {} },
   };
 
-  showModal = () => {
-    this.setState({
-      show: true,
-    });
-  };
-
-  hideModal = () => {
-    this.setState({
-      show: false,
-    });
-  };
   render() {
-    const teamMembers = this.context.teamMembers.teamMemberData;
+    const teamMembers =
+      this.context && this.context.teamMembers.teamMemberData
+        ? this.context.teamMembers.teamMemberData
+        : [];
 
-    const teamMember = this.props.match.params.id
-      ? DummyStore.team.find((t) => t.id === Number(this.props.match.params.id))
-      : "";
     return (
       <aside className="team-sidebar">
         <ul>
@@ -36,19 +24,6 @@ export default class TeamList extends React.Component {
                 <Link to={`/teams/team-member/${team.id}`}>
                   <h3>{`${team.first_name} ${team.last_name}`}</h3>
                 </Link>
-              </div>
-              <div className="view-modal">
-                <Modal
-                  teamMember={teamMember}
-                  {...this.props}
-                  show={this.state.show}
-                  handleClose={this.hideModal}
-                />
-                <button onClick={this.showModal} className="view-modal-button">
-                  <Link to={`/teams/team-member/${team.id}`}>
-                    <h2>{`${team.first_name} ${team.last_name}`}</h2>
-                  </Link>
-                </button>
               </div>
             </li>
           ))}
