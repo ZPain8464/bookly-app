@@ -1,6 +1,6 @@
 import config from "../Config/config";
 
-export default {
+const AuthAPIService = {
   postUser(user) {
     return fetch(`${config.REACT_APP_API_BASE_URL}/users`, {
       method: "POST",
@@ -38,3 +38,5 @@ export default {
     );
   },
 };
+
+export default AuthAPIService;
