@@ -2,7 +2,7 @@ import React from "react";
 import AuthAPIService from "../../Services/AuthAPIService";
 import TokenService from "../../Services/TokenService";
 import { Link } from "react-router-dom";
-import Context from "../../Context/Context";
+import Context from "../../Context/context";
 import config from "../../Config/config";
 
 export default class Login extends React.Component {

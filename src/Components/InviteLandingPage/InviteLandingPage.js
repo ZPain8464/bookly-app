@@ -3,7 +3,7 @@ import AuthAPIService from "../../Services/AuthAPIService";
 import TokenService from "../../Services/TokenService";
 import { Redirect } from "react-router-dom";
 import config from "../../Config/config";
-import Context from "../../Context/Context";
+import Context from "../../Context/context";
 
 export default class InviteLandingPage extends React.Component {
   static contextType = Context;

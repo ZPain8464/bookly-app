@@ -2,7 +2,7 @@ import React from "react";
 import config from "../../Config/config";
 import TokenService from "../../Services/TokenService";
 import { Link } from "react-router-dom";
-import Context from "../../Context/Context";
+import Context from "../../Context/context";
 
 export default class EditProfile extends React.Component {
   static contextType = Context;

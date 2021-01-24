@@ -15,7 +15,7 @@ export default class Header extends React.Component {
           </div>
         </div>
         <div className="hero">
-          <span className="hero-image">Image</span>
+          <span className="hero-image"></span>
         </div>
       </header>
     );

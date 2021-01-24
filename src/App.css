@@ -188,11 +188,16 @@ header {
   padding: 250px;
 }
 
+.features p {
+  width: 100%;
+}
+
 .feature-1,
 .feature-2,
 .feature-3 {
   border: grey 2px solid;
-  padding: 85px;
+  padding: 5%;
+  width: 25%;
 }
 
 @media screen and (min-width: 320px) and (max-width: 768px) {
@@ -206,7 +211,18 @@ header {
   }
 
   .features {
-    padding: 150px;
+    padding: 70px;
+    flex-direction: column;
+  }
+
+  .feature-1,
+  .feature-2,
+  .feature-3 {
+    border: grey 2px solid;
+    padding: 20%;
+    width: 100%;
+    margin-top: 5px;
+    margin-bottom: 5px;
   }
 }
 
@@ -221,7 +237,7 @@ header {
 
 @media screen and (min-width: 320px) and (max-width: 768px) {
   .why-section {
-    padding: 150px;
+    padding: 100px;
   }
 }
 

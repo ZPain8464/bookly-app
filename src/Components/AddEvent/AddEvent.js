@@ -1,7 +1,7 @@
 import React from "react";
 import config from "../../Config/config";
 import TokenService from "../../Services/TokenService";
-import Context from "../../Context/Context";
+import Context from "../../Context/context";
 import ValidationError from "../Validation/ValidationError";
 
 export default class AddEvent extends React.Component {

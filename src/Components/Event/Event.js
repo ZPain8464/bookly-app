@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import config from "../../Config/config";
 import TokenService from "../../Services/TokenService";
-import Context from "../../Context/Context";
+import Context from "../../Context/context";
 import { v4 as uuidv4 } from "uuid";
 
 export default class Event extends React.Component {

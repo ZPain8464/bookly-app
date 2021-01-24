@@ -4,7 +4,7 @@ import config from "../../Config/config";
 import TokenService from "../../Services/TokenService";
 import AuthAPIService from "../../Services/AuthAPIService";
 import { v4 as uuidv4 } from "uuid";
-import Context from "../../Context/Context";
+import Context from "../../Context/context";
 
 export default class AddTeamMember extends React.Component {
   static contextType = Context;
@@ -41,7 +41,7 @@ export default class AddTeamMember extends React.Component {
 
   handleAddTeamMember = (e) => {
     e.preventDefault();
-    const url = "http://localhost:3000/invite-page/" + uuidv4();
+    const url = "https://bookly-app.vercel.app/invite-page/" + uuidv4();
     const recipient = this.state.recipient;
     const sender = this.state.sender;
     const name = this.state.senderName;

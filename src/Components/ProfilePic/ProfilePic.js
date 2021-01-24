@@ -1,5 +1,5 @@
 import React from "react";
-import Context from "../../Context/Context";
+import Context from "../../Context/context";
 
 export default class ProfilePic extends React.Component {
   static contextType = Context;

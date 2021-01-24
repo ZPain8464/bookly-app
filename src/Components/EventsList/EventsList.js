@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import config from "../../Config/config";
-import Context from "../../Context/Context";
+import Context from "../../Context/context";
 
 export default class EventsList extends React.Component {
   static contextType = Context;

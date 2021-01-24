@@ -1,7 +1,7 @@
 import React from "react";
 import TokenService from "../../Services/TokenService";
 import { Link } from "react-router-dom";
-import Context from "../../Context/Context";
+import Context from "../../Context/context";
 
 export default class Nav extends React.Component {
   static contextType = Context;

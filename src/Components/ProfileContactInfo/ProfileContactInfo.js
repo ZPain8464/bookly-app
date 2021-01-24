@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import Context from "../../Context/Context";
+import Context from "../../Context/context";
 
 export default class ProfileContactInfo extends React.Component {
   static contextType = Context;

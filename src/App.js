@@ -4,7 +4,7 @@ import "./App.css";
 
 import config from "./Config/config";
 
-import Context from "./Context/Context";
+import Context from "./Context/context";
 import ErrorBoundary from "./Components/ErrorBoundary/ErrorBoundary";
 
 import Nav from "./Components/Nav/Nav";
