@@ -41,7 +41,7 @@ export default class AddTeamMember extends React.Component {
 
   handleAddTeamMember = (e) => {
     e.preventDefault();
-    const url = "https://bookly-app.vercel.app/invite-page/" + uuidv4();
+    const url = `${config.INVITE_URL}` + uuidv4();
     const recipient = this.state.recipient;
     const sender = this.state.sender;
     const name = this.state.senderName;

@@ -89,7 +89,7 @@ export default class Event extends React.Component {
         // creates unique Event invite URL w/ separate URL param
         // param is saved in DB w/ invite_url and fetched on Login for re-routing back to invite landing page
         const parameter = uuidv4();
-        const url = "http://localhost:3000/invite-page/" + parameter;
+        const url = `${config.INVITE_URL}` + parameter;
 
         const email = {
           recipient,
