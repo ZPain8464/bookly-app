@@ -85,18 +85,10 @@ export default class Login extends React.Component {
             {this.state.error && <p className="error">{this.state.error}</p>}
             <div className="login-section">
               <label className="email-label">Email</label>
-              <input
-                type="text"
-                name="email"
-                defaultValue="z.painter45@gmail.com"
-              />
+              <input type="text" name="email" />
 
               <label className="password-label">Password</label>
-              <input
-                type="password"
-                name="password"
-                defaultValue="Password#3"
-              />
+              <input type="password" name="password" />
             </div>
             <div>
               <button type="submit">Sign in</button>
