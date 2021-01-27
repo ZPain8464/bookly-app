@@ -13,7 +13,7 @@ export default class TeamEventsList extends React.Component {
       this.context && this.context.teams.length ? this.context.teams[0].id : 0;
 
     const teamEventsList =
-      this.contex && this.context.events.length
+      this.context && this.context.events.length
         ? this.context.events.filter((e) => e.team_id !== teamId)
         : [];
 
