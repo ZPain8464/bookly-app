@@ -1,5 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { faCalendarCheck } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export default class Header extends React.Component {
   render() {
@@ -15,7 +17,9 @@ export default class Header extends React.Component {
           </div>
         </div>
         <div className="hero">
-          <span className="hero-image"></span>
+          <span className="hero-image">
+            <FontAwesomeIcon className="hero-cal" icon={faCalendarCheck} />
+          </span>
         </div>
       </header>
     );

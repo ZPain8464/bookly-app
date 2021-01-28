@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 export default function WhyBookly() {
   return (
@@ -12,6 +13,11 @@ export default function WhyBookly() {
         adds them to your team roster so you can invite them to upcoming events
         — all from your phone or desktop.
       </p>
+      <div>
+        <button className="cta-button">
+          <Link to="/login">Try Bookly Now</Link>
+        </button>
+      </div>
     </section>
   );
 }

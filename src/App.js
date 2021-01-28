@@ -61,6 +61,7 @@ export default class App extends React.Component {
     })
       .then((res) => res.json())
       .then((user) => {
+        console.log(user);
         this.setUser(user);
       });
     fetch(`${config.REACT_APP_API_BASE_URL}/events`, {
@@ -175,8 +176,12 @@ export default class App extends React.Component {
     const lName = uP.last_name;
     const pNum = uP.phone_number;
     const pPic = uP.profile_image;
+    const uId = this.state.user.user_id;
+    const email = this.state.user.email;
     this.setState({
       user: {
+        user_id: uId,
+        email: email,
         ...this.state.user.firstName,
         firstName: fName,
         ...this.state.user.lastName,

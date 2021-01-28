@@ -9,6 +9,7 @@
   margin: 0;
   padding: 0;
   height: 100%;
+  padding-bottom: 30px;
 }
 
 /* Nav Bar - Public Route / Landing Page */
@@ -57,7 +58,7 @@ nav a:visited {
 .bars {
   width: 35px;
   height: 5px;
-  background-color: #4d4dff;
+  background-color: #0091ad;
   margin: 6px 0;
 }
 
@@ -170,12 +171,29 @@ header {
 }
 
 .hero {
-  border: 2px solid grey;
   margin: 15px 2.5%;
-  padding: 150px;
-  flex-basis: 45%;
+  padding: 100px;
+  flex-basis: 40%;
   box-sizing: border-box;
-  background-color: #e5e5e5;
+}
+
+.hero-cal {
+  font-size: 240px;
+  color: #9fbd7c;
+}
+
+.hero h2 {
+  font-size: 50px;
+}
+
+.hero button {
+  font-size: 20px;
+  padding: 20px;
+  margin: 20px;
+}
+
+.hero-img {
+  background-color: none;
 }
 
 /* Features / Landing Page */
@@ -207,7 +225,16 @@ header {
   }
 
   .hero {
-    padding: 80px;
+    padding: 35px;
+    margin: 0px;
+  }
+
+  .hero h2 {
+    font-size: 25px;
+  }
+
+  .hero-cal {
+    display: none;
   }
 
   .features {
@@ -235,9 +262,20 @@ header {
   padding: 300px;
 }
 
+.cta-button {
+  margin: 20px;
+  padding: 15px;
+  font-size: 20px;
+}
+
 @media screen and (min-width: 320px) and (max-width: 768px) {
   .why-section {
-    padding: 100px;
+    padding: 70px;
+  }
+
+  .cta-button {
+    margin: 10px;
+    font-size: 15px;
   }
 }
 
