@@ -154,7 +154,7 @@ export default class AddTeamMember extends React.Component {
               />
               <label>Email address:</label>
               {this.state.inviteStatusMessage && (
-                <p>{this.state.inviteStatusMessage}</p>
+                <p className="error">{this.state.inviteStatusMessage}</p>
               )}
               <input
                 onChange={(e) => this.getTeamMemberEmail(e)}
@@ -164,7 +164,9 @@ export default class AddTeamMember extends React.Component {
               <button type="submit">Send email invitation</button>
             </form>
             <div>
-              <button onClick={this.handleCancel}>Cancel</button>
+              <button className="cancel-button" onClick={this.handleCancel}>
+                Cancel
+              </button>
             </div>
           </div>
         ) : (

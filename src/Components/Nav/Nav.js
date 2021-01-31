@@ -1,6 +1,8 @@
 import React from "react";
 import TokenService from "../../Services/TokenService";
 import { Link } from "react-router-dom";
+import { faBlog } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Context from "../../Context/context";
 
 export default class Nav extends React.Component {
@@ -31,7 +33,15 @@ export default class Nav extends React.Component {
             <div className="nav-home">
               <div className="nav-logo">
                 <h1>
-                  <Link to="/">Bookly</Link>
+                  <Link to="/">
+                    <span>
+                      {" "}
+                      <span>
+                        <FontAwesomeIcon icon={faBlog} />
+                      </span>{" "}
+                    </span>{" "}
+                    Bookly
+                  </Link>
                 </h1>
               </div>
               <div className="nav-links">
@@ -71,7 +81,13 @@ export default class Nav extends React.Component {
         ) : (
           <div id="main-menu" className="dashboard-menu">
             <h1>
-              <Link to="/dashboard">Bookly</Link>
+              <Link to="/dashboard">
+                <span>
+                  {" "}
+                  <FontAwesomeIcon icon={faBlog} />
+                </span>
+                Bookly
+              </Link>
             </h1>
             <button
               onClick={this.toggleMenu}
@@ -87,36 +103,37 @@ export default class Nav extends React.Component {
               id="nav-ul"
             >
               <li>
-                <h2>
+                <h3>
                   <Link to="/dashboard">Home</Link>
-                </h2>
+                </h3>
               </li>
               <li>
-                <h2>
+                <h3>
                   <Link to="/calendar">Calendar</Link>
-                </h2>
-              </li>
-              <li>
-                <h2>
-                  <Link to="/events">Events</Link>
-                </h2>
-              </li>
-              <li>
-                <Link to="/tm-events">Team Events</Link>
-              </li>
-              <li>
-                <Link to="/add-event">+ Event</Link>
+                </h3>
               </li>
 
               <li>
-                <h2>
+                <h3>
+                  <Link to="/events">Events</Link>
+                </h3>
+              </li>
+
+              <li>
+                <h3>
+                  <Link to="/tm-events">Team events</Link>
+                </h3>
+              </li>
+
+              <li>
+                <h3>
                   <Link to="/teams">Team</Link>
-                </h2>
+                </h3>
               </li>
               <li>
-                <h2>
+                <h3>
                   <button onClick={(e) => this.handleLogout(e)}>Log Out</button>
-                </h2>
+                </h3>
               </li>
             </ul>
           </div>

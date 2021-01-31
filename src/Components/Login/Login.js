@@ -73,21 +73,21 @@ export default class Login extends React.Component {
 
   render() {
     return (
-      <React.Fragment>
-        <h1>Login to Your Account</h1>
+      <div className="login">
+        <h1>Login to your account</h1>
         {this.state.referrerLink !== undefined ? (
-          <p>You must log in first to join your event</p>
+          <p className="error">You must log in first to join your event</p>
         ) : (
           ""
         )}
-        <div className="login-form">
+        <div className="login-section">
           <form className="login-form" onSubmit={(e) => this.handleLogin(e)}>
             {this.state.error && <p className="error">{this.state.error}</p>}
             <div className="login-section">
-              <label className="email-label">Email</label>
+              <label className="login-label">Email</label>
               <input type="text" name="email" />
 
-              <label className="password-label">Password</label>
+              <label className="login-label">Password</label>
               <input type="password" name="password" />
             </div>
             <div>
@@ -98,7 +98,7 @@ export default class Login extends React.Component {
         <div className="create-account">
           <Link to="/register">Create an Account</Link>
         </div>
-      </React.Fragment>
+      </div>
     );
   }
 }

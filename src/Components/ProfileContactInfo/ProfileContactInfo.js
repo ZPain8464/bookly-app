@@ -16,11 +16,19 @@ export default class ProfileContactInfo extends React.Component {
       this.context && this.context.user ? this.context.user.phoneNumber : "";
     return (
       <div className="profile-details">
-        <h3>{`${firstName} ${lastName}`}</h3>
-        <h3>Email: {email}</h3>
-        <h3>Phone number: {phone}</h3>
+        <div className="contact-info">
+          <h3>{`${firstName} ${lastName}`}</h3>
+          <p>
+            <b>Email:</b> {email}
+          </p>
+          <p>
+            <b>Phone number:</b> {phone}
+          </p>
+        </div>
         <Link to="/edit-profile">
-          <button>Edit profile information</button>
+          <button className="edit-profile-button">
+            Edit profile information
+          </button>
         </Link>
       </div>
     );

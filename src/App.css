@@ -4,6 +4,12 @@
   margin: 0;
 }
 
+* h1,
+h2,
+h3 {
+  color: #002f57;
+}
+
 .App {
   text-align: center;
   margin: 0;
@@ -12,11 +18,20 @@
   padding-bottom: 30px;
 }
 
+.error,
+.invite-confirmation {
+  border: 1px solid #d6a319;
+  background-color: #d6a319;
+  padding: 5px;
+  margin-bottom: 5px;
+  color: white;
+  border-radius: 10px;
+}
+
 /* Nav Bar - Public Route / Landing Page */
 
 .nav-home {
-  border: grey solid 2px;
-  background-color: grey;
+  background-color: #e6f4f1;
   padding: 15px;
   font-size: 30px;
   width: 100%;
@@ -27,6 +42,7 @@
 
 nav h1 {
   font-size: 35px;
+  color: #002f57;
 }
 
 .nav-links ul {
@@ -40,6 +56,10 @@ nav h1 {
   font-size: 25px;
 }
 
+.nav-links a:hover {
+  color: #d6a319;
+}
+
 nav h1,
 nav a {
   text-decoration: none;
@@ -50,7 +70,19 @@ nav a:hover {
 }
 
 nav a:visited {
-  color: black;
+  color: #002f57;
+}
+
+.nav-ul button {
+  border: none;
+  background-color: #e6f4f1;
+  color: #002f57;
+  font-size: 25px;
+  cursor: pointer;
+}
+
+.nav-ul button:hover {
+  color: #d6a319;
 }
 
 /* Hamburger Menu - Public Path */
@@ -58,7 +90,7 @@ nav a:visited {
 .bars {
   width: 35px;
   height: 5px;
-  background-color: #0091ad;
+  background-color: #002f57;
   margin: 6px 0;
 }
 
@@ -100,15 +132,15 @@ nav a:visited {
   z-index: 1;
   top: 0;
   left: 0;
-  background-color: #111;
+  background-color: #e6f4f1;
   overflow-x: hidden;
   padding-top: 20px;
 }
 
-.dashboard-menu h2 {
+.dashboard-menu h3 {
   padding: 6px 8px 6px 16px;
   text-decoration: none;
-  font-size: 25px;
+  font-size: 20px;
   color: #818181;
   display: block;
 }
@@ -121,7 +153,16 @@ nav a:visited {
 }
 
 .dashboard-menu a:visited {
-  color: #818181;
+  color: #002f57;
+}
+
+.dashboard-menu a:hover,
+.dashboard-menu button:hover {
+  color: #d6a319;
+}
+
+.dashboard-menu button {
+  font-size: 20px;
 }
 
 @media screen and (min-width: 320px) and (max-width: 768px) {
@@ -151,6 +192,27 @@ nav a:visited {
 
 /* About page */
 
+.about-section {
+  color: #002f57;
+  display: flex;
+  flex-direction: column;
+}
+
+.about-section h1 {
+  font-size: 50px;
+}
+
+.about-section p {
+  width: 25%;
+  margin: 0 auto;
+  text-align: left;
+  padding: 15px;
+}
+
+.about-section h3 {
+  padding-top: 15px;
+}
+
 .about-ol {
   margin: 0 auto;
   width: 25%;
@@ -158,6 +220,24 @@ nav a:visited {
 
 .about-ol li {
   text-align: left;
+}
+
+@media screen and (min-width: 320px) and (max-width: 768px) {
+  .about-section p {
+    width: 80%;
+    margin: 0 auto;
+    text-align: left;
+    padding: 15px;
+  }
+
+  .about-section h1 {
+    font-size: 25px;
+  }
+
+  .about-ol {
+    margin: 0 auto;
+    width: 60%;
+  }
 }
 
 /* Header / Landing Page */
@@ -179,17 +259,33 @@ header {
 
 .hero-cal {
   font-size: 240px;
-  color: #9fbd7c;
+  color: #007ab6;
+  opacity: 0.8;
 }
 
 .hero h2 {
   font-size: 50px;
+  color: #002f57;
 }
 
-.hero button {
+.hero p {
+  color: #002f57;
+}
+
+.hero button,
+.cta-button {
   font-size: 20px;
   padding: 20px;
   margin: 20px;
+  border: none;
+  background-color: #d6a319;
+  border-radius: 20px;
+}
+
+.hero button a,
+.cta-button a {
+  color: white;
+  text-decoration: none;
 }
 
 .hero-img {
@@ -202,8 +298,8 @@ header {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
-  background-color: #e5e5e5;
-  padding: 250px;
+  background-color: #e6f4f1;
+  padding: 150px;
 }
 
 .features p {
@@ -213,9 +309,16 @@ header {
 .feature-1,
 .feature-2,
 .feature-3 {
-  border: grey 2px solid;
   padding: 5%;
   width: 25%;
+  color: #002f57;
+}
+
+.feature-icon {
+  font-size: 130px;
+  margin: 10px;
+  color: #007ab6;
+  opacity: 0.8;
 }
 
 @media screen and (min-width: 320px) and (max-width: 768px) {
@@ -229,6 +332,10 @@ header {
     margin: 0px;
   }
 
+  .hero.cal-icon {
+    padding: 0;
+  }
+
   .hero h2 {
     font-size: 25px;
   }
@@ -237,19 +344,29 @@ header {
     display: none;
   }
 
+  .hero button {
+    font-size: 15px;
+    padding: 15px;
+    margin: 15px;
+    border-radius: 15px;
+  }
+
   .features {
-    padding: 70px;
+    padding: 25px;
     flex-direction: column;
   }
 
   .feature-1,
   .feature-2,
   .feature-3 {
-    border: grey 2px solid;
-    padding: 20%;
+    padding: 10%;
     width: 100%;
     margin-top: 5px;
     margin-bottom: 5px;
+  }
+
+  .feature-icon {
+    font-size: 70px;
   }
 }
 
@@ -259,7 +376,18 @@ header {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 300px;
+  padding: 150px;
+  color: #002f57;
+}
+
+.why-section h2 {
+  font-size: 50px;
+}
+
+.why-section p {
+  width: 50%;
+  margin: 15px;
+  text-align: left;
 }
 
 .cta-button {
@@ -273,8 +401,24 @@ header {
     padding: 70px;
   }
 
+  .why-section h2 {
+    font-size: 30px;
+  }
+
+  .why-section p {
+    width: 100%;
+    text-align: start;
+  }
+
+  .hero-button {
+    font-size: 15px;
+    padding: 15px;
+    margin: 15px;
+    border-radius: 15px;
+  }
+
   .cta-button {
-    margin: 10px;
+    margin: 15px;
     font-size: 15px;
   }
 }
@@ -282,9 +426,8 @@ header {
 /* Footer */
 
 .footer {
-  border: grey 2px solid;
-  background-color: grey;
-  color: #3d405b;
+  background-color: #e6f4f1;
+  color: #002f57;
   height: 25px;
   position: fixed;
   bottom: 0;
@@ -293,15 +436,43 @@ header {
 
 /* Login Page */
 
-.login-form {
+.login-section {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-.login-section {
-  display: flex;
-  flex-direction: column;
+.login h1 {
+  margin: 20px;
+  font-size: 30px;
+}
+
+.login-form {
+  border: solid 2px #e6f4f1;
+  background-color: #e6f4f1;
+  padding: 40px;
+}
+
+.login-label {
+  color: #002f57;
+}
+
+.login-form button {
+  font-size: 20px;
+  padding: 10px;
+  margin: 20px;
+  border: none;
+  background-color: #d6a319;
+  border-radius: 15px;
+  color: white;
+}
+
+.login input,
+.add-event-form input,
+.add-team-member-form input,
+.unregistered-user-form input {
+  padding: 5px;
+  border-radius: 5px;
 }
 
 /* Register */
@@ -310,21 +481,47 @@ header {
   display: flex;
   flex-direction: column;
   align-items: center;
+  color: #002f57;
 }
 
 .register-form {
   display: flex;
   flex-direction: column;
-  width: 15%;
-  border: grey 2px solid;
+  background-color: #e6f4f1;
   padding: 10px;
+  width: 25%;
+  text-align: left;
+}
+
+.register-form button {
+  font-size: 20px;
+  padding: 10px;
+  margin: 20px;
+  border: none;
+  background-color: #d6a319;
+  border-radius: 15px;
+  color: white;
+}
+
+.register-section h2 {
+  font-size: 30px;
+  margin: 20px;
+}
+
+.register-section input {
+  padding: 5px;
+  border-radius: 5px;
 }
 
 @media screen and (min-width: 320px) and (max-width: 768px) {
   .register-form {
     display: flex;
     flex-direction: column;
-    width: 60%;
+    width: 85%;
+  }
+
+  .register-section h2 {
+    font-size: 25px;
   }
 }
 
@@ -350,15 +547,24 @@ img {
   }
 }
 
-.profile-details {
+.profile-details,
+.tm-details {
   margin-top: 25;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-.profile-details h3 {
-  width: 50%;
+.profile-details h3,
+.profile-details p,
+.tm-info h3,
+.tm-info p {
+  color: black;
+  text-align: left;
+}
+
+.tm-info {
+  margin-bottom: 15px;
 }
 
 /* Edit Profile Form */
@@ -367,14 +573,71 @@ img {
   display: flex;
   flex-direction: column;
   align-items: center;
+  color: #002f57;
+}
+
+.edit-profile-view h2 {
+  margin: 20px;
+  font-size: 30px;
 }
 
 .edit-profile-form {
   display: flex;
   flex-direction: column;
-  width: 30%;
-  border: grey 2px solid;
+  width: 25%;
+  background-color: #e6f4f1;
   padding: 10px;
+  text-align: left;
+}
+
+.edit-profile-form label {
+  margin: 5px;
+}
+
+.edit-profile-form input {
+  padding: 5px;
+  border-radius: 5px;
+}
+
+.edit-profile-form button,
+.edit-profile-button,
+.add-event-button,
+.team-sidebar button,
+.add-event-form,
+.add-team-member-form button,
+.add-team-member-view a button,
+.unregistered-user-form button,
+.invite-page form button {
+  font-size: 20px;
+  padding: 10px;
+  margin: 20px;
+  border: none;
+  background-color: #d6a319;
+  border-radius: 15px;
+  color: white;
+  cursor: pointer;
+}
+
+.cancel-button {
+  font-size: 20px;
+  padding: 10px;
+  margin: 20px;
+  border: none;
+  background-color: #d6a319;
+  border-radius: 15px;
+  color: white;
+  cursor: pointer;
+}
+
+@media screen and (min-width: 320px) and (max-width: 768px) {
+  .edit-profile-form {
+    width: 90%;
+  }
+
+  .edit-profile-view h2 {
+    margin: 10px;
+    font-size: 25px;
+  }
 }
 
 /* Events Main */
@@ -398,14 +661,33 @@ img {
   list-style-type: none;
   padding: 0;
 }
+.event-sidebar ul li {
+  width: 100%;
+}
 
 .event-sidebar h3 {
-  border: solid grey 2px;
+  border: solid #007ab6 2px;
   padding: 20px;
   margin: 15px;
+  border-radius: 5px;
+}
+
+.events-desktop a h3 {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.events-desktop a {
+  text-decoration: none;
 }
 
 /* Event */
+
+.edda-details {
+  text-align: left;
+  margin-left: 5%;
+}
 
 .event-view {
   flex: 3;
@@ -414,11 +696,41 @@ img {
 }
 
 .event-view-selected {
-  border: solid grey 2px;
   width: 95%;
   margin-top: 20px;
-  background: #e0e0e0;
+
   height: 100%;
+}
+
+.event-container {
+  background-color: #007ab62b;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  width: 65%;
+}
+
+@media screen and (min-width: 320px) and (max-width: 768px) {
+  .event-container {
+    width: 100%;
+
+    margin-bottom: 60px;
+  }
+}
+
+.e-title,
+.edda-details p {
+  color: #002f57;
+}
+
+.e-title h2 {
+  margin: 15px;
+}
+
+.e-details {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
 }
 
 .event-team-list ul {
@@ -427,24 +739,61 @@ img {
 }
 
 .event-desc {
-  border: 2px grey solid;
-  width: 50%;
-  margin: 0 auto;
+  background-color: white;
+  border-radius: 5px;
+  width: 75%;
   text-align: left;
   padding: 10px;
+  margin-bottom: 15px;
+}
+
+.my-events {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
 }
 
 .uninvited-team ul,
 .current-team ul {
-  border: 2px grey solid;
-  width: 50%;
   margin: 0 auto;
   padding: 10px;
+}
+
+.uninvited-team {
+  width: 45%;
 }
 
 .uninvited-team li,
 .current-team li {
   text-align: left;
+}
+
+span.invite-member {
+  margin-right: 2%;
+}
+
+.invite-button {
+  border: none;
+  background-color: #04c383;
+  color: white;
+  border-radius: 5px;
+  font-size: 15px;
+  padding-left: 15px;
+  padding-right: 15px;
+  cursor: pointer;
+}
+
+.edit-event-button,
+.delete-event-button {
+  font-size: 15px;
+  padding: 5px;
+  margin-bottom: 5px;
+  border: none;
+  background-color: #d6a319;
+  border-radius: 5px;
+  color: white;
+  cursor: pointer;
+  width: 30%;
 }
 
 /* Eventslist Mobile View */
@@ -454,23 +803,48 @@ img {
     display: block;
     margin: 0 auto;
   }
+
+  @media screen and (min-width: 320px) and (max-width: 768px) {
+    .edit-event-button,
+    .delete-event-button {
+      width: 95%;
+    }
+  }
 }
 
 /* Add Event View */
 
 .add-event-view {
-  flex: 3 1;
   display: flex;
-  justify-content: center;
   flex-direction: column;
   align-items: center;
-  border: solid grey 2px;
+  width: 45%;
+}
+
+@media screen and (min-width: 320px) and (max-width: 768px) {
+  .add-event-view {
+    width: 100%;
+  }
+}
+
+.add-event-section {
+  width: 100%;
 }
 
 .add-event-form {
   display: flex;
   flex-direction: column;
-  width: 50%;
+  width: 100%;
+  text-align: left;
+}
+
+.add-event-form label {
+  color: #002f57;
+}
+
+.add-event-form-section {
+  background-color: #007ab62b;
+  padding: 25px;
 }
 
 /* Edit Event View */
@@ -516,9 +890,21 @@ img {
 }
 
 .team-sidebar h3 {
-  border: solid grey 2px;
+  border: solid #007ab6 2px;
   padding: 20px;
   margin: 15px;
+  border-radius: 5px;
+}
+
+.team-desktop a h3 {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-decoration: none;
+}
+
+.team-desktop a {
+  text-decoration: none;
 }
 
 .team-sidebar ul {
@@ -534,15 +920,35 @@ img {
   justify-content: center;
 }
 
+@media screen and (min-width: 320px) and (max-width: 768px) {
+  .team-view {
+    width: 100%;
+  }
+  .team-sidebar {
+    width: 80%;
+  }
+}
+
 /* Add Team Member */
 
 .add-team-member-view {
   margin: 0 auto;
 }
 
+.add-team-member-view p {
+  color: #002f57;
+}
+
 .add-team-member-form {
   display: flex;
   flex-direction: column;
+  background-color: #007ab62b;
+  padding: 25px;
+  text-align: left;
+}
+
+.add-team-member-form label {
+  color: #002f57;
 }
 
 /* Invite Landing Page*/
@@ -551,8 +957,19 @@ img {
   margin: 0 auto;
 }
 
+.invite-page h2,
+.invite-page label,
+.invite-page p,
+.invite-page h3 {
+  color: #002f57;
+}
+
+.unregistered-user-form {
+  text-align: left;
+}
+
 .invite-login-register {
-  border: grey 2px solid;
+  background-color: #007ab62b;
   padding: 30px;
 }
 
@@ -562,10 +979,9 @@ img {
 }
 
 .team-member-selected {
-  border: solid grey 2px;
-  width: 95%;
+  width: 80%;
   margin-top: 20px;
-  background: #e0e0e0;
+  background-color: #007ab62b;
 }
 
 .member-photo {
@@ -580,5 +996,70 @@ img {
   .member-photo {
     width: 150px;
     height: 150px;
+  }
+}
+
+/* Calendar */
+
+.cal-mobile {
+  display: none;
+}
+
+.cal-date-time ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.cal-date-time li {
+  padding: 5px;
+  border: solid 2px #002f57;
+  background-color: #e6f4f1;
+  margin: 5px;
+}
+
+.cal-date-time {
+  flex-basis: 28%;
+}
+
+.cal-date-time h3 {
+  font-size: 25px;
+}
+
+.all-events {
+  display: flex;
+  margin-left: 13%;
+  flex-direction: row;
+}
+
+.calendar-view h2 {
+  margin: 20px;
+  font-size: 30px;
+}
+
+.calendar-mobile-view ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.calendar-mobile-view li {
+  border: solid 2px #e6f4f1;
+  margin: 5px;
+}
+
+.cal-mobile-details {
+  text-align: left;
+  margin: 15px;
+}
+
+.calendar-mobile-view h3 {
+  margin: 10px;
+}
+
+@media screen and (min-width: 320px) and (max-width: 768px) {
+  .cal-desktop {
+    display: none;
+  }
+  .cal-mobile {
+    display: block;
   }
 }

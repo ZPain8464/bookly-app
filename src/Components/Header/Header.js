@@ -20,7 +20,7 @@ export default class Header extends React.Component {
                 </button>
               </div>
             </div>
-            <div className="hero">
+            <div className="hero cal-icon">
               <span className="hero-image">
                 <FontAwesomeIcon className="hero-cal" icon={faCalendarCheck} />
               </span>

@@ -34,11 +34,6 @@ export default class EventsList extends React.Component {
         <aside className="event-sidebar">
           <h2>My Events</h2>
           <p>(events you created)</p>
-          <div>
-            <Link to="/add-event">
-              <button>+ Event</button>
-            </Link>
-          </div>
           <ul>
             {myEvents.map((events, i) => (
               <li onClick={(e) => this.getEventIds(events.id)} key={i}>
@@ -53,7 +48,7 @@ export default class EventsList extends React.Component {
 
           <div>
             <Link to="/add-event">
-              <button>+ Event</button>
+              <button className="add-event-button">+ Event</button>
             </Link>
           </div>
         </aside>

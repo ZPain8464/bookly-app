@@ -134,7 +134,7 @@ export default class EditProfile extends React.Component {
             <button type="submit">Update profile</button>
           </form>
           <Link to="/dashboard">
-            <button>Cancel</button>
+            <button className="cancel-button">Cancel</button>
           </Link>
         </div>
       </>

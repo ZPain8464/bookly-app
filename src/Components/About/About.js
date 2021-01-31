@@ -2,7 +2,7 @@ import React from "react";
 
 export default function About() {
   return (
-    <div>
+    <div className="about-section">
       <h1>About Bookly</h1>
       <p>
         Bookly is a scheduling and planning app <br /> that allows you to create

@@ -31,17 +31,6 @@ export default class AddEvent extends React.Component {
     });
   };
 
-  validateEvent = () => {
-    const eventTitle = this.state.title.value.trim();
-    if (eventTitle.title === 0) {
-      return "Give your event a title";
-    } else if (eventTitle.length < 5) {
-      return "Your title must be at least 5 characters long";
-    } else if (eventTitle.length > 25) {
-      return "Your title can't exceed 25 characters";
-    }
-  };
-
   validateTitle = () => {
     const eventTitle = this.state.title.value.trim();
     if (eventTitle.title === 0) {
@@ -101,36 +90,44 @@ export default class AddEvent extends React.Component {
     return (
       <React.Fragment>
         <div className="add-event-view" id="add-event-view">
-          <h2>Add a New Event</h2>
-          <form
-            onSubmit={(e) => this.handleAddEvent(e)}
-            className="add-event-form"
-          >
-            <label>Name your event:</label>
-            <input
-              onChange={(e) => this.setTitle(e.target.value)}
-              type="text"
-              name="title"
-            />
-            <label>Your event starts at: (required)</label>
-            <input type="time" name="time_start" required />
-            <label>Your event ends at: (required)</label>
-            <input type="time" name="time_end" required />
-            <label>Pick a date: (required)</label>
-            <input type="date" name="date" required />
-            <label>Add an address: </label>
-            <input type="text" name="location" />
-            <label>Add a description: </label>
-            <input type="textarea" name="description" />
-            {this.state.title.touched && (
-              <ValidationError message={submissionError} />
-            )}
-            <button disabled={this.validateTitle()} type="submit">
-              Add Event
-            </button>
-          </form>
-          <div>
-            <button onClick={this.handleCancel}>Cancel</button>
+          <div className="add-event-section">
+            <div className="add-event-container">
+              <h2>Add a New Event</h2>
+              <div className="add-event-form-section">
+                <form
+                  onSubmit={(e) => this.handleAddEvent(e)}
+                  className="add-event-form"
+                >
+                  <label>Name your event:</label>
+                  <input
+                    onChange={(e) => this.setTitle(e.target.value)}
+                    type="text"
+                    name="title"
+                  />
+                  <label>Your event starts at: (required)</label>
+                  <input type="time" name="time_start" required />
+                  <label>Your event ends at: (required)</label>
+                  <input type="time" name="time_end" required />
+                  <label>Pick a date: (required)</label>
+                  <input type="date" name="date" required />
+                  <label>Add an address: </label>
+                  <input type="text" name="location" />
+                  <label>Add a description: </label>
+                  <input type="textarea" name="description" />
+                  {this.state.title.touched && (
+                    <ValidationError message={submissionError} />
+                  )}
+                  <button disabled={this.validateTitle()} type="submit">
+                    Add Event
+                  </button>
+                </form>
+              </div>
+              <div>
+                <button className="cancel-button" onClick={this.handleCancel}>
+                  Cancel
+                </button>
+              </div>
+            </div>
           </div>
         </div>
       </React.Fragment>

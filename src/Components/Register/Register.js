@@ -33,21 +33,22 @@ export default class Register extends React.Component {
   render() {
     return (
       <div className="register-section">
+        <h2>Register for an account</h2>
         <form onSubmit={(e) => this.handleSubmit(e)} className="register-form">
           {this.state.error && <p className="error">{this.state.error}</p>}
-          <label>Type in your photo URL</label>
+          <label>Photo URL</label>
           <input type="url" name="profile_image" />
-          <label>First Name (required)</label>
+          <label>First name (required)</label>
           <input type="text" name="first_name" required />
-          <label>Last Name (required)</label>
+          <label>Last name (required)</label>
           <input type="text" name="last_name" required />
           <label>Email (required)</label>
           <input type="text" name="email" required />
-          <label htmlFor="phone">Phone Number</label>
+          <label htmlFor="phone">Phone number</label>
           <input type="tel" name="phone_number" />
           <label>Password (required)</label>
           <input type="password" name="password" required />
-          <label>Confirm Password (required)</label>
+          <label>Confirm password (required)</label>
           <input type="password" name="confirmPassword" required />
           <button type="submit">Register</button>
         </form>
