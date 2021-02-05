@@ -32,7 +32,7 @@ and assign team members to specific teams will come in the next iteration.
 
 ### Bookly landing page
 
-![bookly-landing-page] [Imgur](https://i.imgur.com/uh7kxfJ.png)
+![bookly-landing-page] (https://imgur.com/uh7kxfJ)
 
 ### Bookly profile page
 
