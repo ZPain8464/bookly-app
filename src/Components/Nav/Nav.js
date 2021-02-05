@@ -132,7 +132,9 @@ export default class Nav extends React.Component {
               </li>
               <li>
                 <h3>
-                  <button onClick={(e) => this.handleLogout(e)}>Log Out</button>
+                  <button onClick={(e) => this.handleLogout(e)}>
+                    <b>Log out</b>
+                  </button>
                 </h3>
               </li>
             </ul>

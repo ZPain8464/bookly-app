@@ -85,6 +85,10 @@ nav a:visited {
   color: #d6a319;
 }
 
+.nav-ul li h3 button {
+  padding: 0;
+}
+
 /* Hamburger Menu - Public Path */
 
 .bars {
@@ -470,7 +474,8 @@ header {
 .login input,
 .add-event-form input,
 .add-team-member-form input,
-.unregistered-user-form input {
+.unregistered-user-form input,
+.edit-event-form input {
   padding: 5px;
   border-radius: 5px;
 }
@@ -603,11 +608,12 @@ img {
 .edit-profile-button,
 .add-event-button,
 .team-sidebar button,
-.add-event-form,
+.add-event-form button,
 .add-team-member-form button,
 .add-team-member-view a button,
 .unregistered-user-form button,
-.invite-page form button {
+.invite-page form button,
+.edit-event-form button {
   font-size: 20px;
   padding: 10px;
   margin: 20px;
@@ -693,6 +699,7 @@ img {
   flex: 3;
   display: flex;
   justify-content: center;
+  margin-top: 40px;
 }
 
 .event-view-selected {
@@ -741,7 +748,7 @@ img {
 .event-desc {
   background-color: white;
   border-radius: 5px;
-  width: 75%;
+  width: 95%;
   text-align: left;
   padding: 10px;
   margin-bottom: 15px;
@@ -793,15 +800,16 @@ span.invite-member {
   border-radius: 5px;
   color: white;
   cursor: pointer;
-  width: 30%;
+  width: 50%;
 }
 
 /* Eventslist Mobile View */
 
 @media screen and (min-width: 320px) and (max-width: 768px) {
   .main-events {
-    display: block;
-    margin: 0 auto;
+    display: flex;
+    flex-direction: column-reverse;
+    margin-left: 0;
   }
 
   @media screen and (min-width: 320px) and (max-width: 768px) {
@@ -824,6 +832,15 @@ span.invite-member {
 @media screen and (min-width: 320px) and (max-width: 768px) {
   .add-event-view {
     width: 100%;
+  }
+
+  .add-event-container {
+    width: 90%;
+    margin: 0 auto;
+  }
+
+  .add-event-container h2 {
+    padding: 15px;
   }
 }
 
@@ -851,11 +868,19 @@ span.invite-member {
 
 .edit-event-view {
   margin: 0 auto;
+  width: 50%;
 }
 
 .edit-event-form {
   display: flex;
   flex-direction: column;
+  background-color: #e6f4f1;
+  padding: 10px;
+  text-align: left;
+}
+
+.edit-event-form label {
+  color: #002f57;
 }
 
 /* Main Team */
@@ -867,9 +892,17 @@ span.invite-member {
 @media screen and (max-width: 768px) {
   .main-team {
     display: flex;
-    flex-direction: column;
+    flex-direction: column-reverse;
     align-items: center;
     margin: 0;
+  }
+
+  .edit-event-view {
+    width: 90%;
+  }
+
+  .edit-event-view h2 {
+    padding: 25px;
   }
 }
 

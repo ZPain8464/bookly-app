@@ -200,7 +200,9 @@ export default class EditEvent extends React.Component {
             <button type="submit">Update Event</button>
           </form>
           <div>
-            <button onClick={this.handleCancel}>Cancel</button>
+            <button className="cancel-button" onClick={this.handleCancel}>
+              Cancel
+            </button>
           </div>
         </div>
       </>
