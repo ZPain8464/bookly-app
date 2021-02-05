@@ -140,19 +140,21 @@ export default class AddTeamMember extends React.Component {
               onSubmit={(e) => this.handleAddTeamMember(e)}
               className="add-team-member-form"
             >
-              <label>First name:</label>
+              <label htmlFor="first_name">First name:</label>
               <input
                 onChange={(e) => this.getFirstName(e)}
                 type="text"
                 name="first_name"
+                id="first_name"
               />
-              <label>Last name:</label>
+              <label htmlFor="last_name">Last name:</label>
               <input
                 onChange={(e) => this.getLastName(e)}
                 type="text"
                 name="last_name"
+                id="last_name"
               />
-              <label>Email address:</label>
+              <label htmlFor="email">Email address:</label>
               {this.state.inviteStatusMessage && (
                 <p className="error">{this.state.inviteStatusMessage}</p>
               )}
@@ -160,6 +162,7 @@ export default class AddTeamMember extends React.Component {
                 onChange={(e) => this.getTeamMemberEmail(e)}
                 type="text"
                 name="email"
+                id="email"
               />
               <button type="submit">Send email invitation</button>
             </form>

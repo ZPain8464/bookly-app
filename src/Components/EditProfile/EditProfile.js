@@ -103,32 +103,36 @@ export default class EditProfile extends React.Component {
             onSubmit={(e) => this.handleSubmit(e)}
             className="edit-profile-form"
           >
-            <label>Add your photo URL</label>
+            <label htmlFor="profile_image">Add your photo URL</label>
             <input
               onChange={(e) => this.updateProfilePic(e)}
               type="url"
               name="profile_image"
+              id="profile_image"
               value={profile_image}
             />
-            <label>First name:</label>
+            <label htmlFor="first_name">First name:</label>
             <input
               onChange={(e) => this.updateFirstName(e)}
               type="text"
               name="first_name"
               value={first_name}
+              id="first_name"
             />
-            <label>Last name:</label>
+            <label htmlFor="last_name">Last name:</label>
             <input
               onChange={(e) => this.updateLastName(e)}
               type="text"
               name="last_name"
+              id="last_name"
               value={last_name}
             />
-            <label>Phone number</label>
+            <label htmlFor="phone_number">Phone number</label>
             <input
               onChange={(e) => this.updatePhoneNumber(e)}
               type="tel"
               name="phone_number"
+              id="phone_number"
               value={phone_number}
             />
             <button type="submit">Update profile</button>
