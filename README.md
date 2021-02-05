@@ -32,19 +32,19 @@ and assign team members to specific teams will come in the next iteration.
 
 ### Bookly landing page
 
-![bookly-landing-page] (https://imgur.com/uh7kxfJ)
+![bookly-homepage](https://user-images.githubusercontent.com/60552605/106987620-7fcbfc80-6733-11eb-99ac-54057ae613cc.png)
 
 ### Bookly profile page
 
-![bookly-profile-page] (Images/bookly-profile-page.png)
+![bookly-profile-page](https://user-images.githubusercontent.com/60552605/106987683-a12ce880-6733-11eb-8914-95ab8efb40c0.png)
 
 ### Bookly Calendar events mobile view
 
-![bookly-cal-view] (Images/bookly-calendar-mobile.png)
+![bookly-calendar-mobile](https://user-images.githubusercontent.com/60552605/106987713-ae49d780-6733-11eb-8dea-a1485a8c0f43.png)
 
 ### Bookly events desktop view
 
-![bookly-events-view] (Images/bookly-events-view.png)
+![bookly-events-view](https://user-images.githubusercontent.com/60552605/106987731-b99d0300-6733-11eb-9064-273083989d30.png)
 
 ## Technologies
 
