@@ -1,6 +1,6 @@
 # Bookly - Scheduling and event planning app
 
-Live app: (https://bookly-app.vercel.app/)
+Live app: https://bookly-app.vercel.app/
 
 ## Table of Contents
 
@@ -32,19 +32,23 @@ and assign team members to specific teams will come in the next iteration.
 
 ### Bookly landing page
 
-![bookly-landing-page] (.Images/bookly-homepage.png)
+![bookly-homepage](https://user-images.githubusercontent.com/60552605/106988086-798a5000-6734-11eb-87e8-7add43f73c95.png)
 
 ### Bookly profile page
 
-![bookly-profile-page] (.Images/bookly-homepage.png)
+![bookly-profile-page](https://user-images.githubusercontent.com/60552605/106988106-83ac4e80-6734-11eb-9f66-25605c6a0293.png)
+
 
 ### Bookly Calendar events mobile view
 
-![bookly-cal-view] (.Images/bookly-calendar-mobile.png)
+![calendar-page](https://user-images.githubusercontent.com/60552605/106988144-9aeb3c00-6734-11eb-8f22-77b3a50aae65.png)
+
 
 ### Bookly events desktop view
 
-![bookly-events-view] (.Images/bookly-events-view.png)
+![bookly-events-page](https://user-images.githubusercontent.com/60552605/106988127-90c93d80-6734-11eb-9be2-873b707ea31c.png)
+
+
 
 ## Technologies
 
