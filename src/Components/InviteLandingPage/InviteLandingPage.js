@@ -158,10 +158,17 @@ export default class InviteLandingPage extends React.Component {
                 {this.state.error && (
                   <p className="error">{this.state.error}</p>
                 )}
-                <label>Password (required)</label>
-                <input type="password" name="password" required />
-                <label>Confirm Password (required)</label>
-                <input type="password" name="confirmPassword" required />
+                <label htmlFor="password">Password (required)</label>
+                <input id="password" type="password" name="password" required />
+                <label htmlFor="confirmPassword">
+                  Confirm Password (required)
+                </label>
+                <input
+                  id="confirmPassword"
+                  type="password"
+                  name="confirmPassword"
+                  required
+                />
                 <button type="submit">Register</button>
               </form>
             </div>

@@ -261,6 +261,14 @@ header {
   box-sizing: border-box;
 }
 
+.login-cred {
+  text-align: left;
+}
+
+.login-cred ul li {
+  color: #002f57;
+}
+
 .hero-cal {
   font-size: 240px;
   color: #007ab6;
@@ -468,7 +476,7 @@ header {
   border: none;
   background-color: #d6a319;
   border-radius: 15px;
-  color: white;
+  color: #00455f;
 }
 
 .login input,
@@ -620,7 +628,8 @@ img {
   border: none;
   background-color: #d6a319;
   border-radius: 15px;
-  color: white;
+  color: #00455f;
+  /* color: white; */
   cursor: pointer;
 }
 
@@ -631,7 +640,7 @@ img {
   border: none;
   background-color: #d6a319;
   border-radius: 15px;
-  color: white;
+  color: #00455f;
   cursor: pointer;
 }
 
@@ -650,7 +659,7 @@ img {
 
 .main-events {
   display: flex;
-  margin-left: 13%;
+  margin-left: 19%;
 }
 
 .tm-events {
@@ -782,7 +791,7 @@ span.invite-member {
 .invite-button {
   border: none;
   background-color: #04c383;
-  color: white;
+  color: #00455f;
   border-radius: 5px;
   font-size: 15px;
   padding-left: 15px;
@@ -798,7 +807,7 @@ span.invite-member {
   border: none;
   background-color: #d6a319;
   border-radius: 5px;
-  color: white;
+  color: #00455f;
   cursor: pointer;
   width: 50%;
 }
@@ -886,7 +895,7 @@ span.invite-member {
 /* Main Team */
 .main-team {
   display: flex;
-  margin-left: 13%;
+  margin-left: 19%;
 }
 
 @media screen and (max-width: 768px) {
@@ -1060,7 +1069,7 @@ span.invite-member {
 
 .all-events {
   display: flex;
-  margin-left: 13%;
+  margin-left: 19%;
   flex-direction: row;
 }
 

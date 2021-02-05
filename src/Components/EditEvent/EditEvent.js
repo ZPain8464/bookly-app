@@ -155,46 +155,52 @@ export default class EditEvent extends React.Component {
             onSubmit={(e) => this.handleUpdate(e)}
             className="edit-event-form"
           >
-            <label>Edit event name:</label>
+            <label htmlFor="title">Edit event name:</label>
             <input
               onChange={(e) => this.updateTitle(e)}
               type="text"
               name="title"
+              id="title"
               value={title}
             />
-            <label>Change start time:</label>
+            <label htmlFor="time_start">Change start time:</label>
             <input
               onChange={(e) => this.updateTimeStart(e)}
               type="time"
               name="time_start"
               value={time_start}
+              id="time_start"
             />
-            <label>Change end time:</label>
+            <label htmlFor="time_end">Change end time:</label>
             <input
               onChange={(e) => this.updateTimeEnd(e)}
               type="time"
               name="time_end"
+              id="time_end"
               value={time_end}
             />
-            <label>Change date:</label>
+            <label htmlFor="date">Change date:</label>
             <input
               onChange={(e) => this.updateDate(e)}
               type="date"
               name="date"
+              id="date"
               value={date}
             />
-            <label>Change address:</label>
+            <label htmlFor="location">Change address:</label>
             <input
               onChange={(e) => this.updateLocation(e)}
               type="text"
               name="location"
+              id="location"
               value={location}
             />
-            <label>Change description:</label>
+            <label htmlFor="description">Change description:</label>
             <input
               onChange={(e) => this.updateDescription(e)}
               type="text"
               name="description"
+              id="description"
               value={description}
             />
             <button type="submit">Update Event</button>

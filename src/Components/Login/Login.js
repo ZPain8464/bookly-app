@@ -84,11 +84,15 @@ export default class Login extends React.Component {
           <form className="login-form" onSubmit={(e) => this.handleLogin(e)}>
             {this.state.error && <p className="error">{this.state.error}</p>}
             <div className="login-section">
-              <label className="login-label">Email</label>
-              <input type="text" name="email" />
+              <label htmlFor="email" className="login-label">
+                Email
+              </label>
+              <input type="text" name="email" id="email" />
 
-              <label className="login-label">Password</label>
-              <input type="password" name="password" />
+              <label htmlFor="password" className="login-label">
+                Password
+              </label>
+              <input type="password" id="password" name="password" />
             </div>
             <div>
               <button type="submit">Sign in</button>

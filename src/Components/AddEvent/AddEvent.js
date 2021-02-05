@@ -98,22 +98,32 @@ export default class AddEvent extends React.Component {
                   onSubmit={(e) => this.handleAddEvent(e)}
                   className="add-event-form"
                 >
-                  <label>Name your event:</label>
+                  <label htmlFor="title">Name your event:</label>
                   <input
                     onChange={(e) => this.setTitle(e.target.value)}
                     type="text"
+                    id="title"
                     name="title"
                   />
-                  <label>Your event starts at: (required)</label>
-                  <input type="time" name="time_start" required />
-                  <label>Your event ends at: (required)</label>
-                  <input type="time" name="time_end" required />
-                  <label>Pick a date: (required)</label>
-                  <input type="date" name="date" required />
-                  <label>Add an address: </label>
-                  <input type="text" name="location" />
-                  <label>Add a description: </label>
-                  <input type="textarea" name="description" />
+                  <label htmlFor="time_start">
+                    Your event starts at: (required)
+                  </label>
+                  <input
+                    id="time_start"
+                    type="time"
+                    name="time_start"
+                    required
+                  />
+                  <label htmlFor="time_end">
+                    Your event ends at: (required)
+                  </label>
+                  <input id="time_end" type="time" name="time_end" required />
+                  <label htmlFor="date">Pick a date: (required)</label>
+                  <input id="date" type="date" name="date" required />
+                  <label htmlFor="location">Add an address: </label>
+                  <input id="location" type="text" name="location" />
+                  <label htmlFor="description">Add a description: </label>
+                  <input id="description" type="textarea" name="description" />
                   {this.state.title.touched && (
                     <ValidationError message={submissionError} />
                   )}

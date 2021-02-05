@@ -17,6 +17,7 @@ export default class TeamList extends React.Component {
 
     return (
       <aside className="team-sidebar">
+        <h2>Team members</h2>
         <ul>
           {teamMembers.map((team, i) => (
             <li key={i}>
