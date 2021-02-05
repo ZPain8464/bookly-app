@@ -1,6 +1,6 @@
 # Bookly - Scheduling and event planning app
 
-Live app: (https://bookly-app.vercel.app/)
+Live app: https://bookly-app.vercel.app/
 
 ## Table of Contents
 
@@ -32,7 +32,7 @@ and assign team members to specific teams will come in the next iteration.
 
 ### Bookly landing page
 
-![bookly-landing-page] (Images/bookly-homepage.png)
+![bookly-landing-page] [Imgur](https://i.imgur.com/uh7kxfJ.png)
 
 ### Bookly profile page
 
