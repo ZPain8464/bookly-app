@@ -61,7 +61,6 @@ export default class App extends React.Component {
     })
       .then((res) => res.json())
       .then((user) => {
-        console.log(user);
         this.setUser(user);
       });
     fetch(`${config.REACT_APP_API_BASE_URL}/events`, {
