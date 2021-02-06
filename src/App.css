@@ -775,6 +775,10 @@ img {
   padding: 10px;
 }
 
+.uninvited-team ul li {
+  padding-top: 5px;
+}
+
 .uninvited-team {
   width: 45%;
 }
