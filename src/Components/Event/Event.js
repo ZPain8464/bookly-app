@@ -171,7 +171,7 @@ export default class Event extends React.Component {
                               {teamMembersToInvite.map((tm, i) => (
                                 <li key={i}>
                                   <span className="invite-member">
-                                    {`${tm.first_name} ${tm.last_name}`}
+                                    <p>{`${tm.first_name} ${tm.last_name}`} </p>
 
                                     <button
                                       className="invite-button"
