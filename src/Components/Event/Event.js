@@ -122,7 +122,7 @@ export default class Event extends React.Component {
   render() {
     const event =
       this.context && this.context.events.length ? this.context.events : [];
-    const teamMembersToInvite = this.state.tmUsers;
+    const currentTeamMembers = this.state.tmUsers;
     const currentTms =
       this.context && this.context.tmsOnEvent.length
         ? this.context.tmsOnEvent
@@ -164,41 +164,16 @@ export default class Event extends React.Component {
                             : "tm-events"
                         }
                       >
-                        <h3>Invite team members:</h3>
+                        <h3>Active team members:</h3>
                         <div className="event-team-list">
                           <div className="uninvited-team">
                             <ul>
-                              {teamMembersToInvite.map((tm, i) => (
+                              {currentTeamMembers.map((tm, i) => (
                                 <li key={i}>
                                   <span className="invite-member">
                                     <p>{`${tm.first_name} ${tm.last_name}`} </p>
-
-                                    <button
-                                      className="invite-button"
-                                      onClick={(e) => this.sendInvite(tm)}
-                                    >
-                                      + Invite
-                                    </button>
                                   </span>
                                 </li>
-                              ))}
-                            </ul>
-                            {this.state.teamMember.inviteSent === true ? (
-                              <p className="invite-confirmation">
-                                You invited {this.state.teamMember.name} to your
-                                event!
-                              </p>
-                            ) : (
-                              ""
-                            )}
-                          </div>
-                          <div className="current-team">
-                            <h3>Active team members:</h3>
-                            <ul>
-                              {currentTms.map((tm, i) => (
-                                <li
-                                  key={i}
-                                >{`${tm.first_name} ${tm.last_name}`}</li>
                               ))}
                             </ul>
                           </div>

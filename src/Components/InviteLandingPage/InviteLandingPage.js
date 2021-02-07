@@ -44,6 +44,7 @@ export default class InviteLandingPage extends React.Component {
         )
           .then((res) => res.json())
           .then((unregisteredUser) => {
+            console.log(unregisteredUser);
             this.setState({
               user: {
                 ...this.state.user,

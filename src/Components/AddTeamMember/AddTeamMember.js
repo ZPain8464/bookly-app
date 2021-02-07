@@ -48,51 +48,61 @@ export default class AddTeamMember extends React.Component {
     const email = { recipient, sender, name, url };
     const firstName = this.state.teamMember.firstName;
     const lastName = this.state.teamMember.lastName;
+    const tempPassword = "TempPass#3";
+    AuthAPIService.postUser({
+      first_name: firstName,
+      last_name: lastName,
+      password: tempPassword,
+      confirmPassword: tempPassword,
+      email: email.recipient,
+    }).then((newUser) => {
+      const userId = newUser.user.id;
+      const teamId = this.context.teams[0].id;
 
-    fetch(`${config.REACT_APP_API_BASE_URL}/emails`, {
-      method: "POST",
-      headers: {
-        "content-type": "application/json",
-        Authorization: `Bearer ${TokenService.getAuthToken()}`,
-      },
-      body: JSON.stringify(email),
-    }).then((res) => {
-      if (res.ok) {
-        this.setState({
-          inviteStatusMessage: `Your invite to ${recipient} was sent successfully!`,
-          sent: true,
-        });
-        const tempPassword = "TempPass#3";
-
-        AuthAPIService.postUser({
-          first_name: firstName,
-          last_name: lastName,
-          password: tempPassword,
-          confirmPassword: tempPassword,
-          email: email.recipient,
-        }).then((newUser) => {
-          const userId = newUser.user.id;
-          const teamId = this.context.teams[0].id;
-
-          fetch(`${config.REACT_APP_API_BASE_URL}/team-members`, {
-            method: "POST",
+      fetch(`${config.REACT_APP_API_BASE_URL}/team-members`, {
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+          Authorization: `Bearer ${TokenService.getAuthToken()}`,
+        },
+        body: JSON.stringify({
+          invite_date: new Date(),
+          user_id: userId,
+          team_id: teamId,
+        }),
+      })
+        .then((res) => {
+          if (res.ok) {
+            this.setState({
+              inviteStatusMessage: `${firstName} was added to your team!`,
+              sent: true,
+            });
+          }
+          return res.json();
+        })
+        .then((tm) => {
+          const teamMember = tm;
+          const id = tm.user_id;
+          fetch(`${config.REACT_APP_API_BASE_URL}/team-members/${id}`, {
             headers: {
               "content-type": "application/json",
               Authorization: `Bearer ${TokenService.getAuthToken()}`,
             },
-            body: JSON.stringify({
-              invite_date: new Date(),
-              user_id: userId,
-              team_id: teamId,
-            }),
+          }).then(() => {
+            fetch(`${config.REACT_APP_API_BASE_URL}/users/${id}`, {
+              headers: {
+                "content-type": "application/json",
+                Authorization: `Bearer ${TokenService.getAuthToken()}`,
+              },
+            })
+              .then((res) => res.json())
+              .then((data) => {
+                const teamMemberData = data;
+                const newTmObject = { teamMember, teamMemberData };
+                this.context.createTeamMember(newTmObject);
+              });
           });
         });
-      } else {
-        this.setState({
-          inviteStatusMessage:
-            "Please enter a valid email address (e.g. joe@example.com)",
-        });
-      }
     });
   };
 
@@ -164,7 +174,7 @@ export default class AddTeamMember extends React.Component {
                 name="email"
                 id="email"
               />
-              <button type="submit">Send email invitation</button>
+              <button type="submit">Add to team</button>
             </form>
             <div>
               <button className="cancel-button" onClick={this.handleCancel}>

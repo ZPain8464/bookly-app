@@ -156,6 +156,15 @@ export default class App extends React.Component {
     });
   };
 
+  createTeamMember = (tm) => {
+    const newTm = tm.teamMemberData;
+    this.setState({
+      teamMembers: {
+        teamMemberData: [...this.state.teamMembers.teamMemberData, newTm],
+      },
+    });
+  };
+
   // Gets team_members that have accepted event invite
   getTmsOnEvent = (tms) => {
     this.setState({
@@ -230,6 +239,7 @@ export default class App extends React.Component {
       updateProfile: this.updateProfile,
       handleLogout: this.handleLogout,
       getData: this.getData,
+      createTeamMember: this.createTeamMember,
     };
     return (
       <Context.Provider value={contextValue}>
