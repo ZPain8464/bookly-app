@@ -123,10 +123,6 @@ export default class Event extends React.Component {
     const event =
       this.context && this.context.events.length ? this.context.events : [];
     const currentTeamMembers = this.state.tmUsers;
-    const currentTms =
-      this.context && this.context.tmsOnEvent.length
-        ? this.context.tmsOnEvent
-        : [];
 
     return (
       <section className="event-view">
