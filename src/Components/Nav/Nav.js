@@ -65,14 +65,10 @@ export default class Nav extends React.Component {
                     <Link to="/about">About</Link>
                   </li>
                   <li>
-                    <Link to="/login">
-                      <button>Login</button>
-                    </Link>
+                    <Link to="/login">Login</Link>
                   </li>
                   <li>
-                    <Link to="/register">
-                      <button>Register</button>
-                    </Link>
+                    <Link to="/register">Register</Link>
                   </li>
                 </ul>
               </div>
@@ -104,39 +100,39 @@ export default class Nav extends React.Component {
                 id="nav-ul"
               >
                 <li>
-                  <h3>
+                  <h2>
                     <Link to="/dashboard">Home</Link>
-                  </h3>
+                  </h2>
                 </li>
                 <li>
-                  <h3>
+                  <h2>
                     <Link to="/calendar">Calendar</Link>
-                  </h3>
+                  </h2>
                 </li>
 
                 <li>
-                  <h3>
+                  <h2>
                     <Link to="/events">Events</Link>
-                  </h3>
+                  </h2>
                 </li>
 
                 <li>
-                  <h3>
+                  <h2>
                     <Link to="/tm-events">Team events</Link>
-                  </h3>
+                  </h2>
                 </li>
 
                 <li>
-                  <h3>
+                  <h2>
                     <Link to="/teams">Team</Link>
-                  </h3>
+                  </h2>
                 </li>
                 <li>
-                  <h3>
+                  <h2>
                     <button onClick={(e) => this.handleLogout(e)}>
                       <b>Log out</b>
                     </button>
-                  </h3>
+                  </h2>
                 </li>
               </ul>
             </div>

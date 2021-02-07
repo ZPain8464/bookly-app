@@ -17,14 +17,11 @@ export default class AddTeamMember extends React.Component {
   };
 
   state = {
-    // sender's name
     senderName: "",
     recipient: "",
-    // sender email address
     sender: "",
     inviteStatusMessage: "",
     sent: false,
-    // new team member's info
     teamMember: {
       firstName: "",
       lastName: "",
@@ -188,7 +185,7 @@ export default class AddTeamMember extends React.Component {
               <h2>Invitation sent!</h2>
               <p>{this.state.inviteStatusMessage}</p>
               <Link to="/dashboard">
-                <button>Return to dashboard</button>
+                <p>Return to dashboard</p>
               </Link>
             </div>
           </>

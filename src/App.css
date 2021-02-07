@@ -141,7 +141,7 @@ nav a:visited {
   padding-top: 20px;
 }
 
-.dashboard-menu h3 {
+.dashboard-menu h2 {
   padding: 6px 8px 6px 16px;
   text-decoration: none;
   font-size: 20px;
@@ -1073,7 +1073,7 @@ span.invite-member {
 
 .all-events {
   display: flex;
-  margin-left: 19%;
+  margin-left: 21%;
   flex-direction: row;
 }
 
