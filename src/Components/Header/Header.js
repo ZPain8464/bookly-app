@@ -20,7 +20,7 @@ export default class Header extends React.Component {
                 </p>
                 <ul>
                   <li>
-                    <b>Email:</b> z.painter45@gmail.com
+                    <b>Email:</b> demobookly@gmail.com
                   </li>
                   <li>
                     <b>Password:</b> Password#3
