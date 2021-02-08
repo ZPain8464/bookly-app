@@ -55,7 +55,6 @@ export default class AddTeamMember extends React.Component {
     }).then((newUser) => {
       const userId = newUser.user.id;
       const teamId = this.context.teams[0].id;
-
       fetch(`${config.REACT_APP_API_BASE_URL}/team-members`, {
         method: "POST",
         headers: {
@@ -66,6 +65,8 @@ export default class AddTeamMember extends React.Component {
           invite_date: new Date(),
           user_id: userId,
           team_id: teamId,
+          recipient: recipient,
+          url: url,
         }),
       })
         .then((res) => {

@@ -78,13 +78,17 @@ export default class App extends React.Component {
             "content-type": "application/json",
             Authorization: `Bearer ${TokenService.getAuthToken()}`,
           },
-        })
-          .then((res) => res.json())
-          .then((tmEvents) => {
-            const teamEvents = tmEvents;
-            const allEvents = myEvents.concat(teamEvents);
-            this.setUserEvents(allEvents);
-          });
+        }).then((res) => {
+          if (!res.ok) {
+            this.setUserEvents(myEvents);
+          } else {
+            res.json().then((tmEvents) => {
+              const teamEvents = tmEvents;
+              const allEvents = myEvents.concat(teamEvents);
+              this.setUserEvents(allEvents);
+            });
+          }
+        });
       });
     fetch(`${config.REACT_APP_API_BASE_URL}/teams`, {
       headers: {

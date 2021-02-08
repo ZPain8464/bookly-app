@@ -13,7 +13,6 @@ export default class Header extends React.Component {
           <>
             <div className="hero">
               <h2>Booking Made Easy</h2>
-              <p>Schedule events and get the help you need.</p>
               <div className="login-cred">
                 <p>
                   <b>Quick login w/ demo account:</b>
@@ -24,6 +23,15 @@ export default class Header extends React.Component {
                   </li>
                   <li>
                     <b>Password:</b> Password#3
+                  </li>
+                </ul>
+                <p>
+                  <b>Quick login for your team members:</b>
+                </p>
+                <ul>
+                  <li>Use team member's email address</li>
+                  <li>
+                    <b>Password:</b> TempPass#3
                   </li>
                 </ul>
               </div>

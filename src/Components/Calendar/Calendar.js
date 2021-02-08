@@ -30,7 +30,9 @@ export default class CalendarView extends React.Component {
                 <h3>Date</h3>
                 <ul>
                   {allEvents.map((e, i) => (
-                    <li>{`${new Date(e.date).toLocaleDateString()}`}</li>
+                    <li key={i}>{`${new Date(
+                      e.date
+                    ).toLocaleDateString()}`}</li>
                   ))}
                 </ul>
               </div>
@@ -38,7 +40,7 @@ export default class CalendarView extends React.Component {
                 <h3>Duration</h3>
                 <ul>
                   {allEvents.map((e, i) => (
-                    <li>{`${e.time_start} - ${e.time_end}`}</li>
+                    <li key={i}>{`${e.time_start} - ${e.time_end}`}</li>
                   ))}
                 </ul>
               </div>
@@ -55,7 +57,7 @@ export default class CalendarView extends React.Component {
             <h2>Events Calendar</h2>
             <ul>
               {allEvents.map((e, i) => (
-                <li>
+                <li key={i}>
                   <h3>{e.title}</h3>
                   <div className="cal-mobile-details">
                     <p>
