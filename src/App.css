@@ -685,10 +685,16 @@ img {
   display: none;
 }
 
-/* EventList */
+/* Sidebar */
 
 .sidebar {
   flex: 1;
+  overflow-y: scroll;
+  padding-bottom: 20px;
+}
+
+::-webkit-scrollbar {
+  display: none;
 }
 
 .sidebar ul {
@@ -724,7 +730,11 @@ img {
   margin-left: 5%;
 }
 
-.event-view {
+.event-view,
+.add-event-view,
+.edit-event-view,
+.team-view,
+.add-team-member-view {
   flex: 3;
   display: flex;
   justify-content: center;
@@ -734,8 +744,9 @@ img {
 .event-view-selected {
   width: 95%;
   margin-top: 20px;
-
   height: 100%;
+  overflow-y: scroll;
+  padding-bottom: 20px;
 }
 
 .event-container {
@@ -860,75 +871,46 @@ span.invite-member {
 
 /* Add Event View */
 
-.add-event-view {
-  flex: 3;
-  display: flex;
-  justify-content: center;
-  margin-top: 40px;
-  /* display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 95%; */
+.add-event-section,
+.edit-event-section,
+.add-team-member-section {
+  width: 80%;
 }
 
 @media screen and (min-width: 320px) and (max-width: 768px) {
   .add-event-view {
     width: 100%;
   }
-
-  .add-event-container {
-    width: 90%;
-    margin: 0 auto;
-  }
-
-  .add-event-container h2 {
-    padding: 15px;
+  .add-event-section,
+  .edit-event-section,
+  .add-team-member-section {
+    width: 100%;
   }
 }
 
-.add-event-section {
-  width: 80%;
-}
-
-.add-event-form {
+.add-event-form,
+.edit-event-form,
+.add-team-member-form {
   display: flex;
   flex-direction: column;
   width: 100%;
   text-align: left;
 }
 
-.add-event-form label {
-  color: #002f57;
-}
-
-.add-event-form-section {
-  background-color: #007ab62b;
-  padding: 25px;
-}
-
-/* Edit Event View */
-
-.edit-event-view {
-  margin: 0 auto;
-  width: 50%;
-}
-
-.edit-event-form {
-  display: flex;
-  flex-direction: column;
-  background-color: #007ab62b;
-  padding: 10px;
-  text-align: left;
-}
-
+.add-event-form label,
 .edit-event-form label {
   color: #002f57;
+}
+
+.add-event-form-section,
+.edit-event-form {
+  background-color: #007ab62b;
+  padding: 25px;
 }
 
 /* Main Team */
 .main-team {
   display: flex;
-  /* margin-left: 19%; */
 }
 
 @media screen and (max-width: 768px) {
@@ -941,10 +923,6 @@ span.invite-member {
 
   .edit-event-view {
     width: 90%;
-  }
-
-  .edit-event-view h2 {
-    padding: 25px;
   }
 }
 
@@ -989,18 +967,9 @@ span.invite-member {
 
 /* Team Member */
 
-.team-view {
-  flex: 3;
-  display: flex;
-  justify-content: center;
-}
-
 @media screen and (min-width: 320px) and (max-width: 768px) {
   .team-view {
     width: 100%;
-  }
-  .team-sidebar {
-    width: 80%;
   }
 }
 
@@ -1056,7 +1025,6 @@ span.invite-member {
 .team-member-selected {
   width: 95%;
   margin-top: 20px;
-  /* background-color: #007ab62b; */
   height: 55%;
 }
 

@@ -138,52 +138,58 @@ export default class AddTeamMember extends React.Component {
       <>
         {this.state.sent === false ? (
           <div className="add-team-member-view">
-            <h2>Add a Team Member</h2>
-            <p>Team members can only see events they've joined.</p>
-            <p>
-              Once your team member creates an account, you can <br /> send them
-              an invitation to your event.
-            </p>
-            <form
-              onSubmit={(e) => this.handleAddTeamMember(e)}
-              className="add-team-member-form"
-            >
-              <label htmlFor="first_name">First name:</label>
-              <input
-                onChange={(e) => this.getFirstName(e)}
-                type="text"
-                name="first_name"
-                id="first_name"
-              />
-              <label htmlFor="last_name">Last name:</label>
-              <input
-                onChange={(e) => this.getLastName(e)}
-                type="text"
-                name="last_name"
-                id="last_name"
-              />
-              <label htmlFor="email">Email address:</label>
-              {this.state.inviteStatusMessage && (
-                <p className="error">{this.state.inviteStatusMessage}</p>
-              )}
-              <input
-                onChange={(e) => this.getTeamMemberEmail(e)}
-                type="text"
-                name="email"
-                id="email"
-              />
-              <button type="submit">Add to team</button>
-            </form>
-            <div>
-              <button className="cancel-button" onClick={this.handleCancel}>
-                Cancel
-              </button>
+            <div className="add-team-member-section">
+              <h2>Add a Team Member</h2>
+              <div className="add-team-member-form-section">
+                <form
+                  onSubmit={(e) => this.handleAddTeamMember(e)}
+                  className="add-team-member-form"
+                >
+                  <label htmlFor="first_name">First name:</label>
+                  <input
+                    onChange={(e) => this.getFirstName(e)}
+                    type="text"
+                    name="first_name"
+                    id="first_name"
+                  />
+                  <label htmlFor="last_name">Last name:</label>
+                  <input
+                    onChange={(e) => this.getLastName(e)}
+                    type="text"
+                    name="last_name"
+                    id="last_name"
+                  />
+                  <label htmlFor="email">Email address:</label>
+                  {this.state.inviteStatusMessage && (
+                    <p className="error">{this.state.inviteStatusMessage}</p>
+                  )}
+                  <input
+                    onChange={(e) => this.getTeamMemberEmail(e)}
+                    type="text"
+                    name="email"
+                    id="email"
+                  />
+                  <button type="submit">Add to team</button>
+                </form>
+                <div>
+                  <p>
+                    <b>Note:</b> Team members can only see events they've
+                    joined.
+                  </p>
+                  <p>
+                    Once your team member creates an account, you can <br />{" "}
+                    send them an invitation to your event.
+                  </p>
+                  <button className="cancel-button" onClick={this.handleCancel}>
+                    Cancel
+                  </button>
+                </div>
+              </div>
             </div>
           </div>
         ) : (
           <>
             <div className="add-team-member-view">
-              <h2>Invitation sent!</h2>
               <p>{this.state.inviteStatusMessage}</p>
               <Link to="/dashboard">
                 <p>Return to dashboard</p>

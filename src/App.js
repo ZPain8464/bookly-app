@@ -294,7 +294,11 @@ export default class App extends React.Component {
 
                 <Route
                   exact
-                  path={["/teams", "/teams/team-member/:id"]}
+                  path={[
+                    "/teams",
+                    "/teams/team-member/:id",
+                    "/add-team-member",
+                  ]}
                   component={TeamList}
                 />
                 <Route
