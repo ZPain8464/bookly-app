@@ -18,13 +18,7 @@ export default class TeamEventsList extends React.Component {
         : [];
 
     return (
-      <aside
-        className={
-          this.props.match.url === "/add-event"
-            ? "event-sidebar-hidden"
-            : "event-sidebar"
-        }
-      >
+      <aside className="sidebar">
         <h2>Team Events</h2>
         <p>(events you've joined as a team member)</p>
         <ul>

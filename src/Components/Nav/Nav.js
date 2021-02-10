@@ -75,67 +75,65 @@ export default class Nav extends React.Component {
             </div>
           </>
         ) : (
-          <div className="nav-container">
-            <div id="main-menu" className="dashboard-menu">
-              <h1>
-                <Link to="/dashboard">
-                  <span>
-                    {" "}
-                    <FontAwesomeIcon icon={faBlog} />
-                  </span>
-                  Bookly
-                </Link>
-              </h1>
-              <button
-                onClick={this.toggleMenu}
-                className="hamburger"
-                id="hamburger"
-              >
-                <div className="bars" />
-                <div className="bars" />
-                <div className="bars" />
-              </button>
-              <ul
-                className={this.state.show ? "nav-ul show" : "nav-ul"}
-                id="nav-ul"
-              >
-                <li>
-                  <h2>
-                    <Link to="/dashboard">Home</Link>
-                  </h2>
-                </li>
-                <li>
-                  <h2>
-                    <Link to="/calendar">Calendar</Link>
-                  </h2>
-                </li>
+          <div id="main-menu" className="dashboard-menu">
+            <h1>
+              <Link to="/dashboard">
+                <span>
+                  {" "}
+                  <FontAwesomeIcon icon={faBlog} />
+                </span>
+                Bookly
+              </Link>
+            </h1>
+            <button
+              onClick={this.toggleMenu}
+              className="hamburger"
+              id="hamburger"
+            >
+              <div className="bars" />
+              <div className="bars" />
+              <div className="bars" />
+            </button>
+            <ul
+              className={this.state.show ? "nav-ul show" : "nav-ul"}
+              id="nav-ul"
+            >
+              <li>
+                <h2>
+                  <Link to="/dashboard">Home</Link>
+                </h2>
+              </li>
+              <li>
+                <h2>
+                  <Link to="/calendar">Calendar</Link>
+                </h2>
+              </li>
 
-                <li>
-                  <h2>
-                    <Link to="/events">Events</Link>
-                  </h2>
-                </li>
+              <li>
+                <h2>
+                  <Link to="/events">Events</Link>
+                </h2>
+              </li>
 
-                <li>
-                  <h2>
-                    <Link to="/tm-events">Team events</Link>
-                  </h2>
-                </li>
+              <li>
+                <h2>
+                  <Link to="/tm-events">Team events</Link>
+                </h2>
+              </li>
 
-                <li>
-                  <h2>
-                    <Link to="/teams">Team</Link>
-                  </h2>
-                </li>
-                <li>
-                  <h2>
-                    <button onClick={(e) => this.handleLogout(e)}>
-                      <b>Log out</b>
-                    </button>
-                  </h2>
-                </li>
-              </ul>
-            </div>
+              <li>
+                <h2>
+                  <Link to="/teams">Team</Link>
+                </h2>
+              </li>
+              <li>
+                <h2>
+                  <button onClick={(e) => this.handleLogout(e)}>
+                    <b>Log out</b>
+                  </button>
+                </h2>
+              </li>
+            </ul>
           </div>
         )}
       </nav>

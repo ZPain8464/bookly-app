@@ -18,6 +18,22 @@ h3 {
   padding-bottom: 30px;
 }
 
+.private-main {
+  display: flex;
+  height: 100vh;
+}
+
+@media screen and (min-width: 320px) and (max-width: 768px) {
+  .private-main {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  nav {
+    width: 100%;
+  }
+}
+
 .error,
 .invite-confirmation {
   border: 1px solid #d6a319;
@@ -129,15 +145,9 @@ nav a:visited {
 /* Dashboard Nav / Logged In */
 
 .dashboard-menu {
-  color: white;
-  height: 100%;
+  height: 100vh;
   width: 160px;
-  position: fixed;
-  z-index: 1;
-  top: 0;
-  left: 0;
   background-color: #e6f4f1;
-  overflow-x: hidden;
   padding-top: 20px;
 }
 
@@ -172,7 +182,7 @@ nav a:visited {
 @media screen and (min-width: 320px) and (max-width: 768px) {
   .dashboard-menu {
     width: 100%;
-    position: unset;
+    height: auto;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
@@ -542,6 +552,10 @@ header {
 
 /* ProfilePic */
 
+.dashboard {
+  margin: 0 auto;
+}
+
 .profile-pic {
   margin-top: 60px;
 }
@@ -583,10 +597,8 @@ img {
 /* Edit Profile Form */
 
 .edit-profile-view {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
   color: #002f57;
+  margin: 0 auto;
 }
 
 .edit-profile-view h2 {
@@ -597,10 +609,16 @@ img {
 .edit-profile-form {
   display: flex;
   flex-direction: column;
-  width: 25%;
+  width: 100%;
   background-color: #e6f4f1;
   padding: 10px;
   text-align: left;
+}
+
+@media screen and (min-width: 320px) and (max-width: 768px) {
+  .edit-profile-view {
+    margin-left: 0;
+  }
 }
 
 .edit-profile-form label {
@@ -615,7 +633,7 @@ img {
 .edit-profile-form button,
 .edit-profile-button,
 .add-event-button,
-.team-sidebar button,
+.add-team-member-button,
 .add-event-form button,
 .add-team-member-form button,
 .add-team-member-view a button,
@@ -657,9 +675,10 @@ img {
 
 /* Events Main */
 
-.main-events {
+.main-view {
   display: flex;
-  margin-left: 19%;
+  width: 70%;
+  /* margin-left: 19%; */
 }
 
 .tm-events {
@@ -668,23 +687,24 @@ img {
 
 /* EventList */
 
-.event-sidebar {
+.sidebar {
   flex: 1;
 }
 
-.event-sidebar ul {
+.sidebar ul {
   list-style-type: none;
   padding: 0;
 }
-.event-sidebar ul li {
+.sidebar ul li {
   width: 100%;
 }
 
-.event-sidebar h3 {
+.sidebar h3 {
   border: solid #007ab6 2px;
   padding: 20px;
   margin: 15px;
   border-radius: 5px;
+  max-width: 90%;
 }
 
 .events-desktop a h3 {
@@ -720,10 +740,10 @@ img {
 
 .event-container {
   background-color: #007ab62b;
-  border-radius: 10px;
+
   display: flex;
   flex-direction: column;
-  width: 65%;
+  /* width: 65%; */
 }
 
 @media screen and (min-width: 320px) and (max-width: 768px) {
@@ -731,6 +751,9 @@ img {
     width: 100%;
 
     margin-bottom: 60px;
+  }
+  .event-view {
+    width: 95%;
   }
 }
 
@@ -819,10 +842,12 @@ span.invite-member {
 /* Eventslist Mobile View */
 
 @media screen and (min-width: 320px) and (max-width: 768px) {
-  .main-events {
+  .main-view {
     display: flex;
     flex-direction: column-reverse;
     margin-left: 0;
+    align-items: center;
+    width: 90%;
   }
 
   @media screen and (min-width: 320px) and (max-width: 768px) {
@@ -836,10 +861,14 @@ span.invite-member {
 /* Add Event View */
 
 .add-event-view {
+  flex: 3;
   display: flex;
+  justify-content: center;
+  margin-top: 40px;
+  /* display: flex;
   flex-direction: column;
   align-items: center;
-  width: 45%;
+  width: 95%; */
 }
 
 @media screen and (min-width: 320px) and (max-width: 768px) {
@@ -858,7 +887,7 @@ span.invite-member {
 }
 
 .add-event-section {
-  width: 100%;
+  width: 80%;
 }
 
 .add-event-form {
@@ -887,7 +916,7 @@ span.invite-member {
 .edit-event-form {
   display: flex;
   flex-direction: column;
-  background-color: #e6f4f1;
+  background-color: #007ab62b;
   padding: 10px;
   text-align: left;
 }
@@ -899,7 +928,7 @@ span.invite-member {
 /* Main Team */
 .main-team {
   display: flex;
-  margin-left: 19%;
+  /* margin-left: 19%; */
 }
 
 @media screen and (max-width: 768px) {
@@ -1025,9 +1054,10 @@ span.invite-member {
 }
 
 .team-member-selected {
-  width: 80%;
+  width: 95%;
   margin-top: 20px;
-  background-color: #007ab62b;
+  /* background-color: #007ab62b; */
+  height: 55%;
 }
 
 .member-photo {
@@ -1042,6 +1072,10 @@ span.invite-member {
   .member-photo {
     width: 150px;
     height: 150px;
+  }
+  .team-member-selected {
+    height: 90%;
+    width: 100%;
   }
 }
 
@@ -1063,17 +1097,12 @@ span.invite-member {
   margin: 5px;
 }
 
-.cal-date-time {
-  flex-basis: 28%;
-}
-
 .cal-date-time h3 {
   font-size: 25px;
 }
 
 .all-events {
   display: flex;
-  margin-left: 21%;
   flex-direction: row;
 }
 
@@ -1101,11 +1130,16 @@ span.invite-member {
   margin: 10px;
 }
 
+.cal-desktop {
+  margin: 0 auto;
+}
+
 @media screen and (min-width: 320px) and (max-width: 768px) {
   .cal-desktop {
     display: none;
   }
   .cal-mobile {
     display: block;
+    width: 100%;
   }
 }

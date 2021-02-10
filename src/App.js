@@ -15,8 +15,7 @@ import Header from "./Components/Header/Header";
 import Features from "./Components/Features/Features";
 import WhyBookly from "./Components/WhyBookly/WhyBookly";
 import Footer from "./Components/Footer/Footer";
-import ProfilePic from "./Components/ProfilePic/ProfilePic";
-import ProfileContactInfo from "./Components/ProfileContactInfo/ProfileContactInfo";
+import ProfileMain from "./Components/ProfileMain/ProfileMain";
 import EditProfile from "./Components/EditProfile/EditProfile";
 import EventsList from "./Components/EventsList/EventsList";
 import TeamEventsList from "./Components/TeamEventsList/TeamEventsList";
@@ -78,17 +77,13 @@ export default class App extends React.Component {
             "content-type": "application/json",
             Authorization: `Bearer ${TokenService.getAuthToken()}`,
           },
-        }).then((res) => {
-          if (!res.ok) {
-            this.setUserEvents(myEvents);
-          } else {
-            res.json().then((tmEvents) => {
-              const teamEvents = tmEvents;
-              const allEvents = myEvents.concat(teamEvents);
-              this.setUserEvents(allEvents);
-            });
-          }
-        });
+        })
+          .then((res) => res.json())
+          .then((tmEvents) => {
+            const teamEvents = tmEvents;
+            const allEvents = myEvents.concat(teamEvents);
+            this.setUserEvents(allEvents);
+          });
       });
     fetch(`${config.REACT_APP_API_BASE_URL}/teams`, {
       headers: {
@@ -249,28 +244,34 @@ export default class App extends React.Component {
       <Context.Provider value={contextValue}>
         <ErrorBoundary>
           <div className="App">
-            <Route path="/" component={Nav} />
+            <main
+              className={
+                !TokenService.hasAuthToken() ? "public-main" : "private-main"
+              }
+            >
+              <Route path="/" component={Nav} />
 
-            <Route exact path="/" component={Header} />
-            <Route exact path="/about" component={About} />
-            <Route exact path="/login" component={Login} />
+              <Route exact path="/" component={Header} />
+              <Route exact path="/about" component={About} />
+              <Route exact path="/login" component={Login} />
 
-            <Route exact path="/register" component={Register} />
-            <main>
-              <section className="main-dashboard">
+              <Route exact path="/register" component={Register} />
+              <section className="main-view">
                 <Route
                   exact
                   path="/dashboard"
-                  render={(props) => <ProfilePic {...props} {...this.state} />}
+                  render={(props) => <ProfileMain {...props} {...this.state} />}
                 />
-
-                <Route exact path="/dashboard" component={ProfileContactInfo} />
                 <Route exact path="/edit-profile" component={EditProfile} />
-              </section>
-              <section className="main-events">
+
                 <Route
                   exact
-                  path={["/events", "/events/:id", "/add-event"]}
+                  path={[
+                    "/events",
+                    "/events/:id",
+                    "/add-event",
+                    "/edit-event/:id",
+                  ]}
                   component={EventsList}
                 />
                 <Route
@@ -290,8 +291,7 @@ export default class App extends React.Component {
                 />
                 <Route exact path="/add-event" component={AddEvent} />
                 <Route exact path="/edit-event/:id" component={EditEvent} />
-              </section>
-              <section className="main-team">
+
                 <Route
                   exact
                   path={["/teams", "/teams/team-member/:id"]}
@@ -312,8 +312,7 @@ export default class App extends React.Component {
                   path={["/invite-page", "/invite-page/:id"]}
                   component={InviteLandingPage}
                 />
-              </section>
-              <section className="main-calendar">
+
                 <Route exact path="/calendar" component={CalendarView} />
               </section>
 

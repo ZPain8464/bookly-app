@@ -11,11 +11,17 @@ export default class TeamMember extends React.Component {
     return (
       <section className="team-view">
         <div className="team-member-selected">
-          <div className="team-member-container">
+          <div className="event-container">
             {team.map((t, i) =>
               t.id === Number(this.props.match.params.id) ? (
-                <React.Fragment key={i}>
-                  <img className="member-photo" alt="" src={t.profile_image} />
+                <div className="tm-section" key={i}>
+                  <div className="tm-details">
+                    <img
+                      className="member-photo"
+                      alt=""
+                      src={t.profile_image}
+                    />
+                  </div>
                   <div className="tm-details">
                     <div className="tm-info">
                       <h3 key={i}>{`${t.first_name} ${t.last_name}`}</h3>
@@ -27,7 +33,7 @@ export default class TeamMember extends React.Component {
                       </p>
                     </div>
                   </div>
-                </React.Fragment>
+                </div>
               ) : (
                 ""
               )

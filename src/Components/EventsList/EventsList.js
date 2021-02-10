@@ -30,29 +30,27 @@ export default class EventsList extends React.Component {
     const myEvents = eventsList.filter((e) => e.team_id === teamId);
 
     return (
-      <div className="mobile-hide">
-        <aside className="event-sidebar">
-          <h2>My Events</h2>
-          <p>(events you created)</p>
-          <ul>
-            {myEvents.map((events, i) => (
-              <li onClick={(e) => this.getEventIds(events.id)} key={i}>
-                <div className="events-desktop">
-                  <Link to={`/events/${events.id}`}>
-                    <h3>{events.title}</h3>
-                  </Link>
-                </div>
-              </li>
-            ))}
-          </ul>
+      <aside className="sidebar">
+        <h2>My Events</h2>
+        <p>(events you created)</p>
+        <ul>
+          {myEvents.map((events, i) => (
+            <li onClick={(e) => this.getEventIds(events.id)} key={i}>
+              <div className="events-desktop">
+                <Link to={`/events/${events.id}`}>
+                  <h3>{events.title}</h3>
+                </Link>
+              </div>
+            </li>
+          ))}
+        </ul>
 
-          <div>
-            <Link to="/add-event">
-              <button className="add-event-button">+ Event</button>
-            </Link>
-          </div>
-        </aside>
-      </div>
+        <div>
+          <Link to="/add-event">
+            <button className="add-event-button">+ Event</button>
+          </Link>
+        </div>
+      </aside>
     );
   }
 }

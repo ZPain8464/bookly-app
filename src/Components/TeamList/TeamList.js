@@ -16,7 +16,7 @@ export default class TeamList extends React.Component {
         : [];
 
     return (
-      <aside className="team-sidebar">
+      <aside className="sidebar">
         <h2>Team members</h2>
         <ul>
           {teamMembers.map((team, i) => (
@@ -30,7 +30,7 @@ export default class TeamList extends React.Component {
           ))}
         </ul>
         <Link to="/add-team-member">
-          <button>+ Add Team Member</button>
+          <button className="add-team-member-button">+ Add Team Member</button>
         </Link>
       </aside>
     );

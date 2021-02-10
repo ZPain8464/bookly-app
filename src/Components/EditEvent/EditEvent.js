@@ -13,6 +13,7 @@ export default class EditEvent extends React.Component {
     location: "",
     description: "",
     date: "",
+    team_id: "",
   };
 
   componentDidMount() {
@@ -39,6 +40,7 @@ export default class EditEvent extends React.Component {
           location: e.location,
           description: e.description,
           date: e.date,
+          team_id: e.team_id,
         });
       })
       .catch((error) => {
@@ -56,6 +58,7 @@ export default class EditEvent extends React.Component {
       location,
       description,
       date,
+      team_id,
     } = this.state;
     const updateEvent = {
       id,
@@ -65,6 +68,7 @@ export default class EditEvent extends React.Component {
       location,
       description,
       date,
+      team_id,
     };
     fetch(`${config.REACT_APP_API_BASE_URL}/events/${this.state.id}`, {
       method: "PATCH",
