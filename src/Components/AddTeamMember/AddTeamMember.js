@@ -46,61 +46,132 @@ export default class AddTeamMember extends React.Component {
     const firstName = this.state.teamMember.firstName;
     const lastName = this.state.teamMember.lastName;
     const tempPassword = "TempPass#3";
-    AuthAPIService.postUser({
-      first_name: firstName,
-      last_name: lastName,
-      password: tempPassword,
-      confirmPassword: tempPassword,
-      email: email.recipient,
-    }).then((newUser) => {
-      const userId = newUser.user.id;
-      const teamId = this.context.teams[0].id;
-      fetch(`${config.REACT_APP_API_BASE_URL}/team-members`, {
+    fetch(
+      `${config.REACT_APP_API_BASE_URL}/team-members/registered-user/add-team-member/find-email`,
+      {
         method: "POST",
         headers: {
           "content-type": "application/json",
           Authorization: `Bearer ${TokenService.getAuthToken()}`,
         },
-        body: JSON.stringify({
-          invite_date: new Date(),
-          user_id: userId,
-          team_id: teamId,
-          recipient: recipient,
-          url: url,
-        }),
-      })
-        .then((res) => {
-          if (res.ok) {
-            this.setState({
-              inviteStatusMessage: `${firstName} was added to your team!`,
-              sent: true,
-            });
-          }
-          return res.json();
-        })
-        .then((tm) => {
-          const teamMember = tm;
-          const id = tm.user_id;
-          fetch(`${config.REACT_APP_API_BASE_URL}/team-members/${id}`, {
-            headers: {
-              "content-type": "application/json",
-              Authorization: `Bearer ${TokenService.getAuthToken()}`,
-            },
-          }).then(() => {
-            fetch(`${config.REACT_APP_API_BASE_URL}/users/${id}`, {
+        body: JSON.stringify({ email }),
+      }
+    ).then((res) => {
+      if (!res.ok) {
+        // if submitted email already exists
+        // use email to create new team_member
+        fetch(
+          `${config.REACT_APP_API_BASE_URL}/users/registered-user/invite/find-user?email=${email.recipient}`
+        )
+          .then((res) => res.json())
+          .then((userData) => {
+            const user_id = userData.id[0].id;
+            const teamId = this.context.teams[0].id;
+            fetch(`${config.REACT_APP_API_BASE_URL}/team-members`, {
+              method: "POST",
               headers: {
                 "content-type": "application/json",
                 Authorization: `Bearer ${TokenService.getAuthToken()}`,
               },
+              body: JSON.stringify({
+                user_id: user_id,
+                team_id: teamId,
+                invite_date: new Date(),
+              }),
             })
-              .then((res) => res.json())
-              .then((data) => {
-                const teamMemberData = data;
-                const newTmObject = { teamMember, teamMemberData };
-                this.context.createTeamMember(newTmObject);
+              .then((res) => {
+                if (res.ok) {
+                  this.setState({
+                    inviteStatusMessage: `${firstName} was added to your team!`,
+                    sent: true,
+                  });
+                }
+                return res.json();
+              })
+              .then((tm) => {
+                const teamMember = tm;
+                const id = tm.user_id;
+                fetch(`${config.REACT_APP_API_BASE_URL}/team-members/${id}`, {
+                  headers: {
+                    "content-type": "application/json",
+                    Authorization: `Bearer ${TokenService.getAuthToken()}`,
+                  },
+                }).then(() => {
+                  fetch(`${config.REACT_APP_API_BASE_URL}/users/${id}`, {
+                    headers: {
+                      "content-type": "application/json",
+                      Authorization: `Bearer ${TokenService.getAuthToken()}`,
+                    },
+                  })
+                    .then((res) => res.json())
+                    .then((data) => {
+                      const teamMemberData = data;
+                      const newTmObject = { teamMember, teamMemberData };
+                      this.context.createTeamMember(newTmObject);
+                    });
+                });
               });
           });
+      } else {
+        // if submitted email doesn't exist
+        // create new user and team member first
+        AuthAPIService.postUser({
+          first_name: firstName,
+          last_name: lastName,
+          password: tempPassword,
+          confirmPassword: tempPassword,
+          email: email.recipient,
+        }).then((newUser) => {
+          const userId = newUser.user.id;
+          const teamId = this.context.teams[0].id;
+          fetch(`${config.REACT_APP_API_BASE_URL}/team-members`, {
+            method: "POST",
+            headers: {
+              "content-type": "application/json",
+              Authorization: `Bearer ${TokenService.getAuthToken()}`,
+            },
+            body: JSON.stringify({
+              invite_date: new Date(),
+              user_id: userId,
+              team_id: teamId,
+              recipient: recipient,
+              url: url,
+            }),
+          })
+            .then((res) => {
+              if (res.ok) {
+                this.setState({
+                  inviteStatusMessage: `${firstName} was added to your team!`,
+                  sent: true,
+                });
+              }
+              return res.json();
+            })
+            .then((tm) => {
+              const teamMember = tm;
+              const id = tm.user_id;
+              fetch(`${config.REACT_APP_API_BASE_URL}/team-members/${id}`, {
+                headers: {
+                  "content-type": "application/json",
+                  Authorization: `Bearer ${TokenService.getAuthToken()}`,
+                },
+              }).then(() => {
+                fetch(`${config.REACT_APP_API_BASE_URL}/users/${id}`, {
+                  headers: {
+                    "content-type": "application/json",
+                    Authorization: `Bearer ${TokenService.getAuthToken()}`,
+                  },
+                })
+                  .then((res) => res.json())
+                  .then((data) => {
+                    const teamMemberData = data;
+                    const newTmObject = { teamMember, teamMemberData };
+                    this.context.createTeamMember(newTmObject);
+                  });
+              });
+            });
         });
+      }
     });
   };
 
